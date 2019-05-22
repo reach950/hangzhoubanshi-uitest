@@ -5,5 +5,8 @@
 
 __author__ = 'kejie'
 
-from .AI_customer_service_page import AICustomerServicePage
 from .index_page import IndexPage
+from .AI_customer_service_page import AICustomerServicePage
+from .handle_affairs_guide_select_page import HandleAffairsGuideSelectPage
+from .handle_personal_affairs_guide_page import HandlePersonalAffairsGuidePage
+from .guide_detail_page import GuideDetailPage

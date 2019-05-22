@@ -22,6 +22,7 @@ class TestAICustomerService(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    # 测试输入问题获取智能客服的解决方法
     def test_get_solution_by_input_question(self):
         self.index_page.open_AI_customer_service_page()
         self.AI_customer_service_page.search(self.search_text)

@@ -10,6 +10,7 @@ import json
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
+from appium.webdriver.common.mobileby import MobileBy
 
 
 class BasePage:
@@ -79,3 +80,8 @@ class BasePage:
             ele.set_value(value)
         except WebDriverException:
             logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))
+
+    # 根据name属性检查元素是否存在
+    def check_element_by_name(self, name):
+        loc = (MobileBy.ACCESSIBILITY_ID, name)
+        return self.find_element(loc).is_displayed()

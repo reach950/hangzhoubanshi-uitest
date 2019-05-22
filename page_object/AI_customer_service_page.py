@@ -17,12 +17,7 @@ class AICustomerServicePage(BasePage):
     # 搜索按钮
     search_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 28')
 
-    # 输入关键字搜索
+    # 输入关键字搜索问题答案
     def search(self, text):
         self.send_keys(self.search_textfield_loc, text)
         self.tap_element(self.search_button_loc)
-
-    # 根据name属性检查元素是否存在
-    def check_element_by_name(self, name):
-        loc = (MobileBy.ACCESSIBILITY_ID, name)
-        return self.find_element(loc).is_displayed()
