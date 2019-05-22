@@ -5,8 +5,8 @@
 
 __author__ = 'kejie'
 
-from page_object.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
+from page_object.base_page import BasePage
 
 
 class AICustomerServicePage(BasePage):
@@ -23,6 +23,6 @@ class AICustomerServicePage(BasePage):
         self.tap_element(self.search_button_loc)
 
     # 根据name属性检查元素是否存在
-    def check_element_is_display_by_name(self, name):
+    def check_element_is_by_name(self, name):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
         return self.find_element(loc).is_displayed()
