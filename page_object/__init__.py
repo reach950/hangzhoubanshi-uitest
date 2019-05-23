@@ -11,3 +11,4 @@ from .handle_affairs_guide_select_page import HandleAffairsGuideSelectPage
 from .handle_personal_affairs_guide_page import HandlePersonalAffairsGuidePage
 from .guide_detail_page import GuideDetailPage
 from .search_page import SearchPage
+from .all_apps_page import AllAppsPage

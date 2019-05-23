@@ -27,3 +27,4 @@ class BaseCase(unittest.TestCase):
         self.handle_personal_affairs_guide_page = po.HandlePersonalAffairsGuidePage(self.driver)
         self.guide_detail_page = po.GuideDetailPage(self.driver)
         self.search_page = po.SearchPage(self.driver)
+        self.all_apps_page = po.AllAppsPage(self.driver)

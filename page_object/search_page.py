@@ -16,7 +16,7 @@ class SearchPage(BasePage):
     search_field_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeSearchField')
 
     # 搜索按钮
-    search_button_loc = (MobileBy.ACCESSIBILITY_ID, 'search')
+    search_button_loc = (MobileBy.ACCESSIBILITY_ID, 'Search')
 
     # 输入关键字搜索
     def search(self, text):
