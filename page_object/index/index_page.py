@@ -29,7 +29,7 @@ class IndexPage(BasePage):
 
     # 更多应用
     more_app_loc = (MobileBy.IOS_CLASS_CHAIN,
-                    '**/XCUIElementTypeOther[$type == XCUIElementTypeStaticText AND name == "更多"$]')
+                    '**/XCUIElementTypeScrollView/XCUIElementTypeOther[3]/XCUIElementTypeOther[-1]')
 
     # 打开办事指南页面
     def open_handle_affairs_guide_page(self):
