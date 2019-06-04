@@ -11,6 +11,9 @@ from page_object.base_page import BasePage
 
 class AICustomerServicePage(BasePage):
 
+    # 页面标题
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name == "杭州办事服务客服"')
+
     # 搜索输入框
     search_textfield_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTextField')
 
@@ -21,3 +24,7 @@ class AICustomerServicePage(BasePage):
     def search(self, text):
         self.send_keys(self.search_textfield_loc, text)
         self.tap_element(self.search_button_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        return self.find_element(self.page_title_loc).is_displayed()

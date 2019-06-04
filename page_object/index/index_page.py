@@ -36,7 +36,7 @@ class IndexPage(BasePage):
         self.tap_element(self.ban_shi_zhi_nan_loc)
 
     # 打开智能客服页面
-    def open_AI_customer_service_page(self):
+    def open_ai_customer_service_page(self):
         self.tap_element(self.wo_yao_zi_xun_loc)
 
     # 打开搜索页面

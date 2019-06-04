@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""全部应用"""
+"""全部应用页面"""
 
 __author__ = 'kejie'
 

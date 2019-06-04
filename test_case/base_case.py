@@ -22,7 +22,7 @@ class BaseCase(unittest.TestCase):
 
     def init_page(self):
         self.index_page = po.IndexPage(self.driver)
-        self.AI_customer_service_page = po.AICustomerServicePage(self.driver)
+        self.ai_customer_service_page = po.AICustomerServicePage(self.driver)
         self.handle_affairs_guide_select_page = po.HandleAffairsGuideSelectPage(self.driver)
         self.handle_personal_affairs_guide_page = po.HandlePersonalAffairsGuidePage(self.driver)
         self.guide_detail_page = po.GuideDetailPage(self.driver)
