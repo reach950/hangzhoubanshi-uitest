@@ -13,23 +13,18 @@ from page_object.base_page import BasePage
 class IndexPage(BasePage):
 
     # 我要咨询
-    wo_yao_zi_xun_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage[`name == "bg_up"`]'
+    wo_yao_zi_xun_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeOther[1]'
                                                    '/XCUIElementTypeOther[3]')
 
     # 办事指南
-    ban_shi_zhi_nan_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage[`name == "bg_up"`]'
+    ban_shi_zhi_nan_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeOther[1]'
                                                      '/XCUIElementTypeOther[4]')
 
     # 搜索
-    search_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeScrollView/XCUIElementTypeOther[2]')
-
-    # 小客车指标
-    passenger_car_quota_loc = (MobileBy.IOS_CLASS_CHAIN,
-                               '**/XCUIElementTypeOther[$type == XCUIElementTypeStaticText AND name == "小客车指标"$]')
+    search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 300')
 
     # 更多应用
-    more_app_loc = (MobileBy.IOS_CLASS_CHAIN,
-                    '**/XCUIElementTypeScrollView/XCUIElementTypeOther[3]/XCUIElementTypeOther[-1]')
+    more_app_loc = (MobileBy.ACCESSIBILITY_ID, '更多')
 
     # 打开办事指南页面
     def open_handle_affairs_guide_page(self):
