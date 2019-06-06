@@ -82,9 +82,9 @@ class BasePage:
             logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))
 
     # 根据name属性检查元素是否存在
-    def check_element_by_name(self, name):
+    def check_element_by_name(self, name, wait=15):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
-        ele = self.find_element(loc)
+        ele = self.find_element(loc, wait)
         if ele:
             return ele.is_displayed()
         else:

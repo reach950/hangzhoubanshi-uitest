@@ -31,8 +31,26 @@ class TestCrossBooth(BaseCase):
         self.assertTrue(self.handle_page.is_displayed(), '我要办理页面无法打开')
         self.handle_page.search(self.search_text)
         self.assertTrue(self.handle_page.check_element_by_name(self.handle_search_result), '搜索结果错误')
-        self.assertFalse(self.handle_page.check_element_by_name(self.query_search_result), '搜索结果错误')
-        self.assertFalse(self.handle_page.check_element_by_name(self.pay_search_result), '搜索结果错误')
+        self.assertFalse(self.handle_page.check_element_by_name(self.query_search_result, 3), '搜索结果错误')
+        self.assertFalse(self.handle_page.check_element_by_name(self.pay_search_result, 3), '搜索结果错误')
+
+    # 测试我要查询页面
+    def test_query_page_test(self):
+        self.index_page.open_query_page()
+        self.assertTrue(self.query_page.is_displayed(), '我要办理页面无法打开')
+        self.query_page.search(self.search_text)
+        self.assertTrue(self.query_page.check_element_by_name(self.query_search_result), '搜索结果错误')
+        self.assertFalse(self.query_page.check_element_by_name(self.handle_search_result, 3), '搜索结果错误')
+        self.assertFalse(self.query_page.check_element_by_name(self.pay_search_result, 3), '搜索结果错误')
+
+    # 测试我要查询页面
+    def test_pay_page_test(self):
+        self.index_page.open_pay_page()
+        self.assertTrue(self.pay_page.is_displayed(), '我要办理页面无法打开')
+        self.pay_page.search(self.search_text)
+        self.assertTrue(self.pay_page.check_element_by_name(self.pay_search_result), '搜索结果错误')
+        self.assertFalse(self.pay_page.check_element_by_name(self.handle_search_result, 3), '搜索结果错误')
+        self.assertFalse(self.pay_page.check_element_by_name(self.query_search_result, 3), '搜索结果错误')
 
 
 if __name__ == '__main__':

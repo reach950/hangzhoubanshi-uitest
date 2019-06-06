@@ -13,3 +13,5 @@ from page_object.index.guide_subpages.guide_detail_page import GuideDetailPage
 from page_object.index.search_page import SearchPage
 from page_object.index.all_apps_page import AllAppsPage
 from page_object.index.cross_booth_subpages.handle_page import HandlePage
+from page_object.index.cross_booth_subpages.query_page import QueryPage
+from page_object.index.cross_booth_subpages.pay_page import PayPage

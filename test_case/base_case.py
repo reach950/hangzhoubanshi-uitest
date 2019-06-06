@@ -29,3 +29,5 @@ class BaseCase(unittest.TestCase):
         self.search_page = po.SearchPage(self.driver)
         self.all_apps_page = po.AllAppsPage(self.driver)
         self.handle_page = po.HandlePage(self.driver)
+        self.query_page = po.QueryPage(self.driver)
+        self.pay_page = po.PayPage(self.driver)
