@@ -28,3 +28,4 @@ class BaseCase(unittest.TestCase):
         self.guide_detail_page = po.GuideDetailPage(self.driver)
         self.search_page = po.SearchPage(self.driver)
         self.all_apps_page = po.AllAppsPage(self.driver)
+        self.handle_page = po.HandlePage(self.driver)

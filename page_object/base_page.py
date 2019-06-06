@@ -84,4 +84,8 @@ class BasePage:
     # 根据name属性检查元素是否存在
     def check_element_by_name(self, name):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
-        return self.find_element(loc).is_displayed()
+        ele = self.find_element(loc)
+        if ele:
+            return ele.is_displayed()
+        else:
+            return False
