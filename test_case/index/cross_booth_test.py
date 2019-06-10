@@ -43,7 +43,7 @@ class TestCrossBooth(BaseCase):
         self.assertFalse(self.query_page.check_element_by_name(self.handle_search_result, 3), '搜索结果错误')
         self.assertFalse(self.query_page.check_element_by_name(self.pay_search_result, 3), '搜索结果错误')
 
-    # 测试我要查询页面
+    # 测试我要缴费页面
     def test_pay_page_test(self):
         self.index_page.open_pay_page()
         self.assertTrue(self.pay_page.is_displayed(), '我要办理页面无法打开')
