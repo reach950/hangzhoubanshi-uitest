@@ -7,8 +7,9 @@ __author__ = 'kejie'
 
 import unittest
 import importlib
+import pkgutil
 from lib import AppiumDriver
-from page_object.base_page import BasePage
+import page_object as po
 
 
 class BaseCase(unittest.TestCase):
@@ -21,10 +22,14 @@ class BaseCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+    # 初始化页面对象
     def _init_page(self):
-        sub_class_list = BasePage.__subclasses__()
+        # 导入所有页面模块
+        for module_loader, name, ispkg in pkgutil.walk_packages(po.__path__, '{}.'.format(po.__name__)):
+            if not ispkg:
+                importlib.import_module(name)
+        # 实例化BasePage的子类
+        sub_class_list = po.base_page.BasePage.__subclasses__()
         for sub_class in sub_class_list:
-            sub_class_module_name = sub_class.__module__
-            importlib.import_module(sub_class_module_name)
-            sub_class_object_name = sub_class_module_name.split('.')[-1]
-            self.__dict__[sub_class_object_name] = sub_class(self.driver)
+            sub_class_instance_name = sub_class.__module__.split('.')[-1]
+            self.__dict__[sub_class_instance_name] = sub_class(self.driver)
