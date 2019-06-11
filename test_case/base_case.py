@@ -8,7 +8,6 @@ __author__ = 'kejie'
 import unittest
 import importlib
 from lib import AppiumDriver
-import page_object as po
 from page_object.base_page import BasePage
 
 
@@ -21,18 +20,6 @@ class BaseCase(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
-    def init_page(self):
-        self.index_page = po.IndexPage(self.driver)
-        self.ai_customer_service_page = po.AICustomerServicePage(self.driver)
-        self.handle_affairs_guide_select_page = po.HandleAffairsGuideSelectPage(self.driver)
-        self.handle_personal_affairs_guide_page = po.HandlePersonalAffairsGuidePage(self.driver)
-        self.guide_detail_page = po.GuideDetailPage(self.driver)
-        self.search_page = po.SearchPage(self.driver)
-        self.all_apps_page = po.AllAppsPage(self.driver)
-        self.handle_page = po.HandlePage(self.driver)
-        self.query_page = po.QueryPage(self.driver)
-        self.pay_page = po.PayPage(self.driver)
 
     def _init_page(self):
         sub_class_list = BasePage.__subclasses__()
