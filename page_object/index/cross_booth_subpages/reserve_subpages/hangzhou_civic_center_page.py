@@ -12,7 +12,7 @@ from page_object.base_page import BasePage
 class HangzhouCivicCenterPage(BasePage):
 
     # 公积金
-    housing_provident_funds_loc = (MobileBy.IOS_PREDICATE, 'name == "公积金" AND rect.width == 375')
+    housing_provident_funds_loc = (MobileBy.ACCESSIBILITY_ID, '公积金')
 
     # 打开公积金页面
     def open_housing_provident_funds_page(self):

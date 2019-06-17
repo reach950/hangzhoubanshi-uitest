@@ -11,6 +11,9 @@ from page_object.base_page import BasePage
 
 class ReserveDetailPage(BasePage):
 
+    # 页面标题
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "预约详情" AND rect.width == 199')
+
     # 姓名
     name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText[`rect.width == 277`][1]')
 
@@ -40,3 +43,11 @@ class ReserveDetailPage(BasePage):
             '办事时间': self.find_element(self.reserve_time_loc).get_attribute('value')
         }
         return reserve_info_dict
+
+    # 页面是否显示
+    def is_displayed(self):
+        page_title = self.find_element(self.page_title_loc)
+        if page_title:
+            return page_title.is_displayed()
+        else:
+            return False
