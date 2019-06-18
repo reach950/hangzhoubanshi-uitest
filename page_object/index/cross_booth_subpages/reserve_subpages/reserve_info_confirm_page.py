@@ -51,6 +51,6 @@ class ReserveInfoConfirmPage(BasePage):
 
     # 处理办事时间的年月日显示方式，由**月**日改为****-**-**
     def _format_reserve_time(self):
-        reserve_time = self.find_element(self.reserve_affair_name_loc).get_attribute('value')
+        reserve_time = self.find_element(self.reserve_time_loc).get_attribute('value')
         print(datetime.now().year)
         return '{}-{}-{} {}'.format(datetime.now().year, reserve_time[0:2], reserve_time[3:5], reserve_time[7:])

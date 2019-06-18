@@ -38,6 +38,15 @@ class IndexPage(BasePage):
     # 十字展台-我要预约
     wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
 
+    # tabbar-服务
+    tabbar_services_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 95`][1]')
+
+    # tabbar-资讯
+    tabbar_news_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 95`][2]')
+
+    # tabbar-我的
+    tabbar_mine_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 94`][2]')
+
     # 打开办事指南页面
     def open_handle_affairs_guide_page(self):
         self.tap_element(self.ban_shi_zhi_nan_loc)
@@ -69,3 +78,15 @@ class IndexPage(BasePage):
     # 打开我要预约页面
     def open_reserve_page(self):
         self.tap_element(self.wo_yao_yu_yue_loc)
+
+    # 切换到服务页面
+    def switch_to_services_page(self):
+        self.tap_element(self.tabbar_services_loc)
+
+    # 切换到资讯页面
+    def switch_to_news_page(self):
+        self.tap_element(self.tabbar_news_loc)
+
+    # 切换到我的页面
+    def switch_to_mine_page(self):
+        self.tap_element(self.tabbar_mine_loc)
