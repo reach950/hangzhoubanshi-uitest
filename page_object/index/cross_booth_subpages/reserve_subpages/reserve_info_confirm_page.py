@@ -5,6 +5,7 @@
 
 __author__ = 'kejie'
 
+from datetime import datetime
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
@@ -44,6 +45,12 @@ class ReserveInfoConfirmPage(BasePage):
             '手机号': self.find_element(self.phone_number_loc).get_attribute('value'),
             '办事大厅': self.find_element(self.reserve_address_loc).get_attribute('value'),
             '预约事项': self.find_element(self.reserve_affair_name_loc).get_attribute('value'),
-            '办事时间': self.find_element(self.reserve_time_loc).get_attribute('value')
+            '办事时间': self._format_reserve_time()
         }
         return reserve_info_dict
+
+    # 处理办事时间的年月日显示方式，由**月**日改为****-**-**
+    def _format_reserve_time(self):
+        reserve_time = self.find_element(self.reserve_affair_name_loc).get_attribute('value')
+        print(datetime.now().year)
+        return '{}-{}-{} {}'.format(datetime.now().year, reserve_time[0:2], reserve_time[3:5], reserve_time[7:])

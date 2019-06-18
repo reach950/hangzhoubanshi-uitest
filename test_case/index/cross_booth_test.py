@@ -65,18 +65,18 @@ class TestCrossBooth(BaseCase):
 
         self.reserve_page.open_query_reserve_info_page()
         # 检查预约记录里的第一条预约状态
-        self.assertEqual(self.reserve_record_page.get_first_reserve_record_state, '预约成功')
+        self.assertEqual(self.reserve_record_page.get_first_reserve_record_state(), '预约成功')
         self.reserve_record_page.open_first_reserve_detail_page()
-        self.assertTrue(self.activate_reserve_page.is_displayed, '激活预约页面打开失败')
+        self.assertTrue(self.activate_reserve_page.is_displayed(), '激活预约页面打开失败')
         # 检查激活预约页面的办事时间
-        self.assertEqual(self.activate_reserve_page.get_reserve_time, reserve_info['办事时间'])
+        self.assertEqual(self.activate_reserve_page.get_reserve_time(), reserve_info['办事时间'])
         # 检查激活预约页面的预约事项
-        self.assertEqual(self.activate_reserve_page.get_reserve_affair_name, reserve_info['预约事项'])
+        self.assertEqual(self.activate_reserve_page.get_reserve_affair_name(), reserve_info['预约事项'])
         self.activate_reserve_page.cancel_reserve()
         # 检查预约记录里的第一条预约状态
-        self.assertEqual(self.reserve_record_page.get_first_reserve_record_state, '已取消')
+        self.assertEqual(self.reserve_record_page.get_first_reserve_record_state(), '已取消')
         self.reserve_record_page.open_first_reserve_detail_page()
-        self.assertTrue(self.reserve_detail_page.is_displayed, '预约详情页面打开失败')
+        self.assertTrue(self.reserve_detail_page.is_displayed(), '预约详情页面打开失败')
         reserve_info_history = self.reserve_detail_page.get_reserve_info()
         for i in reserve_info:
             if i == '办事大厅':
