@@ -17,7 +17,7 @@ class BasePage:
 
     def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
-            cls._instance = super(BasePage, cls).__new__(cls, *args, **kw)
+            cls._instance = super(BasePage, cls).__new__(cls)
         return cls._instance
 
     def __init__(self, appium_driver):
@@ -72,16 +72,18 @@ class BasePage:
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
     # 重新封装输入操作
-    def send_keys(self, loc, value):
+    def send_keys(self, loc, value, clear_first=False):
         """
 
         :param loc:
         :param value:
+        :param clear_first:
         :return:
         """
         ele = self.find_element(loc)
         try:
-            # ele.clear()
+            if clear_first:
+                ele.clear()
             ele.set_value(value)
         except WebDriverException:
             logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))

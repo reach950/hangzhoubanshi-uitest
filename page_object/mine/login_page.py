@@ -20,8 +20,12 @@ class LoginPage(BasePage):
     # 登录按钮
     login_button_loc = (MobileBy.ACCESSIBILITY_ID, '立即登录')
 
+    # 键盘工具条完成按钮
+    toolbar_done_button_loc = (MobileBy.ACCESSIBILITY_ID, 'Toolbar Done Button')
+
     # 登录
     def login(self, username, password):
         self.send_keys(self.username_input_loc, username)
         self.send_keys(self.password_input_loc, password)
+        self.tap_element(self.toolbar_done_button_loc)
         self.tap_element(self.login_button_loc)
