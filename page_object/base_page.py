@@ -15,6 +15,11 @@ from appium.webdriver.common.mobileby import MobileBy
 
 class BasePage:
 
+    def __new__(cls, *args, **kw):
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(BasePage, cls).__new__(cls, *args, **kw)
+        return cls._instance
+
     def __init__(self, appium_driver):
         self.driver = appium_driver  # type:webdriver.Remote
 
