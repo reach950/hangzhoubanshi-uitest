@@ -40,7 +40,7 @@ class MinePage(BasePage):
 
     # 用户是否登录
     def is_login(self):
-        return self.get_username() == '您好' and self.get_user_state() == '未登录用户'
+        return not self.get_username() == '您好' and not self.get_user_state() == '未登录用户'
 
     # 点击用户区域
     def click_user_area(self):
