@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
+from test_case import login
 
 
 class LoginPage(BasePage):
@@ -28,3 +29,4 @@ class LoginPage(BasePage):
         self.tap_element(last_username_number_loc)
         self.send_keys(self.password_input_loc, password)
         self.tap_element(self.login_button_loc)
+        login.login_state = True

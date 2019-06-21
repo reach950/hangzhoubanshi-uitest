@@ -30,13 +30,10 @@ def login(is_login):
         def wrapper(self, *args, **kw):
             global login_state
             if is_login != login_state:
-                if is_login:
-                    self.user_login()
-                else:
+                if login_state:
                     self.user_logout()
-                login_state = is_login
+                else:
+                    self.user_login()
             return func(self, *args, **kw)
-
         return wrapper
-
     return decorator

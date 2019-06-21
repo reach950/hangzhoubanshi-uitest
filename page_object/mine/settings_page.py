@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
+from test_case import login
 
 
 class SettingsPage(BasePage):
@@ -21,3 +22,4 @@ class SettingsPage(BasePage):
     def logout(self):
         self.tap_element(self.quit_button_loc)
         self.tap_element(self.logout_button_loc)
+        login.login_state = False
