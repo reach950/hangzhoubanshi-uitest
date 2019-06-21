@@ -8,6 +8,7 @@ __author__ = 'kejie'
 import unittest
 from test_case.base_case import BaseCase
 from config.login_user import login_user
+from test_case.login import login
 
 
 class TestLogin(BaseCase):
@@ -22,6 +23,7 @@ class TestLogin(BaseCase):
         super().tearDown()
 
     # 测试通过手机号登录
+    @login(False)
     def test_login_by_phone_number(self):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
@@ -29,6 +31,7 @@ class TestLogin(BaseCase):
         self.assertTrue(self.mine_page.is_login())
 
     # 测试通过身份证号登录
+    @login(False)
     def test_login_by_identity_number(self):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
