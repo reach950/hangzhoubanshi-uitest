@@ -23,8 +23,8 @@ class IndexPage(BasePage):
     # 搜索
     search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 300')
 
-    # 更多应用
-    more_app_loc = (MobileBy.ACCESSIBILITY_ID, '更多')
+    # 全部应用
+    more_app_loc = (MobileBy.ACCESSIBILITY_ID, '全部')
 
     # 十字展台-我要办理
     wo_yao_ban_li_loc = (MobileBy.ACCESSIBILITY_ID, '我要办理')
