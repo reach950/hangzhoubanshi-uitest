@@ -88,6 +88,29 @@ class BasePage:
         except WebDriverException:
             logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))
 
+    # 重新封装滑动操作
+    def swipe(self, direct, loc=None):
+        """
+        滑动
+        :param direct: 滑动方向，只支持up, down, left ,right四个值
+        :param loc: 元素定位，空值为滑动屏幕，有值会滑动对应的元素
+        :return:
+        """
+        if loc:
+            self.driver.execute_script('mobile: swipe', {'direction': direct, 'element': self.find_element(loc)})
+        else:
+            self.driver.execute_script('mobile: swipe', {'direction': direct})
+
+    # 重新封装警告框点击操作
+    def click_alert_button(self, button_lable, action='accept'):
+        """
+        警告框处理
+        :param button_lable: 警告框按钮的标签文本
+        :param action: 按钮处理，只支持accept，dismiss两个值
+        :return:
+        """
+        self.driver.execute_script('mobile: alert', {'action': action, 'buttonLabel': button_lable})
+
     # 根据name属性检查元素是否存在
     def check_element_by_name(self, name, wait=15):
         loc = (MobileBy.ACCESSIBILITY_ID, name)

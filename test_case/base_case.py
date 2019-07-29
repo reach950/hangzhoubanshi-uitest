@@ -3,6 +3,7 @@
 
 """测试用例的基类"""
 
+
 __author__ = 'kejie'
 
 import unittest
@@ -38,6 +39,9 @@ from page_object.news.news_detail_page import NewsDetailPage
 from page_object.mine.mine_page import MinePage
 from page_object.mine.login_page import LoginPage
 from page_object.mine.settings_page import SettingsPage
+from page_object.mine.user_info.user_info_page import UserInfoPage
+from page_object.mine.user_info.password_manage_page import PasswordManagePage
+from page_object.mine.user_info.address_manage_page import AddressManagePage
 
 
 class BaseCase(unittest.TestCase):
@@ -101,3 +105,6 @@ class BaseCase(unittest.TestCase):
         self.mine_page = MinePage(self.driver)
         self.login_page = LoginPage(self.driver)
         self.settings_page = SettingsPage(self.driver)
+        self.user_info_page = UserInfoPage(self.driver)
+        self.password_manage_page = PasswordManagePage(self.driver)
+        self.address_manage_page = AddressManagePage(self.driver)
