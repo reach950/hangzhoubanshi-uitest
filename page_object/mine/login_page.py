@@ -19,10 +19,14 @@ class LoginPage(BasePage):
     password_input_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeSecureTextField')
 
     # 登录按钮
-    login_button_loc = (MobileBy.ACCESSIBILITY_ID, '立即登录')
+    login_button_loc = (MobileBy.ACCESSIBILITY_ID, 'LoginNextDisable')
+
+    # 其他登录方式
+    other_login_loc = (MobileBy.ACCESSIBILITY_ID, '其他登录方式')
 
     # 登录
     def login(self, username, password):
+        self.tap_element(self.other_login_loc)
         # 最后一位数字通过键盘点击输入，不然登录按钮一直为disable状态
         self.send_keys(self.username_input_loc, username[:-1], clear_first=True)
         last_username_number_loc = (MobileBy.ACCESSIBILITY_ID, username[-1])
