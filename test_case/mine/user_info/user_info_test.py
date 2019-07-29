@@ -18,6 +18,7 @@ class TestUserInfo(BaseCase):
         self.phone_number = login_user['phone_number']
         self.identity_number = login_user['identity_number']
         self.password = login_user['password']
+        self.new_password = 'test123'
 
     def tearDown(self):
         super().tearDown()
@@ -30,7 +31,7 @@ class TestUserInfo(BaseCase):
         test_phone_number = self.user_info_page.get_phone_number()
         test_identity_number = self.user_info_page.get_identity_number()
         self.assertEqual('{}*****{}'.format(self.phone_number[:3], self.phone_number[-3:]), test_phone_number)
-        self.assertEqual('{}*********{}'.format(self.identity_number[0], self.identity_number[-1]),
+        self.assertEqual('{}*****************{}'.format(self.identity_number[0], self.identity_number[-1]),
                          test_identity_number)
 
     # 测试修改登录密码
@@ -39,7 +40,12 @@ class TestUserInfo(BaseCase):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.open_password_manage_page()
-        self.password_manage_page.modify_password()
+        self.password_manage_page.modify_password(self.password, self.new_password)
+        self.login_page.login(self.phone_number, self.new_password)
+        self.assertTrue(self.mine_page.is_login())
+        self.mine_page.click_user_area()
+        self.user_info_page.open_password_manage_page()
+        self.password_manage_page.modify_password(self.new_password, self.password)
 
 
 if __name__ == '__main__':
