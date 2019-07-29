@@ -29,10 +29,9 @@ class TestUserInfo(BaseCase):
         self.mine_page.click_user_area()
         test_phone_number = self.user_info_page.get_phone_number()
         test_identity_number = self.user_info_page.get_identity_number()
-        self.assertEqual(self.phone_number[:3], test_phone_number[:3])
-        self.assertEqual(self.phone_number[-3:], test_phone_number[-3:])
-        self.assertEqual(self.identity_number[0], test_identity_number[0])
-        self.assertEqual(self.identity_number[-1], test_identity_number[-1])
+        self.assertEqual('{}*****{}'.format(self.phone_number[:3], self.phone_number[-3:]), test_phone_number)
+        self.assertEqual('{}*********{}'.format(self.identity_number[0], self.identity_number[-1]),
+                         test_identity_number)
 
     # 测试修改登录密码
     @login(True)
