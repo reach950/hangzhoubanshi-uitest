@@ -18,7 +18,7 @@ class MinePage(BasePage):
     username_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 192')
 
     # 用户状态
-    user_state_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 61')
+    user_state_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 60')
 
     # 设置
     settings_loc = (MobileBy.ACCESSIBILITY_ID, '设置')

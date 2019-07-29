@@ -10,18 +10,18 @@ from page_object.base_page import BasePage
 
 
 class NewsPage(BasePage):
-
     # 杭州发布tab
     hzfb_tab_loc = (MobileBy.IOS_PREDICATE, 'name == "杭州发布" AND rect.width == 56')
 
     # 发布日期
-    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 68')
+    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 70')
 
     # 第一条新闻
     first_news_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 414')
 
     # 第一条新闻标题
-    first_news_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 218')
+    first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN,
+                            '**/XCUIElementTypeOther[`rect.width == 225`][1]/XCUIElementTypeStaticText[1]')
 
     # 切换到杭州发布tab
     def switch_to_hzfb_tab(self):
