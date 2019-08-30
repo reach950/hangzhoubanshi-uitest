@@ -18,7 +18,7 @@ class TestUserInfo(BaseCase):
         self.phone_number = login_user['phone_number']
         self.identity_number = login_user['identity_number']
         self.password = login_user['password']
-        self.new_password = 'test123'
+        self.new_password = 'test1234'
 
     def tearDown(self):
         super().tearDown()
@@ -46,6 +46,8 @@ class TestUserInfo(BaseCase):
         self.mine_page.click_user_area()
         self.user_info_page.open_password_manage_page()
         self.password_manage_page.modify_password(self.new_password, self.password)
+        self.login_page.login(self.phone_number, self.password)
+        self.assertTrue(self.mine_page.is_login())
 
 
 if __name__ == '__main__':

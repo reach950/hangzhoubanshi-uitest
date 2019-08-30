@@ -43,11 +43,11 @@ class AddressManagePage(BasePage):
         self.tap_element(self.create_address_button_loc)
 
     # 点击修改最后一个地址
-    def click_first_address_edit_button(self):
+    def click_last_address_edit_button(self):
         self.tap_element(self.last_address_edit_button_loc)
 
     # 删除最后一个地址
-    def delete_first_address(self):
+    def delete_last_address(self):
         self.swipe('left', self.last_address_loc)
         self.tap_element(self.address_delete_button_loc)
         self.click_alert_button('删除')
@@ -55,3 +55,15 @@ class AddressManagePage(BasePage):
     # 检查地址列表是否为空
     def is_address_list_empty(self):
         return not self.find_element(self.empty_address_image_loc, wait=5)
+
+    # 获取最后一个地址的具体位置
+    def get_last_address_detail(self):
+        return self.find_element(self.last_address_detail_loc).get_attribute('value')
+
+    # 获取最后一个地址的用户姓名
+    def get_last_address_username(self):
+        return self.find_element(self.last_address_username_loc).get_attribute('value')
+
+    # 获取最后一个地址的电话号码
+    def get_last_address_phone_number(self):
+        return self.find_element(self.last_address_phone_number_loc).get_attribute('value')
