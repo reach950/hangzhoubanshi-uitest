@@ -18,7 +18,7 @@ case_path = os.path.join(os.path.abspath(os.curdir), 'test_case')
 
 # 测试报告信息
 result_path = os.path.join(os.path.abspath(os.curdir), 'result', datetime.now().strftime("%Y%m%d%H%M%S"))
-os.mkdir(result_path)
+os.makedirs(result_path)
 report_title = '杭州办事服务iOS用例执行报告'
 desc = '杭州办事服务iOS用例执行报告'
 report_file = os.path.join(result_path, 'HZBSUITestReport.html')

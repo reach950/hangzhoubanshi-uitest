@@ -11,9 +11,9 @@ from page_object.base_page import BasePage
 
 class NewsDetailPage(BasePage):
 
-    # 新闻标题
-    news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`name == "资讯详情"`]/XCUIElementTypeOther[1]')
+    # 杭州发布新闻标题
+    hzfb_news_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.x == 16 AND rect.y == 108')
 
-    # 获取新闻标题
-    def get_news_title(self):
-        return self.find_element(self.news_title_loc).get_attribute('name')
+    # 获取杭州发布新闻标题
+    def get_hzfb_news_title(self):
+        return self.find_element(self.hzfb_news_title_loc).get_attribute('name')
