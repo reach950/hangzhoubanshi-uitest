@@ -5,13 +5,11 @@
 
 __author__ = 'kejie'
 
-
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
 class IndexPage(BasePage):
-
     # 我要咨询
     wo_yao_zi_xun_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeOther[1]'
                                                    '/XCUIElementTypeOther[3]')
@@ -37,6 +35,13 @@ class IndexPage(BasePage):
 
     # 十字展台-我要预约
     wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
+
+    # 杭州资讯更多按钮
+    hz_news_more_button_loc = (MobileBy.ACCESSIBILITY_ID, '更多>>')
+
+    # 杭州资讯第一条资讯标题
+    hz_news_first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
+                                                              '/XCUIElementTypeStaticText[2]')
 
     # tabbar-服务
     tabbar_services_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 95`][1]')
@@ -78,6 +83,18 @@ class IndexPage(BasePage):
     # 打开我要预约页面
     def open_reserve_page(self):
         self.tap_element(self.wo_yao_yu_yue_loc)
+
+    # 点击杭州资讯更多按钮
+    def click_hz_news_more_button(self):
+        self.tap_element(self.hz_news_more_button_loc)
+
+    # 获取第一条资讯标题
+    def get_first_news_title(self):
+        return self.find_element(self.hz_news_first_news_title_loc).get_attribute('name')
+
+    # 打开第一条资讯详情
+    def open_first_news_detail(self):
+        self.tap_element(self.hz_news_first_news_title_loc)
 
     # 切换到服务页面
     def switch_to_services_page(self):

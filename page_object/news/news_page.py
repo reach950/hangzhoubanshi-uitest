@@ -10,6 +10,10 @@ from page_object.base_page import BasePage
 
 
 class NewsPage(BasePage):
+
+    # 页面标题
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND name == "资讯"')
+
     # 杭州发布tab
     hzfb_tab_loc = (MobileBy.IOS_PREDICATE, 'name == "杭州发布" AND rect.width == 64')
 
@@ -42,3 +46,11 @@ class NewsPage(BasePage):
     # 打开第一条新闻
     def open_first_news(self):
         self.tap_element(self.first_news_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        page_title = self.find_element(self.page_title_loc)
+        if page_title:
+            return page_title.is_displayed()
+        else:
+            return False
