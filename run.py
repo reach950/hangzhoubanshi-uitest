@@ -11,6 +11,7 @@ import logging
 from datetime import datetime
 from lib.HTMLTestRunner import HTMLTestRunner
 from lib.send_report import send_mail
+from test_case.login import init_login_state
 
 # 用例路径
 case_path = os.path.join(os.path.abspath(os.curdir), 'test_case')
@@ -35,6 +36,8 @@ def run_all_case():
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename=client_log, filemode='w',
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # 初始化登录状态
+    init_login_state()
     # 执行用例
     run_all_case()
     # 发送测试报告
