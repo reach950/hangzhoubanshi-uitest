@@ -12,7 +12,7 @@ from page_object.base_page import BasePage
 class NewsDetailPage(BasePage):
 
     # 新闻标题
-    news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeWebView/**/XCUIElementTypeStaticText[1]')
+    news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`name == "资讯详情"`]/XCUIElementTypeOther[1]')
 
     # 获取新闻标题
     def get_news_title(self):

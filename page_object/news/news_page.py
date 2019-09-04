@@ -37,7 +37,7 @@ class NewsPage(BasePage):
 
     # 获取第一条新闻的标题
     def get_first_news_title(self):
-        return self.find_element(self.first_news_title_loc).get_attribute('value')
+        return self.find_element(self.first_news_title_loc).get_attribute('name')
 
     # 打开第一条新闻
     def open_first_news(self):
