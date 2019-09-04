@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 import unittest
 from datetime import datetime
+import time
 from test_case.base_case import BaseCase
 from test_case.login import login
 
@@ -32,6 +33,7 @@ class TestAddressManage(BaseCase):
         self.address_manage_page.click_create_address_button()
         self.update_address_page.update_address(self.create_detail_address, self.create_username,
                                                 self.create_phone_number)
+        time.sleep(1)
         self.assertEqual(self.create_username, self.address_manage_page.get_last_address_username())
         self.assertEqual('{}*****{}'.format(self.create_phone_number[:3], self.create_phone_number[-3:]),
                          self.address_manage_page.get_last_address_phone_number())
