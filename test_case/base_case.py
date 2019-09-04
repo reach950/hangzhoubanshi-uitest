@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """测试用例的基类"""
-
+from page_object.mine.user_info.update_address_page import UpdateAddressPage
 
 __author__ = 'kejie'
 
@@ -108,3 +108,4 @@ class BaseCase(unittest.TestCase):
         self.user_info_page = UserInfoPage(self.driver)
         self.password_manage_page = PasswordManagePage(self.driver)
         self.address_manage_page = AddressManagePage(self.driver)
+        self.update_address_page = UpdateAddressPage(self.driver)

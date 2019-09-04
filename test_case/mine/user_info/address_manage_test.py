@@ -5,21 +5,20 @@
 
 __author__ = 'kejie'
 
+import unittest
 from datetime import datetime
-from page_object.mine.user_info.update_address_page import UpdateAddressPage
 from test_case.base_case import BaseCase
 from test_case.login import login
 
 
 class TestAddressManage(BaseCase):
+
     def setUp(self):
         super().setUp()
-        self.update_address_page = UpdateAddressPage(self.driver)
         create_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
         self.create_detail_address = '详细地址_{}'.format(create_time_now)
         self.create_username = 'name_{}'.format(create_time_now)
         self.create_phone_number = '133{}'.format(create_time_now[-8:])
-        edit_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
 
     def tearDown(self):
         super().tearDown()
@@ -31,8 +30,13 @@ class TestAddressManage(BaseCase):
         self.mine_page.click_user_area()
         self.user_info_page.open_address_manage_page()
         self.address_manage_page.click_create_address_button()
-        self.update_address_page.update_address(self.test_detail_address, self.test_username, self.test_phone_number)
-        self.assertEqual(self.test_username, self.address_manage_page.get_last_address_username())
-        self.assertEqual('{}*****{}'.format(self.test_phone_number[:3], self.test_phone_number[-3:]),
+        self.update_address_page.update_address(self.create_detail_address, self.create_username,
+                                                self.create_phone_number)
+        self.assertEqual(self.create_username, self.address_manage_page.get_last_address_username())
+        self.assertEqual('{}*****{}'.format(self.create_phone_number[:3], self.create_phone_number[-3:]),
                          self.address_manage_page.get_last_address_phone_number())
-        self.assertIn(self.test_detail_address, self.address_manage_page.get_last_address_detail())
+        self.assertIn(self.create_detail_address, self.address_manage_page.get_last_address_detail())
+
+
+if __name__ == '__main__':
+    unittest.main()
