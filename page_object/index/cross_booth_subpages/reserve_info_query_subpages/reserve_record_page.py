@@ -18,6 +18,9 @@ class ReserveRecordPage(BasePage):
     first_reserve_record_state_loc = (MobileBy.IOS_CLASS_CHAIN,
                                       '**/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[5]')
 
+    # 返回按钮
+    back_button_loc = (MobileBy.ACCESSIBILITY_ID, 'back')
+
     # 打开第一条预约详情
     def open_first_reserve_detail_page(self):
         self.tap_element(self.first_reserve_record_loc)
@@ -25,3 +28,7 @@ class ReserveRecordPage(BasePage):
     # 获取第一条预约状态
     def get_first_reserve_record_state(self):
         return self.find_element(self.first_reserve_record_state_loc).get_attribute('value')
+
+    # 点击反回
+    def click_back_button(self):
+        self.tap_element(self.back_button_loc)
