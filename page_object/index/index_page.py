@@ -10,6 +10,10 @@ from page_object.base_page import BasePage
 
 
 class IndexPage(BasePage):
+
+    # 首页table
+    table_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
+
     # 我要咨询
     wo_yao_zi_xun_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeOther[1]'
                                                    '/XCUIElementTypeOther[3]')
@@ -83,6 +87,10 @@ class IndexPage(BasePage):
     # 打开我要预约页面
     def open_reserve_page(self):
         self.tap_element(self.wo_yao_yu_yue_loc)
+
+    # 滑动首页到底部资讯展台
+    def scroll_to_news(self):
+        self.scroll(self.table_loc, name=self.hz_news_more_button_loc[1])
 
     # 点击杭州资讯更多按钮
     def click_hz_news_more_button(self):

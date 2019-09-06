@@ -20,11 +20,13 @@ class TestHzNews(BaseCase):
 
     # 测试点击更多按钮打开资讯页面
     def test_click_more_button_open_news_page(self):
+        self.index_page.scroll_to_news()
         self.index_page.click_hz_news_more_button()
         self.assertTrue(self.news_page.is_displayed(), '打开资讯页面失败')
 
     # 测试打开资讯详情
     def test_open_news_detail(self):
+        self.index_page.scroll_to_news()
         first_news_title = self.index_page.get_first_news_title()
         self.index_page.open_first_news_detail()
         self.assertIn(first_news_title, self.news_detail_page.get_hzfb_news_title())

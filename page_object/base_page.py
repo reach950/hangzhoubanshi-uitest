@@ -15,6 +15,7 @@ from appium.webdriver.common.mobileby import MobileBy
 
 class BasePage:
 
+    # 实现页面对象单例模式
     def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
             cls._instance = super(BasePage, cls).__new__(cls)
@@ -100,6 +101,34 @@ class BasePage:
             self.driver.execute_script('mobile: swipe', {'direction': direct, 'element': self.find_element(loc)})
         else:
             self.driver.execute_script('mobile: swipe', {'direction': direct})
+
+    # 重新封装滑动翻页操作
+    def scroll(self, loc=None, **scroll_type):
+        """
+        滑动翻页
+        :param scroll_type: 滑动方式，有“name”，“direction”，“predicateString”或“toVisible”四种方式，只能选择一种
+            name: 需要执行滚动的子控件的accessibility id
+            direction: 'up', 'down', 'left' or 'right'
+            predicateString: 需要被执行滚动操作的子控件的NSPredicate定位器
+            toVisible: 布尔类型的参数。如果设置为true，则表示要求滚动到父控件中的第一个可见到的子控件
+        :param loc: 元素定位，空值为滑动屏幕，有值会滑动对应的元素
+        :return:
+        """
+        if loc:
+            if 'name' in scroll_type:
+                self.driver.execute_script('mobile: scroll', {'element': self.find_element(loc),
+                                                              'name': scroll_type['name']})
+            elif 'direction' in scroll_type:
+                self.driver.execute_script('mobile: scroll', {'element': self.find_element(loc),
+                                                              'direction': scroll_type['direction']})
+            elif 'predicateString' in scroll_type:
+                self.driver.execute_script('mobile: scroll', {'element': self.find_element(loc),
+                                                              'predicateString': scroll_type['predicateString']})
+            elif 'toVisible' in scroll_type:
+                self.driver.execute_script('mobile: scroll', {'element': self.find_element(loc),
+                                                              'toVisible': scroll_type['toVisible']})
+        else:
+            self.driver.execute_script('mobile: scroll', {'direction': scroll_type['direction']})
 
     # 重新封装警告框点击操作
     def click_alert_button(self, button_lable, action='accept'):
