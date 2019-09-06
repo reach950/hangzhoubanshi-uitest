@@ -40,6 +40,9 @@ class IndexPage(BasePage):
     # 十字展台-我要预约
     wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
 
+    # 杭州资讯标题
+    hz_news_title_loc = (MobileBy.ACCESSIBILITY_ID, '杭州资讯')
+
     # 杭州资讯更多按钮
     hz_news_more_button_loc = (MobileBy.ACCESSIBILITY_ID, '更多>>')
 
@@ -90,7 +93,7 @@ class IndexPage(BasePage):
 
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
-        self.scroll(self.table_loc, name=self.hz_news_more_button_loc[1])
+        self.scroll(self.table_loc, name=self.hz_news_title_loc[1])
 
     # 点击杭州资讯更多按钮
     def click_hz_news_more_button(self):
