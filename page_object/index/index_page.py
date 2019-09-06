@@ -5,6 +5,7 @@
 
 __author__ = 'kejie'
 
+import time
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
@@ -93,7 +94,14 @@ class IndexPage(BasePage):
 
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
-        self.scroll(self.table_loc, name=self.hz_news_title_loc[1])
+        ele = self.find_element(self.hz_news_title_loc)
+        count = 0
+        while not ele.is_displayed():
+            if count >= 10:
+                break
+            self.swipe('up')
+            time.sleep(0.5)
+            count += 1
 
     # 点击杭州资讯更多按钮
     def click_hz_news_more_button(self):
