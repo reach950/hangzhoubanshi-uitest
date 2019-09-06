@@ -3,10 +3,12 @@
 
 """测试十字展台"""
 
+
 __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
+from test_case.login import login
 
 search_text = '联通'
 # 我要办理搜索联通包含的事项
@@ -26,6 +28,7 @@ class TestHandleItems(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @login(True)
     def test_search_handle_items(self):
         """我要办理页面只能搜索出办理的事项"""
         self.index_page.open_handle_page()
@@ -45,6 +48,7 @@ class TestPayItems(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @login(True)
     def test_search_pay_items(self):
         """我要缴费页面只能搜索出缴费的事项"""
         self.index_page.open_pay_page()
@@ -64,6 +68,7 @@ class TestQueryItems(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @login(True)
     def test_search_query_items(self):
         """我要查询页面只能搜索出查询的事项"""
         self.index_page.open_query_page()
@@ -83,6 +88,7 @@ class TestReserveItems(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @login(True)
     def test_reserve_success(self):
         """预约成功"""
         self.index_page.open_reserve_page()
@@ -97,6 +103,7 @@ class TestReserveItems(BaseCase):
         # 检查激活预约页面的预约事项
         self.assertEqual(self.activate_reserve_page.get_reserve_item_name(), reserve_info['预约事项'])
 
+    @login(True)
     def test_cancel_reserve(self):
         """取消预约"""
         self.index_page.open_reserve_page()

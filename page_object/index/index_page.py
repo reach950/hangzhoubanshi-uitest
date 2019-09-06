@@ -61,7 +61,7 @@ class IndexPage(BasePage):
     tabbar_mine_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 94`][2]')
 
     # 打开办事指南页面
-    def open_handle_affairs_guide_page(self):
+    def open_handle_items_guide_page(self):
         self.tap_element(self.ban_shi_zhi_nan_loc)
 
     # 打开智能客服页面

@@ -15,8 +15,8 @@ import page_object as po
 from page_object.base_page import BasePage
 from page_object.index.index_page import IndexPage
 from page_object.index.ai_customer_service_page import AICustomerServicePage
-from page_object.index.guide_subpages.handle_affairs_guide_select_page import HandleAffairsGuideSelectPage
-from page_object.index.guide_subpages.handle_personal_affairs_guide_page import HandlePersonalAffairsGuidePage
+from page_object.index.guide_subpages.handle_items_guide_select_page import HandleItemsGuideSelectPage
+from page_object.index.guide_subpages.handle_personal_items_guide_page import HandlePersonalItemsGuidePage
 from page_object.index.guide_subpages.guide_detail_page import GuideDetailPage
 from page_object.index.search_page import SearchPage
 from page_object.index.all_apps_page import AllAppsPage
@@ -82,8 +82,8 @@ class BaseCase(unittest.TestCase):
     def init_page(self):
         self.index_page = IndexPage(self.driver)
         self.ai_customer_service_page = AICustomerServicePage(self.driver)
-        self.handle_affairs_guide_select_page = HandleAffairsGuideSelectPage(self.driver)
-        self.handle_personal_affairs_guide_page = HandlePersonalAffairsGuidePage(self.driver)
+        self.handle_items_guide_select_page = HandleItemsGuideSelectPage(self.driver)
+        self.handle_personal_items_guide_page = HandlePersonalItemsGuidePage(self.driver)
         self.guide_detail_page = GuideDetailPage(self.driver)
         self.search_page = SearchPage(self.driver)
         self.all_apps_page = AllAppsPage(self.driver)
