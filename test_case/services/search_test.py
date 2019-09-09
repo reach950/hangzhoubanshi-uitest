@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试服务页面"""
+"""测试服务页面搜索"""
 
 __author__ = 'kejie'
 
-
 import unittest
 from test_case.base_case import BaseCase
+from test_case.login import login
 
 
-class TestServicesPage(BaseCase):
+class TestSearchByText(BaseCase):
+    """服务-搜索-文字搜索"""
 
     def setUp(self):
         super().setUp()
@@ -21,7 +22,9 @@ class TestServicesPage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_search_by_text(self):
+    @login(True)
+    def test_search_by_text_success(self):
+        """输入关键字搜索结果成功"""
         self.index_page.switch_to_services_page()
         self.services_page.open_search_page()
         self.search_page.search(self.search_text)

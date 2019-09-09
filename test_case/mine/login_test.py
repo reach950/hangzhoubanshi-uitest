@@ -10,32 +10,44 @@ from test_case.base_case import BaseCase
 from config.login_user import login_user
 from test_case.login import login
 
+test_phone_number = login_user['phone_number']
+test_identity_number = login_user['identity_number']
+test_password = login_user['password']
 
-class TestLogin(BaseCase):
+
+class TestLoginByPhoneNumber(BaseCase):
+    """我的-登录-手机号登录"""
 
     def setUp(self):
         super().setUp()
-        self.test_phone_number = login_user['phone_number']
-        self.test_identity_number = login_user['identity_number']
-        self.test_password = login_user['password']
 
     def tearDown(self):
         super().tearDown()
 
-    # 测试通过手机号登录
     @login(False)
-    def test_login_by_phone_number(self):
+    def test_login_by_phone_number_success(self):
+        """通过手机号登录成功"""
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.login_page.login(self.test_phone_number, self.test_password)
+        self.login_page.login(test_phone_number, test_password)
         self.assertTrue(self.mine_page.is_login())
 
-    # 测试通过身份证号登录
+
+class TestLoginByIdNumber(BaseCase):
+    """我的-登录-身份证号登录"""
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
     @login(False)
-    def test_login_by_identity_number(self):
+    def test_login_by_identity_number_success(self):
+        """通过身份证号登录成功"""
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.login_page.login(self.test_identity_number, self.test_password)
+        self.login_page.login(test_identity_number, test_password)
         self.assertTrue(self.mine_page.is_login())
 
 

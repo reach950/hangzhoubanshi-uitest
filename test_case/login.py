@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""文档注释"""
+"""登录组件"""
 
 __author__ = 'kejie'
 
@@ -13,6 +13,7 @@ from page_object.mine.mine_page import MinePage
 login_state = True
 
 
+# 初始化登录状态
 def init_login_state():
     global login_state
     driver = AppiumDriver().get_driver()
