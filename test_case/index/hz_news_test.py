@@ -28,8 +28,9 @@ class TestHzNews(BaseCase):
         """点击打开资讯详情"""
         self.index_page.scroll_to_news()
         first_news_title = self.index_page.get_first_news_title()
+        first_news_source = self.index_page.get_first_news_source()
         self.index_page.open_first_news_detail()
-        self.assertIn(first_news_title, self.news_detail_page.get_hzfb_news_title())
+        self.assertIn(first_news_title, self.news_detail_page.get_news_title(first_news_source))
 
 
 if __name__ == '__main__':

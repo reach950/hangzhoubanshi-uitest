@@ -31,7 +31,7 @@ class TestNews(BaseCase):
         self.news_page.switch_to_hzfb_tab()
         first_news_title = self.news_page.get_first_news_title()
         self.news_page.open_first_news()
-        self.assertEqual(first_news_title, self.news_detail_page.get_hzfb_news_title(), '资讯详情打开失败')
+        self.assertEqual(first_news_title, self.news_detail_page.get_news_title('杭州发布'), '资讯详情打开失败')
 
 
 if __name__ == '__main__':

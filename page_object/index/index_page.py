@@ -47,6 +47,9 @@ class IndexPage(BasePage):
     hz_news_first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
                                                               '/XCUIElementTypeStaticText[2]')
 
+    # 杭州资讯第一条资讯来源
+    hz_news_first_news_source_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
+                                                               '/XCUIElementTypeStaticText[3]')
     # 杭州资讯第三条资讯日期
     hz_news_third_news_date_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
                                                              '/XCUIElementTypeStaticText[-2]')
@@ -109,6 +112,10 @@ class IndexPage(BasePage):
     # 获取第一条资讯标题
     def get_first_news_title(self):
         return self.find_element(self.hz_news_first_news_title_loc).get_attribute('name')
+
+    # 获取第一条资讯来源
+    def get_first_news_source(self):
+        return self.find_element(self.hz_news_first_news_source_loc).get_attribute('name')
 
     # 打开第一条资讯详情
     def open_first_news_detail(self):
