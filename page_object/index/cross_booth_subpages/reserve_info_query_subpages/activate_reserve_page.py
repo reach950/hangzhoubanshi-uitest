@@ -18,7 +18,7 @@ class ActivateReservePage(BasePage):
     cancel_reserve_button_loc = (MobileBy.ACCESSIBILITY_ID, '取消预约')
 
     # 预约事项
-    reserve_affair_name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage/XCUIElementTypeStaticText[1]')
+    reserve_item_name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage/XCUIElementTypeStaticText[1]')
 
     # 办事时间
     reserve_time_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage/XCUIElementTypeStaticText[2]')
@@ -40,5 +40,5 @@ class ActivateReservePage(BasePage):
         return self.find_element(self.reserve_time_loc).get_attribute('value')
 
     # 获取预约事项名称
-    def get_reserve_affair_name(self):
-        return self.find_element(self.reserve_affair_name_loc).get_attribute('value')
+    def get_reserve_item_name(self):
+        return self.find_element(self.reserve_item_name_loc).get_attribute('value')

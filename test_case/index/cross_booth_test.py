@@ -89,7 +89,7 @@ class TestReserveItems(BaseCase):
         super().tearDown()
 
     @login(True)
-    def test_reserve_success(self):
+    def test_01_reserve_success(self):
         """预约成功"""
         self.index_page.open_reserve_page()
         reserve_info = self._reserve()
@@ -104,7 +104,7 @@ class TestReserveItems(BaseCase):
         self.assertEqual(self.activate_reserve_page.get_reserve_item_name(), reserve_info['预约事项'])
 
     @login(True)
-    def test_cancel_reserve(self):
+    def test_02_cancel_reserve(self):
         """取消预约"""
         self.index_page.open_reserve_page()
         self.reserve_page.open_query_reserve_info_page()
