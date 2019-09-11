@@ -11,7 +11,6 @@ from page_object.base_page import BasePage
 
 
 class IndexPage(BasePage):
-
     # 首页table
     table_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
 
@@ -41,15 +40,16 @@ class IndexPage(BasePage):
     # 十字展台-我要预约
     wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
 
-    # 杭州资讯标题
-    hz_news_title_loc = (MobileBy.ACCESSIBILITY_ID, '杭州资讯')
-
     # 杭州资讯更多按钮
     hz_news_more_button_loc = (MobileBy.ACCESSIBILITY_ID, '更多>>')
 
     # 杭州资讯第一条资讯标题
     hz_news_first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
                                                               '/XCUIElementTypeStaticText[2]')
+
+    # 杭州资讯第三条资讯日期
+    hz_news_third_news_date_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
+                                                             '/XCUIElementTypeStaticText[-2]')
 
     # tabbar-服务
     tabbar_services_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 95`][1]')
@@ -94,9 +94,8 @@ class IndexPage(BasePage):
 
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
-        ele = self.find_element(self.hz_news_title_loc)
         count = 0
-        while not ele.is_displayed():
+        while not self.find_element(self.hz_news_third_news_date_loc).is_displayed():
             if count >= 10:
                 break
             self.swipe('up')
