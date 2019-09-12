@@ -70,7 +70,7 @@ class BaseCase(unittest.TestCase):
     def user_login(self):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.login_page.login(login_user.phone_number, login_user.password)
+        self.login_page.login(login_user['phone_number'], login_user['password'])
         self.mine_page.switch_to_index_page()
 
     # 调用前请确保用户为登录状态
