@@ -132,3 +132,11 @@ class IndexPage(BasePage):
     # 切换到我的页面
     def switch_to_mine_page(self):
         self.tap_element(self.tabbar_mine_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        wo_yao_zi_xun = self.find_element(self.wo_yao_zi_xun_loc)
+        if wo_yao_zi_xun:
+            return wo_yao_zi_xun.is_displayed()
+        else:
+            return False
