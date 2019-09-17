@@ -15,7 +15,6 @@ class TestSearchByText(BaseCase):
 
     def setUp(self):
         super().setUp()
-        self.index_page.open_search_page()
 
     def tearDown(self):
         super().tearDown()
@@ -23,16 +22,19 @@ class TestSearchByText(BaseCase):
     @login(True)
     def test_01_open_ai_customer_service_page_success(self):
         """点击客服按钮打开智能客服成功"""
+        self.index_page.open_search_page()
         self.search_page.click_customer_service_button()
         self.assertTrue(self.ai_customer_service_page.is_displayed())
 
     def test_02_cancle_search_return_index_page(self):
         """取消搜索，返回主页"""
+        self.index_page.open_search_page()
         self.search_page.cancel_search()
         self.assertTrue(self.index_page.is_displayed())
 
     def test_03_hot_search_words(self):
         """测试热门搜索词"""
+        self.index_page.open_search_page()
         hot_search_words = ['公积金', '社保', '资格证书', '护照', '交通违法', '驾驶员记分', '摇号']
         test_hot_search_words = self.search_page.get_all_hot_search_words()
         self.assertEqual(set(hot_search_words), set(test_hot_search_words))
@@ -50,6 +52,7 @@ class TestSearchByText(BaseCase):
         guide_name = '人力社保工作监督检查'
         # 搜索结果中的资讯
         news_name = '小客车摇号、社保、公积金都来这里查！'
+        self.index_page.open_search_page()
         self.search_page.search(search_text)
         self.assertTrue(self.search_page.check_element_by_name(item_name),
                         '没有显示搜索{}的办事事项结果'.format(search_text))
@@ -68,6 +71,7 @@ class TestSearchByText(BaseCase):
         search_text = 'no_result_text'
         no_result_hot_items = ['驾驶证遗失补证', '驾驶证超龄换证', '驾驶证期满换证',
                                '驾驶证损毁换证', '客运出租汽车驾驶员从业资格认定', '驾照扣分查询']
+        self.index_page.open_search_page()
         self.search_page.search(search_text)
         self.assertTrue(self.search_page.is_no_result_page_display())
         test_no_result_hot_items = self.search_page.get_no_result_hot_items()
