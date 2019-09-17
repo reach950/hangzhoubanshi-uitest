@@ -33,11 +33,10 @@ class SearchPage(BasePage):
     no_result_image_loc = (MobileBy.ACCESSIBILITY_ID, 'nothing')
 
     # 无结果文字
-    no_result_text_loc = (MobileBy.ACCESSIBILITY_ID, '抱歉，没有找到相关内容 建议换个名称搜一搜')
+    no_result_text_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name BEGINSWITH "抱歉"')
 
     # 无结果热门事项
-    no_result_hot_items_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 345 '
-                                                       'AND rect.heigth == 45')
+    no_result_hot_items_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 345')
 
     # 输入关键字搜索
     def search(self, text):
