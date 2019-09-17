@@ -99,7 +99,7 @@ class IndexPage(BasePage):
     def scroll_to_news(self):
         count = 0
         while not self.find_element(self.hz_news_third_news_date_loc).is_displayed():
-            if count >= 10:
+            if count >= 5:
                 break
             self.swipe('up')
             time.sleep(0.5)
