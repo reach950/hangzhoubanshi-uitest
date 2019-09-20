@@ -5,7 +5,6 @@
 
 __author__ = 'kejie'
 
-
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 

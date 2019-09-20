@@ -10,7 +10,6 @@ from page_object.base_page import BasePage
 
 
 class AICustomerServicePage(BasePage):
-
     # 页面标题
     page_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name == "杭州办事服务客服"')
 

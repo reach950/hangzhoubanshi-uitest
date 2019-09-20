@@ -10,7 +10,6 @@ from page_object.base_page import BasePage
 
 
 class GuideDetailPage(BasePage):
-
     # 页面标题
     page_title_loc = (MobileBy.ACCESSIBILITY_ID, '指南详情')
 
