@@ -42,6 +42,7 @@ class PersonalOrLegalGuideListPage(BasePage):
 
     # 输入关键字搜索
     def search(self, text):
+        self.tap_element(self.search_field_loc)
         self.send_keys(self.search_field_loc, text)
         self.tap_element(self.search_button_loc)
 
