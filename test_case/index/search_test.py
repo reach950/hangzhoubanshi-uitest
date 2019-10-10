@@ -51,7 +51,7 @@ class TestSearchByText(BaseCase):
         # 搜索结果中的办事指南
         guide_name = '人力社保工作监督检查'
         # 搜索结果中的资讯
-        news_name = '小客车摇号、社保、公积金都来这里查！'
+        news_name = '资讯'
         self.index_page.open_search_page()
         self.search_page.search(search_text)
         self.assertTrue(self.search_page.check_element_by_name(item_name),

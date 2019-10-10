@@ -31,3 +31,8 @@ class AICustomerServicePage(BasePage):
             return page_title.is_displayed()
         else:
             return False
+
+    # 点击默认问题
+    def click_default_question(self, question):
+        default_question_loc = (MobileBy.ACCESSIBILITY_ID, question)
+        self.tap_element(default_question_loc)

@@ -63,13 +63,21 @@ class IndexPage(BasePage):
     # tabbar-我的
     tabbar_mine_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 94`][2]')
 
+    # 智能客服小图标
+    customer_service_small_icon_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeButton[`rect.width == 27`][3]')
+
     # 打开办事指南页面
     def open_handle_items_guide_page(self):
         self.tap_element(self.ban_shi_zhi_nan_loc)
 
-    # 打开智能客服页面
+    # 点击我要咨询打开智能客服页面
     def open_ai_customer_service_page(self):
         self.tap_element(self.wo_yao_zi_xun_loc)
+
+    # 点击智能客服小图标打开智能客服页面
+    def open_ai_customer_service_page_by_small_icon(self):
+        self.swipe('up')
+        self.tap_element(self.customer_service_small_icon_loc)
 
     # 打开搜索页面
     def open_search_page(self):

@@ -26,6 +26,31 @@ class TestAICustomerService(BaseCase):
         self.assertTrue(self.ai_customer_service_page.is_displayed(),
                         '智能客服页面没有打开')
 
+    @login(True)
+    def test_02_open_ai_customer_service_page_by_small_icon(self):
+        """点击客服小图标，打开智能客服页面成功"""
+        self.index_page.open_ai_customer_service_page_by_small_icon()
+        self.assertTrue(self.ai_customer_service_page.is_displayed(),
+                        '智能客服页面没有打开')
+
+    @login(True)
+    def test_03_get_reply_from_default_question(self):
+        """点击默认问题，获取正确回复"""
+        default_question = '如何查找办理业务所需要的材料'
+        default_question_reply = '可以在主页搜索，或者点击办事指南查找办事材料'
+        self.index_page.open_ai_customer_service_page()
+        self.ai_customer_service_page.click_default_question(default_question)
+        self.assertTrue(self.ai_customer_service_page.check_element_by_name(default_question_reply))
+
+    @login(True)
+    def test_04_get_reply_from_search_by_text(self):
+        """通过文本搜索，获取正确回复"""
+        search_text = '社保咨询热线是多少'
+        search_text_reply = '社保咨询服务热线：12333。'
+        self.index_page.open_ai_customer_service_page()
+        self.ai_customer_service_page.search(search_text)
+        self.assertTrue(self.ai_customer_service_page.check_element_by_name(search_text_reply))
+
 
 class TestItemsGuide(BaseCase):
     """首页-高频事项-办事指南"""
