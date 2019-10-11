@@ -37,7 +37,7 @@ class TestAICustomerService(BaseCase):
     def test_03_get_reply_from_default_question(self):
         """点击默认问题，获取正确回复"""
         default_question = '如何查找办理业务所需要的材料'
-        default_question_reply = '可以在主页搜索，或者点击办事指南查找办事材料'
+        default_question_reply = '可以在主页搜索，或者点击办事指南查找办事材料。'
         self.index_page.open_ai_customer_service_page()
         self.ai_customer_service_page.click_default_question(default_question)
         self.assertTrue(self.ai_customer_service_page.check_element_by_name(default_question_reply))

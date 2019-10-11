@@ -50,6 +50,7 @@ class BaseCase(unittest.TestCase):
         # 打开Appium服务器，start server后，尝试启动被测App
         self.driver = AppiumDriver().get_driver()
         self._init_page()
+        self.index_page.wait_to_display()
 
     def tearDown(self):
         self.driver.quit()

@@ -148,3 +148,10 @@ class IndexPage(BasePage):
             return wo_yao_zi_xun.is_displayed()
         else:
             return False
+
+    # 等到页面显示
+    def wait_to_display(self, count=5):
+        while not self.is_displayed():
+            if count == 0:
+                break
+            count -= 1
