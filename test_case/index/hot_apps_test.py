@@ -3,7 +3,6 @@
 
 """测试热门应用"""
 
-
 __author__ = 'kejie'
 
 import unittest
@@ -21,7 +20,7 @@ class TestAllApps(BaseCase):
         super().tearDown()
 
     @login(True)
-    def test_reduce_app_from_my_apps(self):
+    def test_01_reduce_app_from_my_apps(self):
         """从我的应用中删除应用"""
         self.index_page.open_all_apps_page()
         reduce_app_name = self.all_apps_page.get_last_app_name_from_my_apps()
@@ -30,7 +29,7 @@ class TestAllApps(BaseCase):
         self.assertFalse(self.index_page.check_element_by_name(reduce_app_name))
 
     @login(True)
-    def test_reduce_app_from_my_apps(self):
+    def test_02_add_app_from_my_apps(self):
         """添加应用到我的应用"""
         self.index_page.open_all_apps_page()
         first_added_app_name = self.all_apps_page.get_first_added_app_name()
