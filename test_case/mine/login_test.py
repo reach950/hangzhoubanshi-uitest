@@ -7,12 +7,12 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from config.login_user import login_user
+from config.login_user import real_name_user
 from test_case.login import login
 
-test_phone_number = login_user['phone_number']
-test_identity_number = login_user['identity_number']
-test_password = login_user['password']
+test_phone_number = real_name_user['phone_number']
+test_identity_number = real_name_user['identity_number']
+test_password = real_name_user['password']
 
 
 class TestLoginByPhoneNumber(BaseCase):

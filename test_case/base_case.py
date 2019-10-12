@@ -10,7 +10,7 @@ import unittest
 import importlib
 import pkgutil
 from lib import AppiumDriver
-from config.login_user import login_user
+from config.login_user import real_name_user
 import page_object as po
 from page_object.base_page import BasePage
 from page_object.index.index_page import IndexPage
@@ -71,7 +71,7 @@ class BaseCase(unittest.TestCase):
     def user_login(self):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.login_page.login(login_user['phone_number'], login_user['password'])
+        self.login_page.login(real_name_user['phone_number'], real_name_user['password'])
         self.mine_page.switch_to_index_page()
 
     # 调用前请确保用户为登录状态
