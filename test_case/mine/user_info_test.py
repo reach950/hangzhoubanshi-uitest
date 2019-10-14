@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 from test_case.base_case import BaseCase
 from config.login_user import login_user
-from test_case.login import login
+from test_case.common_test_step.login import login
 
 phone_number = login_user['phone_number']
 identity_number = login_user['identity_number']
@@ -27,7 +27,7 @@ class TestBaseInfo(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(True)
+    @login
     def test_get_user_info(self):
         """脱敏显示手机号，身份证号"""
         self.index_page.switch_to_mine_page()
@@ -48,7 +48,7 @@ class TestPasswordManage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(True)
+    @login
     def test_modify_password(self):
         """修改登录密码"""
         self.index_page.switch_to_mine_page()
@@ -77,7 +77,7 @@ class TestAddressManage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(True)
+    @login
     def test_create_modify_delete_address(self):
         """地址的增删改"""
         self.index_page.switch_to_mine_page()

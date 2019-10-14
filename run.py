@@ -10,8 +10,7 @@ import os
 import logging
 from datetime import datetime
 from lib.HTMLTestRunner import HTMLTestRunner
-from lib.send_report import send_mail
-from test_case.login import init_login_state
+from test_case.common_test_step.login import init_login_state
 
 # 用例路径
 case_path = os.path.join(os.path.abspath(os.curdir), 'test_case')

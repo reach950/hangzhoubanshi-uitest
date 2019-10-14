@@ -7,7 +7,7 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from test_case.login import login
+from test_case.common_test_step.login import login
 
 
 class TestSearchByText(BaseCase):
@@ -19,7 +19,7 @@ class TestSearchByText(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(True)
+    @login
     def test_01_open_ai_customer_service_page_success(self):
         """点击客服按钮打开智能客服成功"""
         self.index_page.open_search_page()

@@ -7,7 +7,7 @@ __author__ = 'kejie'
 
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
-from test_case import login
+from test_case.common_test_step import login
 
 
 class SettingsPage(BasePage):

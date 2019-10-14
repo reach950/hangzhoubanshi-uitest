@@ -148,3 +148,8 @@ class BasePage:
             return ele.is_displayed()
         else:
             return False
+
+    # 根据name属性点击元素
+    def click_element_by_name(self, name):
+        loc = (MobileBy.ACCESSIBILITY_ID, name)
+        self.tap_element(loc)

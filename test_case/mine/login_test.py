@@ -7,9 +7,10 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from config.login_user import real_name_user
-from test_case.login import login
+from config.login_user import login_user
+from test_case.common_test_step.login import logout
 
+real_name_user = login_user['real_name']
 test_phone_number = real_name_user['phone_number']
 test_identity_number = real_name_user['identity_number']
 test_password = real_name_user['password']
@@ -24,7 +25,7 @@ class TestLoginByPhoneNumber(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(False)
+    @logout
     def test_login_by_phone_number_success(self):
         """通过手机号登录成功"""
         self.index_page.switch_to_mine_page()
@@ -42,7 +43,7 @@ class TestLoginByIdNumber(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(False)
+    @logout
     def test_login_by_identity_number_success(self):
         """通过身份证号登录成功"""
         self.index_page.switch_to_mine_page()

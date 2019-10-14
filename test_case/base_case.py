@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 """测试用例的基类"""
-from page_object.mine.user_info.update_address_page import UpdateAddressPage
 
 __author__ = 'kejie'
 
@@ -10,7 +9,7 @@ import unittest
 import importlib
 import pkgutil
 from lib import AppiumDriver
-from config.login_user import real_name_user
+from config.login_user import login_user
 import page_object as po
 from page_object.base_page import BasePage
 from page_object.index.index_page import IndexPage
@@ -20,19 +19,19 @@ from page_object.index.guide_subpages.personal_or_legal_guide_list_page import P
 from page_object.index.guide_subpages.guide_detail_page import GuideDetailPage
 from page_object.index.search_page import SearchPage
 from page_object.index.all_apps_page import AllAppsPage
-from page_object.index.cross_booth_subpages.handle_page import HandlePage
-from page_object.index.cross_booth_subpages.query_page import QueryPage
-from page_object.index.cross_booth_subpages.pay_page import PayPage
-from page_object.index.cross_booth_subpages.reserve_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
-from page_object.index.cross_booth_subpages.reserve_subpages. \
+from page_object.index.cross_stage_subpages.handle_page import HandlePage
+from page_object.index.cross_stage_subpages.query_page import QueryPage
+from page_object.index.cross_stage_subpages.pay_page import PayPage
+from page_object.index.cross_stage_subpages.reserve_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
+from page_object.index.cross_stage_subpages.reserve_subpages. \
     housing_provident_funds_page import HousingProvidentFundsPage
-from page_object.index.cross_booth_subpages.reserve_subpages.reserve_time_page import ReserveTimePage
-from page_object.index.cross_booth_subpages.reserve_subpages.reserve_info_confirm_page import ReserveInfoConfirmPage
-from page_object.index.cross_booth_subpages.reserve_subpages.reserve_success_page import ReserveSuccessPage
-from page_object.index.cross_booth_subpages.reserve_info_query_subpages.reserve_record_page import ReserveRecordPage
-from page_object.index.cross_booth_subpages.reserve_info_query_subpages.reserve_detail_page import ReserveDetailPage
-from page_object.index.cross_booth_subpages.reserve_page import ReservePage
-from page_object.index.cross_booth_subpages.reserve_info_query_subpages.activate_reserve_page import ActivateReservePage
+from page_object.index.cross_stage_subpages.reserve_subpages.reserve_time_page import ReserveTimePage
+from page_object.index.cross_stage_subpages.reserve_subpages.reserve_info_confirm_page import ReserveInfoConfirmPage
+from page_object.index.cross_stage_subpages.reserve_subpages.reserve_success_page import ReserveSuccessPage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.reserve_record_page import ReserveRecordPage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.reserve_detail_page import ReserveDetailPage
+from page_object.index.cross_stage_subpages.reserve_page import ReservePage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.activate_reserve_page import ActivateReservePage
 from page_object.services.services_page import ServicesPage
 from page_object.news.news_page import NewsPage
 from page_object.news.news_detail_page import NewsDetailPage
@@ -42,6 +41,8 @@ from page_object.mine.settings_page import SettingsPage
 from page_object.mine.user_info.user_info_page import UserInfoPage
 from page_object.mine.user_info.password_manage_page import PasswordManagePage
 from page_object.mine.user_info.address_manage_page import AddressManagePage
+from page_object.mine.message_center_page import MessageCenterPage
+from page_object.mine.user_info.update_address_page import UpdateAddressPage
 
 
 class BaseCase(unittest.TestCase):
@@ -71,6 +72,7 @@ class BaseCase(unittest.TestCase):
     def user_login(self):
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
+        real_name_user = login_user['real_name']
         self.login_page.login(real_name_user['phone_number'], real_name_user['password'])
         self.mine_page.switch_to_index_page()
 
@@ -110,3 +112,4 @@ class BaseCase(unittest.TestCase):
         self.password_manage_page = PasswordManagePage(self.driver)
         self.address_manage_page = AddressManagePage(self.driver)
         self.update_address_page = UpdateAddressPage(self.driver)
+        self.message_center_page = MessageCenterPage(self.driver)

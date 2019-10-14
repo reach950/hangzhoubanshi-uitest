@@ -7,11 +7,11 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from test_case.login import login
+from test_case.common_test_step.login import login
 
 
 class TestAllApps(BaseCase):
-    """首页-热门应用-全部"""
+    """首页-热门应用-热门应用与全部"""
 
     def setUp(self):
         super().setUp()
@@ -19,7 +19,7 @@ class TestAllApps(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login(True)
+    @login
     def test_01_reduce_app_from_my_apps(self):
         """从我的应用中删除应用"""
         self.index_page.open_all_apps_page()
@@ -32,7 +32,7 @@ class TestAllApps(BaseCase):
         self.all_apps_page.back_to_index()
         self.assertFalse(self.index_page.check_element_by_name(last_app_before_delete))
 
-    @login(True)
+    @login
     def test_02_add_app_from_my_apps(self):
         """添加应用到我的应用"""
         self.index_page.open_all_apps_page()
