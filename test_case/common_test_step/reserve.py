@@ -5,7 +5,6 @@
 
 __author__ = 'kejie'
 
-from lib import AppiumDriver
 from page_object.index.cross_stage_subpages.reserve_page import ReservePage
 from page_object.index.cross_stage_subpages.reserve_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
 from page_object.index.cross_stage_subpages.reserve_subpages.housing_provident_funds_page import \
@@ -30,6 +29,7 @@ def get_reserve_item(driver):
         reserve_info_confirm_page = ReserveInfoConfirmPage(driver)
         reserve_success_page = ReserveSuccessPage(driver)
 
+        index_page.scroll_to_cross_stage()
         index_page.open_reserve_page()
         reserve_page.open_hangzhou_civic_center_page()
         hangzhou_civic_center_page.open_housing_provident_funds_page()

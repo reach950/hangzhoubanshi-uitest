@@ -155,3 +155,7 @@ class IndexPage(BasePage):
             if count == 0:
                 break
             count -= 1
+
+    # 滑动首页到十字展台
+    def scroll_to_cross_stage(self):
+        self.scroll(loc=self.table_loc, name=self.wo_yao_yu_yue_loc[1])
