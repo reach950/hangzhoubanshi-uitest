@@ -10,6 +10,9 @@ from page_object.base_page import BasePage
 
 
 class LibraryCardPasswordChangePage(BasePage):
+    # 读者证号
+    reader_id = (MobileBy.ACCESSIBILITY_ID, '读者证号')
+
     # 设置新密码
     set_password_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeSecureTextField[1]')
 
@@ -24,3 +27,10 @@ class LibraryCardPasswordChangePage(BasePage):
         self.send_keys(self.set_password_loc, password)
         self.send_keys(self.verify_password_loc, password)
         self.tap_element(self.submit_button_loc)
+
+    # 等到页面显示
+    def wait_to_display(self, count=10):
+        while not self.find_element(self.reader_id).is_displayed():
+            if count == 0:
+                break
+            count -= 1

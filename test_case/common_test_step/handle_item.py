@@ -28,6 +28,7 @@ def get_handle_item(driver):
         index_page.open_search_page()
         search_page.search(item_name)
         search_page.click_element_by_name(item_name)
+        library_card_password_change_page.wait_to_display()
         library_card_password_change_page.change_password(password)
         library_index_page.close_page()
         search_page.cancel_search()
