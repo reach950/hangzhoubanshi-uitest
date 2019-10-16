@@ -158,4 +158,8 @@ class IndexPage(BasePage):
 
     # 滑动首页到十字展台
     def scroll_to_cross_stage(self):
-        self.scroll(loc=self.table_loc, name=self.wo_yao_yu_yue_loc[1])
+        self.scroll(loc=self.table_loc, name='线上预约线下办理')
+
+    # 滑动首页到办件展台
+    def scroll_to_handle_item_stage(self, item_name):
+        self.scroll(loc=self.table_loc, name=item_name)
