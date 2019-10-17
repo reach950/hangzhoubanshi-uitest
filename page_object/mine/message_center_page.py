@@ -17,7 +17,7 @@ class MessageCenterPage(BasePage):
 
     # 第一条消息
     first_message_info = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]'
-                                                    '/XCUIElementTypeStaticText[-1]')
+                                                    '/XCUIElementTypeStaticText[3]')
 
     # 页面是否显示
     def is_displayed(self):

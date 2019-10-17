@@ -6,6 +6,7 @@
 __author__ = 'kejie'
 
 import functools
+import logging
 from lib import AppiumDriver
 from page_object.index.index_page import IndexPage
 from page_object.mine.mine_page import MinePage
@@ -15,6 +16,7 @@ login_state = True
 
 # 初始化登录状态
 def init_login_state():
+    logging.info('初始化登录状态')
     global login_state
     driver = AppiumDriver().get_driver()
     index_page = IndexPage(driver)
@@ -22,6 +24,10 @@ def init_login_state():
     index_page.wait_to_display()
     index_page.switch_to_mine_page()
     login_state = mine_page.is_login()
+    if login_state:
+        logging.info('当前app为已登录状态')
+    else:
+        logging.info('当前app为未登录状态')
     driver.quit()
 
 
