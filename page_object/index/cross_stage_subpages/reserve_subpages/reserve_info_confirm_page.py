@@ -34,7 +34,7 @@ class ReserveInfoConfirmPage(BasePage):
     confirm_reserve_info_button_loc = (MobileBy.ACCESSIBILITY_ID, '确认预约信息')
 
     # 点击确认预约信息
-    def click_confirm_reserve_info_button(self):
+    def confirm_reserve_info(self):
         self.tap_element(self.confirm_reserve_info_button_loc)
 
     # 获取预约信息

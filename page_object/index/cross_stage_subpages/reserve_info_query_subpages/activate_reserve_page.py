@@ -23,6 +23,9 @@ class ActivateReservePage(BasePage):
     # 办事时间
     reserve_time_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeImage/XCUIElementTypeStaticText[2]')
 
+    # 如何扫码
+    how_to_scan_code_loc = (MobileBy.ACCESSIBILITY_ID, '如何扫码')
+
     # 页面是否显示
     def is_displayed(self):
         page_title = self.find_element(self.page_title_loc)
@@ -42,3 +45,7 @@ class ActivateReservePage(BasePage):
     # 获取预约事项名称
     def get_reserve_item_name(self):
         return self.find_element(self.reserve_item_name_loc).get_attribute('value')
+
+    # 打开如何扫码页面
+    def open_how_to_scan_code_page(self):
+        self.tap_element(self.how_to_scan_code_loc)

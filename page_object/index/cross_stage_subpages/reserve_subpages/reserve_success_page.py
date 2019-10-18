@@ -17,6 +17,6 @@ class ReserveSuccessPage(BasePage):
     # 返回首页按钮
     back_to_index_button_loc = (MobileBy.ACCESSIBILITY_ID, '返回首页')
 
-    # 点击返回首页
-    def click_back_to_index_button(self):
+    # 返回预约首页
+    def back_to_reserve_page(self):
         self.tap_element(self.back_to_index_button_loc)

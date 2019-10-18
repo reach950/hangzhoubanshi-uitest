@@ -43,6 +43,7 @@ from page_object.mine.user_info.password_manage_page import PasswordManagePage
 from page_object.mine.user_info.address_manage_page import AddressManagePage
 from page_object.mine.message_center_page import MessageCenterPage
 from page_object.mine.user_info.update_address_page import UpdateAddressPage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.how_to_scan_code_page import HowToScanCodePage
 
 
 class BaseCase(unittest.TestCase):
@@ -113,3 +114,4 @@ class BaseCase(unittest.TestCase):
         self.address_manage_page = AddressManagePage(self.driver)
         self.update_address_page = UpdateAddressPage(self.driver)
         self.message_center_page = MessageCenterPage(self.driver)
+        self.how_to_scan_code_page = HowToScanCodePage(self.driver)

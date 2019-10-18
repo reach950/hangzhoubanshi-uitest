@@ -10,7 +10,6 @@ from page_object.base_page import BasePage
 
 
 class QueryPage(BasePage):
-
     # 页面标题
     page_title_loc = (MobileBy.ACCESSIBILITY_ID, '我要查询')
 
@@ -22,6 +21,9 @@ class QueryPage(BasePage):
 
     # 热门事项
     hot_items_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND name == "热门事项"')
+
+    # 客服按钮
+    customer_service_button_loc = (MobileBy.ACCESSIBILITY_ID, 'home consult')
 
     # 输入关键字搜索事项
     def search(self, text):
@@ -36,3 +38,7 @@ class QueryPage(BasePage):
             return page_title.is_displayed() and hot_items.is_displayed()
         else:
             return False
+
+    # 打开客服页面
+    def open_customer_service_page(self):
+        self.tap_element(self.customer_service_button_loc)

@@ -5,6 +5,7 @@
 
 __author__ = 'kejie'
 
+import logging
 from page_object.index.cross_stage_subpages.reserve_page import ReservePage
 from page_object.index.cross_stage_subpages.reserve_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
 from page_object.index.cross_stage_subpages.reserve_subpages.housing_provident_funds_page import \
@@ -13,22 +14,28 @@ from page_object.index.cross_stage_subpages.reserve_subpages.reserve_info_confir
 from page_object.index.cross_stage_subpages.reserve_subpages.reserve_time_page import ReserveTimePage
 from page_object.index.index_page import IndexPage
 from page_object.index.cross_stage_subpages.reserve_subpages.reserve_success_page import ReserveSuccessPage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.activate_reserve_page import ActivateReservePage
+from page_object.index.cross_stage_subpages.reserve_info_query_subpages.reserve_record_page import ReserveRecordPage
 
 reserve_info = {}
+index_page = None
+reserve_page = None
+hangzhou_civic_center_page = None
+housing_provident_funds_page = None
+reserve_time_page = None
+reserve_info_confirm_page = None
+reserve_success_page = None
+reserve_record_page = None
+activate_reserve_page = None
 
 
 # 获取预约成功的事项，如果没有，就预约一个
 def get_reserve_item(driver):
+    logging.info('开始获取预约事项')
+    _init_page(driver)
     global reserve_info
     if not reserve_info:
-        index_page = IndexPage(driver)
-        reserve_page = ReservePage(driver)
-        hangzhou_civic_center_page = HangzhouCivicCenterPage(driver)
-        housing_provident_funds_page = HousingProvidentFundsPage(driver)
-        reserve_time_page = ReserveTimePage(driver)
-        reserve_info_confirm_page = ReserveInfoConfirmPage(driver)
-        reserve_success_page = ReserveSuccessPage(driver)
-
+        logging.info('没有预约事项，重新预约')
         index_page.scroll_to_cross_stage()
         index_page.open_reserve_page()
         reserve_page.open_hangzhou_civic_center_page()
@@ -36,7 +43,33 @@ def get_reserve_item(driver):
         housing_provident_funds_page.click_personal_housing_provident_funds_free()
         reserve_time_page.click_first_reserve_time()
         reserve_info = reserve_info_confirm_page.get_reserve_info()
-        reserve_info_confirm_page.click_confirm_reserve_info_button()
-        reserve_success_page.click_back_to_index_button()
+        reserve_info_confirm_page.confirm_reserve_info()
+        reserve_success_page.back_to_reserve_page()
         reserve_page.back_to_index()
     return reserve_info
+
+
+# 取消预约，调用前需要保证预约列表中有预约成功的记录
+def cancel_reserve(driver):
+    logging.info('开始取消预约事项')
+    _init_page(driver)
+    index_page.scroll_to_cross_stage()
+    index_page.open_reserve_page()
+    reserve_page.open_query_reserve_info_page()
+    reserve_record_page.open_first_reserve_detail_page()
+    activate_reserve_page.cancel_reserve()
+
+
+# 初始化页面对象
+def _init_page(driver):
+    global index_page, reserve_page, hangzhou_civic_center_page, housing_provident_funds_page, reserve_time_page, \
+        reserve_info_confirm_page, reserve_success_page, reserve_record_page, activate_reserve_page
+    index_page = IndexPage(driver)
+    reserve_page = ReservePage(driver)
+    hangzhou_civic_center_page = HangzhouCivicCenterPage(driver)
+    housing_provident_funds_page = HousingProvidentFundsPage(driver)
+    reserve_time_page = ReserveTimePage(driver)
+    reserve_info_confirm_page = ReserveInfoConfirmPage(driver)
+    reserve_success_page = ReserveSuccessPage(driver)
+    reserve_record_page = ReserveRecordPage(driver)
+    activate_reserve_page = ActivateReservePage(driver)
