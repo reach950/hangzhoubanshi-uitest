@@ -32,5 +32,23 @@ class TestSearchByText(BaseCase):
                         '没有显示搜索{}的结果'.format(self.search_text))
 
 
+class TestRecentUse(BaseCase):
+    """服务-最近使用-最近使用应用"""
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
+    @login
+    def test_01_sort_by_open_app_in_recent_use(self):
+        """打开最近使用下的应用，重新排序"""
+        self.index_page.switch_to_services_page()
+        eles = self.services_page.get_all_apps()
+        for ele in eles:
+            print(ele.get_attribute('name'))
+
+
 if __name__ == '__main__':
     unittest.main()
