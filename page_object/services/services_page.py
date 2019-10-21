@@ -20,6 +20,9 @@ class ServicesPage(BasePage):
     # 最近使用的最后一个应用
     last_recent_use_app_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[8]')
 
+    # 应用列表
+    app_list_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCollectionView')
+
     # 打开搜索页面
     def open_search_page(self):
         self.tap_element(self.search_field_loc)
@@ -50,3 +53,7 @@ class ServicesPage(BasePage):
                 app_loc = (self.all_apps_loc[0], '{}[{}]'.format(self.all_apps_loc[1], i + 1))
                 self.tap_element(app_loc)
                 return app_name
+
+    # 滑动到应用所在位置
+    def scroll_to_app_location(self, app_name):
+        self.scroll(loc=self.app_list_loc, name=app_name)

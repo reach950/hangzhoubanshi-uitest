@@ -45,6 +45,11 @@ from page_object.mine.message_center_page import MessageCenterPage
 from page_object.mine.user_info.update_address_page import UpdateAddressPage
 from page_object.index.cross_stage_subpages.reserve_info_query_subpages.how_to_scan_code_page import HowToScanCodePage
 from page_object.services.service_detail_page import ServiceDetailPage
+from page_object.services.car_quota.car_quota_index_page import CarQuotaIndexPage
+from page_object.services.education_pay.common_pay_page import CommonPayPage
+from page_object.services.medical_insurance.medical_insurance_index_page import MedicalInsuranceIndexPage
+from page_object.services.mobile_population_registration.mobile_population_reside_registration_page import \
+    MobilePopulationResideRegistrationPage
 
 
 class BaseCase(unittest.TestCase):
@@ -117,3 +122,7 @@ class BaseCase(unittest.TestCase):
         self.message_center_page = MessageCenterPage(self.driver)
         self.how_to_scan_code_page = HowToScanCodePage(self.driver)
         self.service_detail_page = ServiceDetailPage(self.driver)
+        self.car_quota_index_page = CarQuotaIndexPage(self.driver)
+        self.mobile_population_reside_registration_page = MobilePopulationResideRegistrationPage(self.driver)
+        self.medical_insurance_index_page = MedicalInsuranceIndexPage(self.driver)
+        self.common_pay_page = CommonPayPage(self.driver)
