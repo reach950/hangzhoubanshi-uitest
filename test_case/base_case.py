@@ -44,6 +44,7 @@ from page_object.mine.user_info.address_manage_page import AddressManagePage
 from page_object.mine.message_center_page import MessageCenterPage
 from page_object.mine.user_info.update_address_page import UpdateAddressPage
 from page_object.index.cross_stage_subpages.reserve_info_query_subpages.how_to_scan_code_page import HowToScanCodePage
+from page_object.services.service_detail_page import ServiceDetailPage
 
 
 class BaseCase(unittest.TestCase):
@@ -51,7 +52,7 @@ class BaseCase(unittest.TestCase):
     def setUp(self):
         # 打开Appium服务器，start server后，尝试启动被测App
         self.driver = AppiumDriver().get_driver()
-        self._init_page()
+        self.init_page()
         self.index_page.wait_to_display()
 
     def tearDown(self):
@@ -115,3 +116,4 @@ class BaseCase(unittest.TestCase):
         self.update_address_page = UpdateAddressPage(self.driver)
         self.message_center_page = MessageCenterPage(self.driver)
         self.how_to_scan_code_page = HowToScanCodePage(self.driver)
+        self.service_detail_page = ServiceDetailPage(self.driver)
