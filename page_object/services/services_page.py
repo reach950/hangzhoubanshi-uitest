@@ -56,4 +56,10 @@ class ServicesPage(BasePage):
 
     # 滑动到应用所在位置
     def scroll_to_app_location(self, app_name):
-        self.scroll(loc=self.app_list_loc, name=app_name)
+        count = 0
+        app_loc = (MobileBy.ACCESSIBILITY_ID, app_name)
+        while not self.find_element(app_loc, wait=10) or not self.find_element(app_loc).is_displayed():
+            if count >= 3:
+                break
+            self.swipe('up')
+            count += 1
