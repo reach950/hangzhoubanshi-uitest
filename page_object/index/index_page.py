@@ -66,6 +66,9 @@ class IndexPage(BasePage):
     # 智能客服小图标
     customer_service_small_icon_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeButton[`rect.width == 27`][3]')
 
+    # 地区展台
+    district_stage_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-2]')
+
     # 打开办事指南页面
     def open_handle_items_guide_page(self):
         self.tap_element(self.ban_shi_zhi_nan_loc)
@@ -163,3 +166,7 @@ class IndexPage(BasePage):
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):
         self.scroll(loc=self.table_loc, name=item_name)
+
+    # 打开地区展台
+    def open_district_stage(self):
+        self.tap_element(self.district_stage_loc)

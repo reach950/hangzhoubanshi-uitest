@@ -50,6 +50,9 @@ from page_object.services.education_pay.common_pay_page import CommonPayPage
 from page_object.services.medical_insurance.medical_insurance_index_page import MedicalInsuranceIndexPage
 from page_object.services.mobile_population_registration.mobile_population_reside_registration_page import \
     MobilePopulationResideRegistrationPage
+from page_object.index.district_stage_subpages.district_services_index_page import DistrictServicesIndexPage
+from page_object.index.district_stage_subpages.district_select_page import DistrictSelectPage
+from page_object.index.district_stage_subpages.all_departments_page import AllDepartmentsPage
 
 
 class BaseCase(unittest.TestCase):
@@ -126,3 +129,6 @@ class BaseCase(unittest.TestCase):
         self.mobile_population_reside_registration_page = MobilePopulationResideRegistrationPage(self.driver)
         self.medical_insurance_index_page = MedicalInsuranceIndexPage(self.driver)
         self.common_pay_page = CommonPayPage(self.driver)
+        self.district_services_index_page = DistrictServicesIndexPage(self.driver)
+        self.district_select_page = DistrictSelectPage(self.driver)
+        self.all_departments_page = AllDepartmentsPage(self.driver)
