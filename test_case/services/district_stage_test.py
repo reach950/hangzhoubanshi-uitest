@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """测试地区展台"""
-import random
 
 __author__ = 'kejie'
 
+import random
+import time
 import unittest
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
@@ -38,6 +39,7 @@ class TestDistrictServices(BaseCase):
                 self.district_select_page.select_district_by_name(random_district)
                 break
         # 非下城区不显示热门应用
+        time.sleep(3)
         self.assertFalse(self.district_services_index_page.is_hot_app_display())
 
     @login
