@@ -53,6 +53,8 @@ from page_object.services.mobile_population_registration.mobile_population_resid
 from page_object.index.district_stage_subpages.district_services_index_page import DistrictServicesIndexPage
 from page_object.index.district_stage_subpages.district_select_page import DistrictSelectPage
 from page_object.index.district_stage_subpages.all_departments_page import AllDepartmentsPage
+from page_object.index.district_stage_subpages.transportation_bureau_page import TransportationBureauPage
+from page_object.services.car_quota.car_incremental_quota_page import CarIncrementalQuotaPage
 
 
 class BaseCase(unittest.TestCase):
@@ -132,3 +134,5 @@ class BaseCase(unittest.TestCase):
         self.district_services_index_page = DistrictServicesIndexPage(self.driver)
         self.district_select_page = DistrictSelectPage(self.driver)
         self.all_departments_page = AllDepartmentsPage(self.driver)
+        self.transportation_bureau_page = TransportationBureauPage(self.driver)
+        self.car_incremental_quota_page = CarIncrementalQuotaPage(self.driver)

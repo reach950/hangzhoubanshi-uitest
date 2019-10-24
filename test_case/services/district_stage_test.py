@@ -54,6 +54,16 @@ class TestDistrictServices(BaseCase):
         # 点击更多按钮显示全部部门页面
         self.assertTrue(self.all_departments_page.is_displayed())
 
+    @login
+    def test_03_open_department_item_success(self):
+        """打开部门事项成功"""
+        self.index_page.scroll_to_news()
+        self.index_page.open_district_stage()
+        self.district_services_index_page.open_transportation_bureau_page()
+        self.transportation_bureau_page.open_car_incremental_quota_page()
+        # 打开小客车增量指标事项成功
+        self.assertTrue(self.car_incremental_quota_page.is_display())
+
 
 if __name__ == '__main__':
     unittest.main()

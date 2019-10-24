@@ -22,6 +22,9 @@ class DistrictServicesIndexPage(BasePage):
     # 热门部门更多按钮
     hot_departments_more_button_loc = (MobileBy.ACCESSIBILITY_ID, '更多')
 
+    # 市交通运输局
+    transportation_bureau_loc = (MobileBy.ACCESSIBILITY_ID, '市交通运输局')
+
     # 打开地区选择页面
     def open_district_select_page(self):
         self.tap_element(self.district_select_button_loc)
@@ -41,3 +44,7 @@ class DistrictServicesIndexPage(BasePage):
     # 打开全部部门页面
     def open_all_departments_page(self):
         self.tap_element(self.hot_departments_more_button_loc)
+
+    # 打开市交通运输局页面
+    def open_transportation_bureau_page(self):
+        self.tap_element(self.transportation_bureau_loc)
