@@ -71,7 +71,7 @@ def user_login(driver, username=real_name_user['phone_number'], password=real_na
     mine_page.click_user_area()
     login_page.login(username, password)
     global login_state
-    login_state = True
+    login_state = mine_page.is_displayed()
 
 
 # 调用前请确保用户为登录状态

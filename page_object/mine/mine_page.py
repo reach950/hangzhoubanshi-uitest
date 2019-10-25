@@ -10,7 +10,6 @@ from page_object.base_page import BasePage
 
 
 class MinePage(BasePage):
-
     # 用户区域
     user_area_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 265')
 
@@ -25,6 +24,9 @@ class MinePage(BasePage):
 
     # tabbar-主页
     tabbar_index_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 94`][1]')
+
+    # 我的办件
+    my_handle_item_loc = (MobileBy.ACCESSIBILITY_ID, '我的办件')
 
     # 获取用户姓名
     def get_username(self):
@@ -49,3 +51,11 @@ class MinePage(BasePage):
     # 切换到主页
     def switch_to_index_page(self):
         self.tap_element(self.tabbar_index_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        my_handle_item = self.find_element(self.my_handle_item_loc)
+        if my_handle_item:
+            return my_handle_item.is_displayed()
+        else:
+            return False
