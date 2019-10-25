@@ -47,6 +47,7 @@ class TestDistrictServices(BaseCase):
         """热门部门默认显示十条，点击更多按钮查看更多部门"""
         self.index_page.scroll_to_news()
         self.index_page.open_district_stage()
+        time.sleep(3)
         hot_departments = self.district_services_index_page.get_all_hot_departments()
         # 热门部门默认显示十条
         self.assertEqual(len(hot_departments), 10)

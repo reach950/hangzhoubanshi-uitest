@@ -10,8 +10,12 @@ import logging
 from lib import AppiumDriver
 from page_object.index.index_page import IndexPage
 from page_object.mine.mine_page import MinePage
+from config.login_user import login_user
+from page_object.mine.login_page import LoginPage
+from page_object.mine.settings_page import SettingsPage
 
 login_state = True
+real_name_user = login_user['real_name']
 
 
 # 初始化登录状态
@@ -21,6 +25,7 @@ def init_login_state():
     driver = AppiumDriver().get_driver()
     index_page = IndexPage(driver)
     mine_page = MinePage(driver)
+
     index_page.wait_to_display()
     index_page.switch_to_mine_page()
     login_state = mine_page.is_login()
@@ -37,7 +42,8 @@ def login(func):
     def _login(self, *args, **kw):
         global login_state
         if not login_state:
-            self.user_login()
+            user_login(self.driver)
+            self.mine_page.switch_to_index_page()
         return func(self, *args, **kw)
 
     return _login
@@ -49,10 +55,36 @@ def logout(func):
     def _logout(self, *args, **kw):
         global login_state
         if login_state:
-            self.user_logout()
+            user_logout(self.driver)
         return func(self, *args, **kw)
 
     return _logout
+
+
+# 调用前请确保用户为未登录状态
+def user_login(driver, username=real_name_user['phone_number'], password=real_name_user['password']):
+    index_page = IndexPage(driver)
+    mine_page = MinePage(driver)
+    login_page = LoginPage(driver)
+
+    index_page.switch_to_mine_page()
+    mine_page.click_user_area()
+    login_page.login(username, password)
+    global login_state
+    login_state = True
+
+
+# 调用前请确保用户为登录状态
+def user_logout(driver):
+    index_page = IndexPage(driver)
+    mine_page = MinePage(driver)
+    settings_page = SettingsPage(driver)
+
+    index_page.switch_to_mine_page()
+    mine_page.open_settings_page()
+    settings_page.logout()
+    global login_state
+    login_state = False
 
 
 def log(text):

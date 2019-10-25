@@ -9,7 +9,6 @@ import unittest
 import importlib
 import pkgutil
 from lib import AppiumDriver
-from config.login_user import login_user
 import page_object as po
 from page_object.base_page import BasePage
 from page_object.index.index_page import IndexPage
@@ -79,20 +78,6 @@ class BaseCase(unittest.TestCase):
         for sub_class in sub_class_list:
             sub_class_instance_name = sub_class.__module__.split('.')[-1]
             self.__dict__[sub_class_instance_name] = sub_class(self.driver)
-
-    # 调用前请确保用户为未登录状态
-    def user_login(self):
-        self.index_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        real_name_user = login_user['real_name']
-        self.login_page.login(real_name_user['phone_number'], real_name_user['password'])
-        self.mine_page.switch_to_index_page()
-
-    # 调用前请确保用户为登录状态
-    def user_logout(self):
-        self.index_page.switch_to_mine_page()
-        self.mine_page.open_settings_page()
-        self.settings_page.logout()
 
     def init_page(self):
         self.index_page = IndexPage(self.driver)
