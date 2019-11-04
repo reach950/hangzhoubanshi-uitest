@@ -7,11 +7,9 @@ __author__ = 'kejie'
 
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
-from test_case.common_test_step import login
 
 
 class PasswordManagePage(BasePage):
-
     # 原密码输入框
     old_password_input_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeSecureTextField" AND rect.y == 128')
 
@@ -30,4 +28,3 @@ class PasswordManagePage(BasePage):
         self.send_keys(self.new_password_input_loc, new_password)
         self.send_keys(self.verify_password_input_loc, new_password)
         self.tap_element(self.confirm_button)
-        login.login_state = False

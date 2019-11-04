@@ -17,7 +17,6 @@ phone_number = real_name_user['phone_number']
 identity_number = real_name_user['identity_number']
 password = real_name_user['password']
 authentication_method = real_name_user['authentication_method']
-new_password = 'test1234'
 
 
 class TestBaseInfo(BaseCase):
@@ -52,8 +51,8 @@ class TestBaseInfo(BaseCase):
         test_gender = self.user_info_page.get_gender()
         test_phone_number = self.user_info_page.get_phone_number()
         test_identity_number = self.user_info_page.get_identity_number()
-        self.assertIsNone(test_name)
-        self.assertIsNone(test_gender)
+        self.assertIsNotNone(test_name)
+        self.assertIsNotNone(test_gender)
         self.assertEqual('{}*****{}'.format(phone_number[:3], phone_number[-3:]), test_phone_number)
         self.assertEqual('{}*****************{}'.format(identity_number[0], identity_number[-1]),
                          test_identity_number)
@@ -78,19 +77,47 @@ class TestPasswordManage(BaseCase):
         super().tearDown()
 
     @login
-    def test_modify_password(self):
-        """修改登录密码"""
+    def test_01_modify_password_to_old_password(self):
+        """修改成原始密码失败"""
         self.index_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        self.user_info_page.open_password_manage_page()
-        self.password_manage_page.modify_password(password, new_password)
+        self._modify_password(password, password)
+        self.assertFalse(self.mine_page.is_displayed())
+
+    @login
+    def test_02_modify_password_to_full_letters_or_digits(self):
+        """修改成全英文或全数字失败"""
+        full_letters = 'hangzhou'
+        full_digits = '12345678'
+        self.index_page.switch_to_mine_page()
+        self._modify_password(password, full_letters)
+        self.assertFalse(self.mine_page.is_displayed())
+        self.password_manage_page.modify_password(password, full_digits)
+        self.assertFalse(self.mine_page.is_displayed())
+
+    @login
+    def test_03_modify_password_to_empty_password(self):
+        """修改成全空密码失败"""
+        self.index_page.switch_to_mine_page()
+        self._modify_password(password, '')
+        self.assertFalse(self.mine_page.is_displayed())
+
+    @login
+    def test_04_modify_password_success(self):
+        """修改登录密码成功"""
+        new_password = 'test1234'
+        self.index_page.switch_to_mine_page()
+        self._modify_password(password, new_password)
         self.login_page.login(phone_number, new_password)
         self.assertTrue(self.mine_page.is_login())
-        self.mine_page.click_user_area()
-        self.user_info_page.open_password_manage_page()
-        self.password_manage_page.modify_password(new_password, password)
+
+        self._modify_password(new_password, password)
         self.login_page.login(phone_number, password)
         self.assertTrue(self.mine_page.is_login())
+
+    def _modify_password(self, old_password, new_password):
+        self.mine_page.click_user_area()
+        self.user_info_page.open_password_manage_page()
+        self.password_manage_page.modify_password(old_password, new_password)
 
 
 class TestAddressManage(BaseCase):
