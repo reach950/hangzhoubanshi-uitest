@@ -5,15 +5,16 @@
 
 __author__ = 'kejie'
 
-login_user = {
+login_users = {
     # 实名认证用户
-    'real_name': {
+    'real_name_user': {
         'phone_number': 'xxx',
         'identity_number': 'xxx',
-        'password': 'xxx'
+        'password': 'xxx',
+        'authentication_method': '支付宝'
     },
     # 未实名认证用户
-    'unreal_name': {
+    'unreal_name_user': {
         'phone_number': 'xxx',
         'identity_number': 'xxx',
         'password': 'xxx'

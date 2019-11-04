@@ -7,54 +7,91 @@ __author__ = 'kejie'
 
 import functools
 import logging
+from enum import Enum, unique
 from lib import AppiumDriver
 from page_object.index.index_page import IndexPage
 from page_object.mine.mine_page import MinePage
-from config.login_user import login_user
+from config.login_users import login_users
 from page_object.mine.login_page import LoginPage
 from page_object.mine.settings_page import SettingsPage
 
-login_state = True
-real_name_user = login_user['real_name']
+
+@unique
+class LoginState(Enum):
+    # 未登录
+    Logout = 1
+    # 实名登录
+    RealNameLogin = 2
+    # 未实名登录
+    UnrealNameLogin = 3
+
+
+current_login_state = LoginState.RealNameLogin
+real_name_user = login_users['real_name_user']
+unreal_name_user = login_users['unreal_name_user']
 
 
 # 初始化登录状态
 def init_login_state():
     logging.info('初始化登录状态')
-    global login_state
+    global current_login_state
     driver = AppiumDriver().get_driver()
     index_page = IndexPage(driver)
     mine_page = MinePage(driver)
 
     index_page.wait_to_display()
     index_page.switch_to_mine_page()
-    login_state = mine_page.is_login()
-    if login_state:
-        logging.info('当前app为已登录状态')
-    else:
+    state = mine_page.get_user_state()
+    if state == '未登录用户':
+        current_login_state = LoginState.Logout
         logging.info('当前app为未登录状态')
+    elif state == '未实名用户':
+        current_login_state = LoginState.UnrealNameLogin
+        logging.info('当前app为已登录状态，登录用户为{}'.format(state))
+    elif state == '已实名用户':
+        current_login_state = LoginState.RealNameLogin
+        logging.info('当前app为已登录状态，登录用户为{}'.format(state))
     driver.quit()
 
 
 # 用例执行前是否需要登录
-def login(func):
-    @functools.wraps(func)
-    def _login(self, *args, **kw):
-        global login_state
-        if not login_state:
-            user_login(self.driver)
-            self.mine_page.switch_to_index_page()
-        return func(self, *args, **kw)
+def login(param):
+    if not isinstance(param, str):
+        return login('real_name')(param)
+    else:
+        def _login(func):
+            @functools.wraps(func)
+            def wrapper(self, *args, **kwargs):
+                global current_login_state
+                if param == 'real_name':
+                    if current_login_state == LoginState.Logout:
+                        user_login(self.driver)
+                        self.mine_page.switch_to_index_page()
+                    elif current_login_state == LoginState.UnrealNameLogin:
+                        user_logout(self.driver)
+                        user_login(self.driver)
+                        self.mine_page.switch_to_index_page()
+                elif param == 'unreal_name':
+                    if current_login_state == LoginState.Logout:
+                        user_login(self.driver, unreal_name_user['phone_number'], unreal_name_user['password'])
+                        self.mine_page.switch_to_index_page()
+                    elif current_login_state == LoginState.RealNameLogin:
+                        user_logout(self.driver)
+                        user_login(self.driver, unreal_name_user['phone_number'], unreal_name_user['password'])
+                        self.mine_page.switch_to_index_page()
+                return func(self, *args, **kwargs)
 
-    return _login
+            return wrapper
+
+        return _login
 
 
 # 用例执行前是否需要登出
 def logout(func):
     @functools.wraps(func)
     def _logout(self, *args, **kw):
-        global login_state
-        if login_state:
+        global current_login_state
+        if current_login_state != LoginState.Logout:
             user_logout(self.driver)
         return func(self, *args, **kw)
 
@@ -70,8 +107,14 @@ def user_login(driver, username=real_name_user['phone_number'], password=real_na
     index_page.switch_to_mine_page()
     mine_page.click_user_area()
     login_page.login(username, password)
-    global login_state
-    login_state = mine_page.is_displayed()
+    global current_login_state
+    is_login = mine_page.is_displayed()
+    if is_login:
+        state = mine_page.get_user_state()
+        if state == '未实名用户':
+            current_login_state = LoginState.UnrealNameLogin
+        elif state == '已实名用户':
+            current_login_state = LoginState.RealNameLogin
 
 
 # 调用前请确保用户为登录状态
@@ -83,19 +126,5 @@ def user_logout(driver):
     index_page.switch_to_mine_page()
     mine_page.open_settings_page()
     settings_page.logout()
-    global login_state
-    login_state = False
-
-
-def log(text):
-    def decorator(fn):
-        def wrapper(*args, **kwargs):
-            print(text)
-            func = fn(*args, **kwargs)
-            print('%s executed in %s ms' % (fn.__name__))
-            return func
-
-        return wrapper
-
-    decorator = decorator if isinstance(text, str) else decorator(text)
-    return decorator
+    global current_login_state
+    current_login_state = LoginState.Logout

@@ -10,6 +10,13 @@ from page_object.base_page import BasePage
 
 
 class UserInfoPage(BasePage):
+    # 姓名
+    name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[2]'
+                                          '/XCUIElementTypeStaticText[2]')
+
+    # 性别
+    gender_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[3]'
+                                            '/XCUIElementTypeStaticText[2]')
 
     # 手机号码
     phone_number_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[4]'
@@ -19,11 +26,22 @@ class UserInfoPage(BasePage):
     identity_number_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[5]'
                                                      '/XCUIElementTypeStaticText[2]')
 
+    # 实名认证
+    real_name_authentication_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[6]')
+
     # 密码管理
     password_manage_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[7]')
 
     # 地址管理
     address_manage_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[8]')
+
+    # 获取姓名
+    def get_name(self):
+        return self.find_element(self.name_loc).get_attribute('value')
+
+    # 获取性别
+    def get_gender(self):
+        return self.find_element(self.gender_loc).get_attribute('value')
 
     # 获取手机号码
     def get_phone_number(self):
@@ -40,3 +58,7 @@ class UserInfoPage(BasePage):
     # 打开密码管理页面
     def open_password_manage_page(self):
         self.tap_element(self.password_manage_loc)
+
+    # 点击实名认证
+    def click_real_name_authentication(self):
+        self.tap_element(self.real_name_authentication_loc)

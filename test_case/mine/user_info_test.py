@@ -9,12 +9,14 @@ import unittest
 import time
 from datetime import datetime
 from test_case.base_case import BaseCase
-from config.login_user import login_user
+from config.login_users import login_users
 from test_case.common_test_step.login import login
 
-phone_number = login_user['phone_number']
-identity_number = login_user['identity_number']
-password = login_user['password']
+real_name_user = login_users['real_name_user']
+phone_number = real_name_user['phone_number']
+identity_number = real_name_user['identity_number']
+password = real_name_user['password']
+authentication_method = real_name_user['authentication_method']
 new_password = 'test1234'
 
 
@@ -27,16 +29,43 @@ class TestBaseInfo(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
-    def test_get_user_info(self):
-        """脱敏显示手机号，身份证号"""
+    @login('unreal_name')
+    def test_01_unreal_user_info(self):
+        """未实名用户，姓名，性别，身份证号显示为空"""
         self.index_page.switch_to_mine_page()
         self.mine_page.click_user_area()
+        test_name = self.user_info_page.get_name()
+        test_gender = self.user_info_page.get_gender()
+        test_identity_number = self.user_info_page.get_identity_number()
+        self.assertIsNone(test_name)
+        self.assertIsNone(test_gender)
+        self.assertIsNone(test_identity_number)
+        self.user_info_page.click_real_name_authentication()
+        self.assertTrue(self.real_name_authentication_page.is_displayed())
+
+    @login
+    def test_02_real_user_info(self):
+        """非银行卡认证用户，显示姓名，性别，身份证号"""
+        self.index_page.switch_to_mine_page()
+        self.mine_page.click_user_area()
+        test_name = self.user_info_page.get_name()
+        test_gender = self.user_info_page.get_gender()
         test_phone_number = self.user_info_page.get_phone_number()
         test_identity_number = self.user_info_page.get_identity_number()
+        self.assertIsNone(test_name)
+        self.assertIsNone(test_gender)
         self.assertEqual('{}*****{}'.format(phone_number[:3], phone_number[-3:]), test_phone_number)
         self.assertEqual('{}*****************{}'.format(identity_number[0], identity_number[-1]),
                          test_identity_number)
+
+    @login
+    def test_03_real_user_authentication_method(self):
+        """已实名用户可查看实名认证的方式"""
+        self.index_page.switch_to_mine_page()
+        self.mine_page.click_user_area()
+        self.user_info_page.click_real_name_authentication()
+        self.assertTrue(self.authentication_method_page.is_displayed())
+        self.assertEqual(self.authentication_method_page.get_authentication_method(), authentication_method)
 
 
 class TestPasswordManage(BaseCase):

@@ -54,6 +54,8 @@ from page_object.index.district_stage_subpages.district_select_page import Distr
 from page_object.index.district_stage_subpages.all_departments_page import AllDepartmentsPage
 from page_object.index.district_stage_subpages.transportation_bureau_page import TransportationBureauPage
 from page_object.services.car_quota.car_incremental_quota_page import CarIncrementalQuotaPage
+from page_object.mine.user_info.real_name_authentication_page import RealNameAuthenticationPage
+from page_object.mine.user_info.authentication_method_page import AuthenticationMethodPage
 
 
 class BaseCase(unittest.TestCase):
@@ -121,3 +123,5 @@ class BaseCase(unittest.TestCase):
         self.all_departments_page = AllDepartmentsPage(self.driver)
         self.transportation_bureau_page = TransportationBureauPage(self.driver)
         self.car_incremental_quota_page = CarIncrementalQuotaPage(self.driver)
+        self.real_name_authentication_page = RealNameAuthenticationPage(self.driver)
+        self.authentication_method_page = AuthenticationMethodPage(self.driver)
