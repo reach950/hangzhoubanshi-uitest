@@ -59,3 +59,7 @@ class MinePage(BasePage):
             return my_handle_item.is_displayed()
         else:
             return False
+
+    # 打开我的办件列表
+    def open_my_handle_item(self):
+        self.tap_element(self.my_handle_item_loc)

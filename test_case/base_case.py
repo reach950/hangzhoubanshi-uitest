@@ -56,6 +56,8 @@ from page_object.index.district_stage_subpages.transportation_bureau_page import
 from page_object.services.car_quota.car_incremental_quota_page import CarIncrementalQuotaPage
 from page_object.mine.user_info.real_name_authentication_page import RealNameAuthenticationPage
 from page_object.mine.user_info.authentication_method_page import AuthenticationMethodPage
+from page_object.mine.my_handle_item_page import MyHandleItemPage
+from page_object.mine.my_handle_item_detail_page import MyHandleItemDetailPage
 
 
 class BaseCase(unittest.TestCase):
@@ -125,3 +127,5 @@ class BaseCase(unittest.TestCase):
         self.car_incremental_quota_page = CarIncrementalQuotaPage(self.driver)
         self.real_name_authentication_page = RealNameAuthenticationPage(self.driver)
         self.authentication_method_page = AuthenticationMethodPage(self.driver)
+        self.my_handle_item_page = MyHandleItemPage(self.driver)
+        self.my_handle_item_detail_page = MyHandleItemDetailPage(self.driver)
