@@ -34,6 +34,9 @@ class MinePage(BasePage):
     # 我的卡包
     my_card_loc = (MobileBy.ACCESSIBILITY_ID, '我的卡包')
 
+    # 消息中心
+    message_center_loc = (MobileBy.ACCESSIBILITY_ID, '消息中心')
+
     # 获取用户姓名
     def get_username(self):
         return self.find_element(self.username_loc).get_attribute('value')
@@ -77,3 +80,7 @@ class MinePage(BasePage):
     # 打开我的卡包
     def open_my_card(self):
         self.tap_element(self.my_card_loc)
+
+    # 打开消息中心
+    def open_message_center(self):
+        self.tap_element(self.message_center_loc)
