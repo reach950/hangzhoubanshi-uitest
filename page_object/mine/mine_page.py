@@ -31,6 +31,9 @@ class MinePage(BasePage):
     # 我的预约
     my_reserve_loc = (MobileBy.ACCESSIBILITY_ID, '我的预约')
 
+    # 我的卡包
+    my_card_loc = (MobileBy.ACCESSIBILITY_ID, '我的卡包')
+
     # 获取用户姓名
     def get_username(self):
         return self.find_element(self.username_loc).get_attribute('value')
@@ -70,3 +73,7 @@ class MinePage(BasePage):
     # 打开我的预约
     def open_my_reserve(self):
         self.tap_element(self.my_reserve_loc)
+
+    # 打开我的卡包
+    def open_my_card(self):
+        self.tap_element(self.my_card_loc)

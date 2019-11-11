@@ -59,6 +59,8 @@ from page_object.mine.user_info.authentication_method_page import Authentication
 from page_object.mine.my_handle_item_page import MyHandleItemPage
 from page_object.mine.my_handle_item_detail_page import MyHandleItemDetailPage
 from page_object.mine.my_reserve_page import MyReservePage
+from page_object.mine.identity_card_page import IdentityCardPage
+from page_object.mine.my_card_page import MyCardPage
 
 
 class BaseCase(unittest.TestCase):
@@ -131,3 +133,5 @@ class BaseCase(unittest.TestCase):
         self.my_handle_item_page = MyHandleItemPage(self.driver)
         self.my_handle_item_detail_page = MyHandleItemDetailPage(self.driver)
         self.my_reserve_page = MyReservePage(self.driver)
+        self.my_card_page = MyCardPage(self.driver)
+        self.identity_card_page = IdentityCardPage(self.driver)
