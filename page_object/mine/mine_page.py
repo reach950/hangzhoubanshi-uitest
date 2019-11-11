@@ -28,6 +28,9 @@ class MinePage(BasePage):
     # 我的办件
     my_handle_item_loc = (MobileBy.ACCESSIBILITY_ID, '我的办件')
 
+    # 我的预约
+    my_reserve_loc = (MobileBy.ACCESSIBILITY_ID, '我的预约')
+
     # 获取用户姓名
     def get_username(self):
         return self.find_element(self.username_loc).get_attribute('value')
@@ -63,3 +66,7 @@ class MinePage(BasePage):
     # 打开我的办件列表
     def open_my_handle_item(self):
         self.tap_element(self.my_handle_item_loc)
+
+    # 打开我的预约
+    def open_my_reserve(self):
+        self.tap_element(self.my_reserve_loc)

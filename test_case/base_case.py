@@ -58,6 +58,7 @@ from page_object.mine.user_info.real_name_authentication_page import RealNameAut
 from page_object.mine.user_info.authentication_method_page import AuthenticationMethodPage
 from page_object.mine.my_handle_item_page import MyHandleItemPage
 from page_object.mine.my_handle_item_detail_page import MyHandleItemDetailPage
+from page_object.mine.my_reserve_page import MyReservePage
 
 
 class BaseCase(unittest.TestCase):
@@ -129,3 +130,4 @@ class BaseCase(unittest.TestCase):
         self.authentication_method_page = AuthenticationMethodPage(self.driver)
         self.my_handle_item_page = MyHandleItemPage(self.driver)
         self.my_handle_item_detail_page = MyHandleItemDetailPage(self.driver)
+        self.my_reserve_page = MyReservePage(self.driver)
