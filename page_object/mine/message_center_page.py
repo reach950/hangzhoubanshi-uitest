@@ -7,7 +7,6 @@ __author__ = 'kejie'
 
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
-from test_case.common_test_step import login
 
 
 class MessageCenterPage(BasePage):
@@ -20,6 +19,12 @@ class MessageCenterPage(BasePage):
 
     # 消息列表
     message_list_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
+
+    # 第一条办件消息
+    first_handle_message_loc = (MobileBy.ACCESSIBILITY_ID, '办件消息')
+
+    # 第一条预约消息
+    first_reserve_message_loc = (MobileBy.ACCESSIBILITY_ID, '预约消息')
 
     # 页面是否显示
     def is_displayed(self):
@@ -40,3 +45,11 @@ class MessageCenterPage(BasePage):
     # 滑动到第一条预约消息
     def scroll_to_first_reserve_message(self):
         self.scroll(loc=self.message_list_loc, name='预约消息')
+
+    # 打开第一条办件详情
+    def open_first_handle_detail(self):
+        self.tap_element(self.first_handle_message_loc)
+
+    # 打开第一条预约详情
+    def open_first_reserve_detail(self):
+        self.tap_element(self.first_reserve_message_loc)

@@ -44,7 +44,7 @@ class TestMyHandleItemList(BaseCase):
         self.index_page.switch_to_mine_page()
         self.mine_page.open_my_handle_item()
         self.my_handle_item_page.click_not_today_handle_item()
-        self.assertTrue(self.my_handle_item_detail_page.is_displayed())
+        self.assertTrue(self.handle_item_detail_page.is_displayed())
 
 
 if __name__ == '__main__':

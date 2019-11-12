@@ -57,7 +57,7 @@ from page_object.services.car_quota.car_incremental_quota_page import CarIncreme
 from page_object.mine.user_info.real_name_authentication_page import RealNameAuthenticationPage
 from page_object.mine.user_info.authentication_method_page import AuthenticationMethodPage
 from page_object.mine.my_handle_item_page import MyHandleItemPage
-from page_object.mine.my_handle_item_detail_page import MyHandleItemDetailPage
+from page_object.mine.handle_item_detail_page import HandleItemDetailPage
 from page_object.mine.my_reserve_page import MyReservePage
 from page_object.mine.identity_card_page import IdentityCardPage
 from page_object.mine.my_card_page import MyCardPage
@@ -131,7 +131,7 @@ class BaseCase(unittest.TestCase):
         self.real_name_authentication_page = RealNameAuthenticationPage(self.driver)
         self.authentication_method_page = AuthenticationMethodPage(self.driver)
         self.my_handle_item_page = MyHandleItemPage(self.driver)
-        self.my_handle_item_detail_page = MyHandleItemDetailPage(self.driver)
+        self.handle_item_detail_page = HandleItemDetailPage(self.driver)
         self.my_reserve_page = MyReservePage(self.driver)
         self.my_card_page = MyCardPage(self.driver)
         self.identity_card_page = IdentityCardPage(self.driver)
