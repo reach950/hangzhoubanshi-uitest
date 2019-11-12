@@ -60,9 +60,9 @@ class TestSearchByText(BaseCase):
                         '没有显示搜索{}的服务结果'.format(search_text))
         self.assertTrue(self.search_page.check_element_by_name(reserve_name),
                         '没有显示搜索{}的预约结果'.format(search_text))
+        self.search_page.scroll_to_last_search_result()
         self.assertTrue(self.search_page.check_element_by_name(guide_name),
                         '没有显示搜索{}的办事指南结果'.format(search_text))
-        self.search_page.scroll_to_last_search_result()
         self.assertTrue(self.search_page.check_element_by_name(news_name),
                         '没有显示搜索{}的资讯结果'.format(search_text))
 

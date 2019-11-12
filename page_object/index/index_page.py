@@ -170,3 +170,7 @@ class IndexPage(BasePage):
     # 打开地区展台
     def open_district_stage(self):
         self.tap_element(self.district_stage_loc)
+
+    # 滑动首页到地区展台
+    def scroll_to_district_stage(self):
+        self.scroll(loc=self.table_loc, name='地区服务')
