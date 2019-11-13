@@ -66,6 +66,9 @@ from page_object.mine.help_feedback.problem_to_seek_help_page import ProblemToSe
 from page_object.mine.help_feedback.feedback_page import FeedbackPage
 from page_object.mine.help_feedback.my_suggestion_page import MySuggestionPage
 from page_object.mine.help_feedback.suggestion_detail_page import SuggestionDetailPage
+from page_object.mine.complaint_suggestion.add_complaint_suggestion_page import AddComplaintSuggestionPage
+from page_object.mine.complaint_suggestion.complaint_suggestion_detail_page import ComplaintSuggestionDetailPage
+from page_object.mine.complaint_suggestion.complaint_suggestion_page import ComplaintSuggestionPage
 
 
 class BaseCase(unittest.TestCase):
@@ -145,3 +148,6 @@ class BaseCase(unittest.TestCase):
         self.feedback_page = FeedbackPage(self.driver)
         self.my_suggestion_page = MySuggestionPage(self.driver)
         self.suggestion_detail_page = SuggestionDetailPage(self.driver)
+        self.complaint_suggestion_page = ComplaintSuggestionPage(self.driver)
+        self.add_complaint_suggestion_page = AddComplaintSuggestionPage(self.driver)
+        self.complaint_suggestion_detail_page = ComplaintSuggestionDetailPage(self.driver)

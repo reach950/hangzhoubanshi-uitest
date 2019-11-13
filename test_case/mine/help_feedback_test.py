@@ -6,6 +6,7 @@
 __author__ = 'kejie'
 
 import unittest
+import time
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
 
@@ -46,7 +47,7 @@ class TestFeedback(BaseCase):
     @login
     def test_01_publish_feedback(self):
         """发布意见反馈"""
-        text = 'abcDEF 测试文本 123 #'
+        '自动化测试意见反馈，请忽略_{}'.format(int(time.time()))
         self.index_page.switch_to_mine_page()
         self.mine_page.open_help_feedback()
         self.help_feedback_page.open_feedback()
