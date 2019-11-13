@@ -22,7 +22,16 @@ class TestFrequentlyQuestion(BaseCase):
     @login
     def test_01_open_hide_answer(self):
         """打开折叠问题答案"""
-        self.assertTrue(True)
+        question_text = '忘记密码怎么部？'
+        answer_text = '如密码遗忘，可通过登陆界面的“忘记密码”进行密码重置。'
+        self.index_page.switch_to_mine_page()
+        self.mine_page.open_help_feedback()
+        self.help_feedback_page.open_problem_to_seek_help()
+        # 答案折叠，没有显示
+        self.assertFalse(self.problem_to_seek_help_page.check_element_by_name(answer_text))
+        self.problem_to_seek_help_page.click_element_by_name(question_text)
+        # 打开折叠答案，正常显示
+        self.assertTrue(self.problem_to_seek_help_page.check_element_by_name(answer_text))
 
 
 class TestFeedback(BaseCase):
@@ -37,22 +46,26 @@ class TestFeedback(BaseCase):
     @login
     def test_01_publish_feedback(self):
         """发布意见反馈"""
-        self.assertTrue(True)
+        text = 'abcDEF 测试文本 123 #'
+        self.index_page.switch_to_mine_page()
+        self.mine_page.open_help_feedback()
+        self.help_feedback_page.open_feedback()
 
+        problem_type = self.feedback_page.select_random_problem_type()
+        # 未输入文本，提交按钮不可用
+        self.assertFalse(self.feedback_page.is_submit_button_enabled())
+        self.feedback_page.input_text(text)
+        self.feedback_page.scroll_to_footer()
+        self.feedback_page.click_submit_button()
 
-class TestMySuggestion(BaseCase):
-    """我的-求助反馈-我的建议"""
-
-    def setUp(self):
-        super().setUp()
-
-    def tearDown(self):
-        super().tearDown()
-
-    @login
-    def test_01_new_feedback_detail(self):
-        """新的意见反馈详情"""
-        self.assertTrue(True)
+        self.help_feedback_page.open_my_suggestion()
+        self.my_suggestion_page.open_first_suggestion_detail()
+        # 进入建议详情
+        self.assertTrue(self.suggestion_detail_page.is_displayed())
+        # 新的意见反馈
+        self.assertTrue(self.suggestion_detail_page.check_element_by_name('已受理'))
+        self.assertTrue(self.suggestion_detail_page.check_element_by_name(problem_type))
+        self.assertTrue(self.suggestion_detail_page.check_element_by_name(text))
 
 
 if __name__ == '__main__':

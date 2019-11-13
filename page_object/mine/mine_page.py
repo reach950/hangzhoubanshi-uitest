@@ -37,6 +37,9 @@ class MinePage(BasePage):
     # 消息中心
     message_center_loc = (MobileBy.ACCESSIBILITY_ID, '消息中心')
 
+    # 求助反馈
+    help_feedback_loc = (MobileBy.ACCESSIBILITY_ID, '求助反馈')
+
     # 获取用户姓名
     def get_username(self):
         return self.find_element(self.username_loc).get_attribute('value')
@@ -84,3 +87,7 @@ class MinePage(BasePage):
     # 打开消息中心
     def open_message_center(self):
         self.tap_element(self.message_center_loc)
+
+    # 打开求助反馈
+    def open_help_feedback(self):
+        self.tap_element(self.help_feedback_loc)

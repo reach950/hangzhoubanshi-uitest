@@ -27,7 +27,6 @@ class TestMessageType(BaseCase):
         item_name = get_handle_item(self.driver)
         self.index_page.switch_to_mine_page()
         self.mine_page.open_message_center()
-        self.message_center_page.scroll_to_first_handle_message()
         self.message_center_page.open_first_handle_detail()
         self.assertTrue(self.handle_item_detail_page.is_displayed())
         self.assertEqual(item_name, self.handle_item_detail_page.get_item_name())
@@ -38,7 +37,6 @@ class TestMessageType(BaseCase):
         reserve_info = get_reserve_item(self.driver)
         self.index_page.switch_to_mine_page()
         self.mine_page.open_message_center()
-        self.message_center_page.scroll_to_first_reserve_message()
         self.message_center_page.open_first_reserve_detail()
         if self.activate_reserve_page.is_displayed():
             # 检查激活预约页面的办事时间

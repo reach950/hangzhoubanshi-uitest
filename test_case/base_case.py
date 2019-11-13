@@ -61,6 +61,11 @@ from page_object.mine.handle_item_detail_page import HandleItemDetailPage
 from page_object.mine.my_reserve_page import MyReservePage
 from page_object.mine.identity_card_page import IdentityCardPage
 from page_object.mine.my_card_page import MyCardPage
+from page_object.mine.help_feedback.help_feedback_page import HelpFeedbackPage
+from page_object.mine.help_feedback.problem_to_seek_help_page import ProblemToSeekHelpPage
+from page_object.mine.help_feedback.feedback_page import FeedbackPage
+from page_object.mine.help_feedback.my_suggestion_page import MySuggestionPage
+from page_object.mine.help_feedback.suggestion_detail_page import SuggestionDetailPage
 
 
 class BaseCase(unittest.TestCase):
@@ -135,3 +140,8 @@ class BaseCase(unittest.TestCase):
         self.my_reserve_page = MyReservePage(self.driver)
         self.my_card_page = MyCardPage(self.driver)
         self.identity_card_page = IdentityCardPage(self.driver)
+        self.help_feedback_page = HelpFeedbackPage(self.driver)
+        self.problem_to_seek_help_page = ProblemToSeekHelpPage(self.driver)
+        self.feedback_page = FeedbackPage(self.driver)
+        self.my_suggestion_page = MySuggestionPage(self.driver)
+        self.suggestion_detail_page = SuggestionDetailPage(self.driver)
