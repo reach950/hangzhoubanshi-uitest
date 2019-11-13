@@ -22,7 +22,7 @@ class TestFrequentlyQuestion(BaseCase):
     @login
     def test_01_open_hide_answer(self):
         """打开折叠问题答案"""
-        question_text = '忘记密码怎么部？'
+        question_text = '忘记密码怎么办？'
         answer_text = '如密码遗忘，可通过登陆界面的“忘记密码”进行密码重置。'
         self.index_page.switch_to_mine_page()
         self.mine_page.open_help_feedback()

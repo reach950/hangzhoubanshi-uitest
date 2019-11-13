@@ -51,11 +51,12 @@ class FeedbackPage(BasePage):
     # 输入问题描述文本
     def input_text(self, text):
         self.send_keys(loc=self.text_input_loc, value=text)
+        self.click_element_by_name('完成')
 
     # 提交按钮是否可以点击
     def is_submit_button_enabled(self):
         is_enabled = self.find_element(self.submit_button_loc).get_attribute('enabled')
-        if is_enabled:
+        if is_enabled == 'true':
             return True
         else:
             return False
