@@ -43,6 +43,9 @@ class MinePage(BasePage):
     # 投诉建议
     complaint_suggestion_loc = (MobileBy.ACCESSIBILITY_ID, '投诉建议')
 
+    # 关于我们
+    about_us_loc = (MobileBy.ACCESSIBILITY_ID, '关于我们')
+
     # 获取用户姓名
     def get_username(self):
         return self.find_element(self.username_loc).get_attribute('value')
@@ -98,3 +101,7 @@ class MinePage(BasePage):
     # 打开投诉建议
     def open_complaint_suggestion(self):
         self.tap_element(self.complaint_suggestion_loc)
+
+    # 打开关于我们
+    def open_about_us(self):
+        self.tap_element(self.about_us_loc)

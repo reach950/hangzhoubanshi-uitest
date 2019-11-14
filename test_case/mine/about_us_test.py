@@ -22,11 +22,14 @@ class TestPrivacyStatement(BaseCase):
     @login
     def test_01_privacy_statement(self):
         """隐私声明"""
-        self.assertTrue(True)
+        self.index_page.switch_to_mine_page()
+        self.mine_page.open_about_us()
+        self.about_us_page.open_term_of_service()
+        self.assertTrue(self.term_of_service_page.is_displayed())
 
 
-class TestCurrentAppVersion(BaseCase):
-    """我的-关于我们-当前版本"""
+class TestAboutUs(BaseCase):
+    """我的-关于我们-关于我们"""
 
     def setUp(self):
         super().setUp()
@@ -35,9 +38,13 @@ class TestCurrentAppVersion(BaseCase):
         super().tearDown()
 
     @login
-    def test_01_display_version(self):
-        """显示app版本号"""
-        self.assertTrue(True)
+    def test_01_page_info(self):
+        """显示app版本号，技术服务热线，微信公众号"""
+        self.index_page.switch_to_mine_page()
+        self.mine_page.open_about_us()
+        self.assertTrue(self.about_us_page.is_current_version_display())
+        self.assertTrue(self.about_us_page.is_hotline_display())
+        self.assertTrue(self.about_us_page.is_wechat_name_display())
 
 
 if __name__ == '__main__':

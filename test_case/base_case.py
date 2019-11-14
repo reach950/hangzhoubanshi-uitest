@@ -69,6 +69,8 @@ from page_object.mine.help_feedback.suggestion_detail_page import SuggestionDeta
 from page_object.mine.complaint_suggestion.add_complaint_suggestion_page import AddComplaintSuggestionPage
 from page_object.mine.complaint_suggestion.complaint_suggestion_detail_page import ComplaintSuggestionDetailPage
 from page_object.mine.complaint_suggestion.complaint_suggestion_page import ComplaintSuggestionPage
+from page_object.mine.about_us_page import AboutUsPage
+from page_object.mine.term_of_service_page import TermOfServicePage
 
 
 class BaseCase(unittest.TestCase):
@@ -151,3 +153,5 @@ class BaseCase(unittest.TestCase):
         self.complaint_suggestion_page = ComplaintSuggestionPage(self.driver)
         self.add_complaint_suggestion_page = AddComplaintSuggestionPage(self.driver)
         self.complaint_suggestion_detail_page = ComplaintSuggestionDetailPage(self.driver)
+        self.about_us_page = AboutUsPage(self.driver)
+        self.term_of_service_page = TermOfServicePage(self.driver)
