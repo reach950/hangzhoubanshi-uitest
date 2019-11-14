@@ -20,7 +20,7 @@ class SettingsPage(BasePage):
     clear_cache_loc = (MobileBy.ACCESSIBILITY_ID, '清空缓存')
 
     # 缓存大小
-    cache_size_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 61')
+    cache_size_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 61')
 
     # 清空缓存
     def clear_cache(self):
