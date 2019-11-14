@@ -47,7 +47,7 @@ class TestFeedback(BaseCase):
     @login
     def test_01_publish_feedback(self):
         """发布意见反馈"""
-        '自动化测试意见反馈，请忽略_{}'.format(int(time.time()))
+        text = '自动化测试意见反馈，请忽略_{}'.format(int(time.time()))
         self.index_page.switch_to_mine_page()
         self.mine_page.open_help_feedback()
         self.help_feedback_page.open_feedback()

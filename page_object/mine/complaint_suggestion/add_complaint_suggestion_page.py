@@ -27,7 +27,7 @@ class AddComplaintSuggestionPage(BasePage):
     text_input_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTextView')
 
     # 提交按钮
-    submit_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "提交"')
+    submit_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "提 交"')
 
     # 添加投诉建议
     def add_complaint_suggestion(self, text):
