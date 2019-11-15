@@ -90,3 +90,7 @@ class AllAppsPage(BasePage):
                 app_loc = (self.all_apps_loc[0], '{}[{}]'.format(self.all_apps_loc[1], i + 1))
                 self.tap_element(app_loc)
                 return app_name
+
+    # 滑动到应用所在位置
+    def scroll_to_app_location(self, app_name):
+        self.scroll(loc=self.app_list_loc, name=app_name)
