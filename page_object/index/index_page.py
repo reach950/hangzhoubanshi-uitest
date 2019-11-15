@@ -26,7 +26,7 @@ class IndexPage(BasePage):
     search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 300')
 
     # 全部应用
-    more_app_loc = (MobileBy.ACCESSIBILITY_ID, '全部')
+    more_app_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name == "更多"')
 
     # 十字展台-我要办理
     wo_yao_ban_li_loc = (MobileBy.ACCESSIBILITY_ID, '我要办理')
@@ -41,7 +41,7 @@ class IndexPage(BasePage):
     wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
 
     # 杭州资讯更多按钮
-    hz_news_more_button_loc = (MobileBy.ACCESSIBILITY_ID, '更多>>')
+    hz_news_more_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "更多"')
 
     # 杭州资讯第一条资讯标题
     hz_news_first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
