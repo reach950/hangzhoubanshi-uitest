@@ -81,7 +81,7 @@ class TestPasswordManage(BaseCase):
         """修改成原始密码失败"""
         self.index_page.switch_to_mine_page()
         self._modify_password(password, password)
-        self.assertFalse(self.mine_page.is_displayed())
+        self.assertFalse(self.login_page.is_displayed())
 
     @login
     def test_02_modify_password_to_full_letters_or_digits(self):
@@ -90,16 +90,16 @@ class TestPasswordManage(BaseCase):
         full_digits = '12345678'
         self.index_page.switch_to_mine_page()
         self._modify_password(password, full_letters)
-        self.assertFalse(self.mine_page.is_displayed())
+        self.assertFalse(self.login_page.is_displayed())
         self.password_manage_page.modify_password(password, full_digits)
-        self.assertFalse(self.mine_page.is_displayed())
+        self.assertFalse(self.login_page.is_displayed())
 
     @login
     def test_03_modify_password_to_empty_password(self):
         """修改成全空密码失败"""
         self.index_page.switch_to_mine_page()
         self._modify_password(password, '')
-        self.assertFalse(self.mine_page.is_displayed())
+        self.assertFalse(self.login_page.is_displayed())
 
     @login
     def test_04_modify_password_success(self):

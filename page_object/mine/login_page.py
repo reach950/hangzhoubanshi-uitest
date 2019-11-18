@@ -22,6 +22,9 @@ class LoginPage(BasePage):
     # 其他登录方式
     other_login_loc = (MobileBy.ACCESSIBILITY_ID, '其他登录方式')
 
+    # 顶部图片
+    header_image_loc = (MobileBy.ACCESSIBILITY_ID, 'LogInCode')
+
     # 登录
     def login(self, username, password):
         self.tap_element(self.other_login_loc)
@@ -31,3 +34,11 @@ class LoginPage(BasePage):
         self.tap_element(last_username_number_loc)
         self.send_keys(self.password_input_loc, password)
         self.tap_element(self.login_button_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        header_image = self.find_element(self.header_image_loc)
+        if header_image:
+            return header_image.is_displayed()
+        else:
+            return False

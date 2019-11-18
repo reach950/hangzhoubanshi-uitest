@@ -6,6 +6,7 @@
 __author__ = 'kejie'
 
 import unittest
+import time
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
 
@@ -42,6 +43,7 @@ class TestThemeApps(BaseCase):
         """打开医疗保险应用成功"""
         app_name = '医疗保险'
         self.index_page.open_all_apps_page()
+        time.sleep(3)
         self.all_apps_page.scroll_to_app_location(app_name)
         self.all_apps_page.click_element_by_name(app_name)
         self.assertTrue(self.medical_insurance_index_page.is_displayed())
