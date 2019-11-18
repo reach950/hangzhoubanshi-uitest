@@ -8,7 +8,7 @@ __author__ = 'kejie'
 import unittest
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
-from test_case.common_test_step.handle_item import get_handle_item
+from test_case.common_test_step.handle_item import get_handle_item, handle_bug
 
 
 class TestMyHandleItemList(BaseCase):
@@ -29,6 +29,7 @@ class TestMyHandleItemList(BaseCase):
         for i in range(0, len(handle_item_dates) - 1):
             self.assertTrue(handle_item_dates[i] >= handle_item_dates[i + 1])
 
+    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
     @login
     def test_02_click_today_item_to_rate(self):
         """点击当天已办结状态的办件，唤起评价功能"""

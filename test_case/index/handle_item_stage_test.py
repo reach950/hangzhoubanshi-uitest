@@ -9,7 +9,7 @@ import unittest
 from datetime import datetime
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
-from test_case.common_test_step.handle_item import get_handle_item
+from test_case.common_test_step.handle_item import get_handle_item, handle_bug
 
 
 class TestHandleItemStage(BaseCase):
@@ -21,6 +21,7 @@ class TestHandleItemStage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
     @login
     def test_01_check_handle_item_in_index(self):
         """办件成功，首页显示办件信息"""
@@ -31,6 +32,7 @@ class TestHandleItemStage(BaseCase):
         # 办件日期
         self.assertTrue(self.index_page.check_element_by_name(datetime.now().strftime('%m-%d')))
 
+    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
     @login
     def test_02_click_handle_item_stage_to_open_message_center(self):
         """点击办件展台，跳转到消息中心"""

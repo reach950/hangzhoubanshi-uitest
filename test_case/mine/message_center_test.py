@@ -8,7 +8,7 @@ __author__ = 'kejie'
 import unittest
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
-from test_case.common_test_step.handle_item import get_handle_item
+from test_case.common_test_step.handle_item import get_handle_item, handle_bug
 from test_case.common_test_step.reserve import get_reserve_item
 
 
@@ -21,6 +21,7 @@ class TestMessageType(BaseCase):
     def tearDown(self):
         super().tearDown()
 
+    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
     @login
     def test_01_open_handle_item_detail_page(self):
         """点击办件消息，跳转到对应的办件详情页面"""

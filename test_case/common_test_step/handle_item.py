@@ -14,6 +14,7 @@ from page_object.services.library.library_card_password_change_page import Libra
 from page_object.services.library.library_index_page import LibraryIndexPage
 
 handle_state = False
+handle_bug = True
 
 
 # 获取办件的事项，没有就办理一个
