@@ -6,6 +6,7 @@
 __author__ = 'kejie'
 
 import unittest
+import time
 from test_case.base_case import BaseCase
 from test_case.common_test_step.login import login
 
@@ -25,6 +26,7 @@ class TestClearCache(BaseCase):
         self.index_page.switch_to_mine_page()
         self.mine_page.open_settings_page()
         self.settings_page.clear_cache()
+        time.sleep(3)
         self.assertEqual(self.settings_page.get_cache_size(), '0.00M')
 
 

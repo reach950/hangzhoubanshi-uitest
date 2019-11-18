@@ -11,7 +11,7 @@ from page_object.base_page import BasePage
 
 class AboutUsPage(BasePage):
     # 当前版本
-    current_version_loc = (MobileBy.ACCESSIBILITY_ID, '当前版本：V1.3.4')
+    current_version_loc = (MobileBy.ACCESSIBILITY_ID, '当前版本：V1.3.5')
 
     # 技术服务热线电话
     hotline_loc = (MobileBy.ACCESSIBILITY_ID, '0571-87292733')
