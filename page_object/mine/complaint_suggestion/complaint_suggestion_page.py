@@ -16,7 +16,18 @@ class ComplaintSuggestionPage(BasePage):
     # 部门建议投诉选择项
     complaint_choice_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "部门建议投诉"')
 
+    # 页面标题
+    page_title_loc = (MobileBy.ACCESSIBILITY_ID, '投诉建议')
+
     # 打开添加投诉建议页面
     def open_add_complaint_suggestion_page(self):
         self.tap_element(self.add_complaint_suggestion_button_loc)
         self.tap_element(self.complaint_choice_loc)
+
+    # 页面是否显示
+    def is_displayed(self):
+        page_title = self.find_element(self.page_title_loc)
+        if page_title:
+            return page_title.is_displayed()
+        else:
+            return False

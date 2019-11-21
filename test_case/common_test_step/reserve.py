@@ -58,6 +58,8 @@ def cancel_reserve(driver):
     reserve_page.open_query_reserve_info_page()
     reserve_record_page.open_first_reserve_detail_page()
     activate_reserve_page.cancel_reserve()
+    global reserve_info
+    reserve_info = {}
 
 
 # 初始化页面对象

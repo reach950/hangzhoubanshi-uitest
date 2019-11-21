@@ -28,6 +28,8 @@ class TestComplaintSuggestion(BaseCase):
         self.mine_page.open_complaint_suggestion()
         self.complaint_suggestion_page.open_add_complaint_suggestion_page()
         complaint_type = self.add_complaint_suggestion_page.add_complaint_suggestion(text)
+        # 返回到投诉建议页面
+        self.assertTrue(self.complaint_suggestion_page.is_displayed())
         # 查看详情
         self.complaint_suggestion_page.click_element_by_name(complaint_type)
         # 验证投诉建议详情页面信息
