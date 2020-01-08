@@ -50,9 +50,9 @@ class IndexPage(BasePage):
     # 杭州资讯第一条资讯来源
     hz_news_first_news_source_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
                                                                '/XCUIElementTypeStaticText[3]')
-    # 杭州资讯第三条资讯日期
+    # 杭州资讯第二条资讯标题
     hz_news_third_news_date_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
-                                                             '/XCUIElementTypeStaticText[-2]')
+                                                             '/XCUIElementTypeStaticText[5]')
 
     # tabbar-服务
     tabbar_services_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 95`][1]')
