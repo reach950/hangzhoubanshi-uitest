@@ -14,7 +14,7 @@ class DistrictServicesIndexPage(BasePage):
     district_select_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 275')
 
     # 热门应用
-    hot_app_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable[-1]/XCUIElementTypeStaticText[`name == "热门应用"`]')
+    hot_app_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable[-1]/XCUIElementTypeStaticText[`name == "热门服务"`]')
 
     # 热门部门
     hot_departments_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell')

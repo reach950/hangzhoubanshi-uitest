@@ -18,8 +18,7 @@ class NewsPage(BasePage):
     hzfb_tab_loc = (MobileBy.IOS_PREDICATE, 'name == "杭州发布" AND rect.width == 64')
 
     # 发布日期
-    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND '
-                                                '(rect.width == 82 OR rect.width == 81)')
+    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 79')
 
     # 第一条新闻
     first_news_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 450')

@@ -11,7 +11,7 @@ from page_object.base_page import BasePage
 
 class AboutUsPage(BasePage):
     # 当前版本
-    current_version_loc = (MobileBy.ACCESSIBILITY_ID, '当前版本：V1.3.5')
+    current_version_loc = (MobileBy.ACCESSIBILITY_ID, '当前版本：V1.3.6')
 
     # 技术服务热线电话
     hotline_loc = (MobileBy.ACCESSIBILITY_ID, '0571-87292733')
@@ -20,7 +20,7 @@ class AboutUsPage(BasePage):
     wechat_name_loc = (MobileBy.ACCESSIBILITY_ID, '杭州办事服务')
 
     # 服务条款
-    term_of_service_loc = (MobileBy.ACCESSIBILITY_ID, '服务条款')
+    term_of_service_loc = (MobileBy.ACCESSIBILITY_ID, '《服务条款》')
 
     # 当前版本是否显示
     def is_current_version_display(self):

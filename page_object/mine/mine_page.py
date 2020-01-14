@@ -20,7 +20,7 @@ class MinePage(BasePage):
     user_state_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 60')
 
     # 设置
-    settings_loc = (MobileBy.ACCESSIBILITY_ID, '设置')
+    settings_loc = (MobileBy.ACCESSIBILITY_ID, 'M Setting')
 
     # tabbar-主页
     tabbar_index_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[`rect.width == 94`][1]')

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """测试搜索"""
+import time
 
 __author__ = 'kejie'
 
@@ -54,6 +55,7 @@ class TestSearchByText(BaseCase):
         news_name = '资讯'
         self.index_page.open_search_page()
         self.search_page.search(search_text)
+        time.sleep(1)
         self.assertTrue(self.search_page.check_element_by_name(item_name),
                         '没有显示搜索{}的办事事项结果'.format(search_text))
         self.assertTrue(self.search_page.check_element_by_name(service_name),

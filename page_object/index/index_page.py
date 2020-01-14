@@ -173,4 +173,4 @@ class IndexPage(BasePage):
 
     # 滑动首页到地区展台
     def scroll_to_district_stage(self):
-        self.scroll(loc=self.table_loc, name='地区服务')
+        self.scroll(loc=self.table_loc, name='区县服务')
