@@ -25,41 +25,26 @@ class BasePage:
         self.driver = appium_driver  # type:webdriver.Remote
 
     # 重新封装单个元素定位方法
-    def find_element(self, loc, wait=15) -> webdriver.WebElement:
-        """
-
-        :param loc:
-        :param wait:
-        :return:
-        """
+    def find_element(self, loc, wait=15, element=None) -> webdriver.WebElement:
+        parent = element if element else self.driver
         try:
-            element = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
+            element = WebDriverWait(parent, wait).until(lambda driver_or_element: driver_or_element.find_element(*loc))
             return element
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装一组元素定位方法
-    def find_elements(self, loc, wait=15):
-        """
-
-        :param loc:
-        :param wait:
-        :return:
-        """
+    def find_elements(self, loc, wait=15, element=None):
+        parent = element if element else self.driver
         try:
-            elements = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_elements(*loc))
+            elements = WebDriverWait(parent, wait).until(lambda driver_element: driver_element.find_elements(*loc))
             return elements
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装元素点击操作
-    def tap_element(self, loc):
-        """
-
-        :param loc:
-        :return:
-        """
-        ele = self.find_element(loc)
+    def tap_element(self, loc, element=None):
+        ele = element if element else self.find_element(loc)
         rect = json.loads(ele.get_attribute('rect'))
         window_size = self.driver.get_window_size()
         ele_x = rect['x']
@@ -73,21 +58,11 @@ class BasePage:
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
     # 重新封装输入操作
-    def send_keys(self, loc, value, clear_first=False):
-        """
-
-        :param loc:
-        :param value:
-        :param clear_first:
-        :return:
-        """
-        ele = self.find_element(loc)
-        try:
-            if clear_first:
-                ele.clear()
-            ele.set_value(value)
-        except WebDriverException:
-            logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))
+    def send_keys(self, loc, value, clear_first=False, element=None):
+        ele = element if element else self.find_element(loc)
+        if clear_first:
+            ele.clear()
+        ele.set_value(value)
 
     # 重新封装滑动操作
     def swipe(self, direct, loc=None):
