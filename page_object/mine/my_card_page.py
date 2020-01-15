@@ -11,7 +11,7 @@ from page_object.base_page import BasePage
 
 class MyCardPage(BasePage):
     # 居民身份证
-    identity_card_loc = (MobileBy.ACCESSIBILITY_ID, '居民身份证')
+    identity_card_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]')
 
     # 点击居民身份证
     def click_identity_card(self):

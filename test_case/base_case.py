@@ -71,6 +71,7 @@ from page_object.mine.complaint_suggestion.complaint_suggestion_detail_page impo
 from page_object.mine.complaint_suggestion.complaint_suggestion_page import ComplaintSuggestionPage
 from page_object.mine.about_us_page import AboutUsPage
 from page_object.mine.term_of_service_page import TermOfServicePage
+from page_object.mine.face_verification_page import FaceVerificationPage
 
 
 class BaseCase(unittest.TestCase):
@@ -155,3 +156,4 @@ class BaseCase(unittest.TestCase):
         self.complaint_suggestion_detail_page = ComplaintSuggestionDetailPage(self.driver)
         self.about_us_page = AboutUsPage(self.driver)
         self.term_of_service_page = TermOfServicePage(self.driver)
+        self.face_verification_page = FaceVerificationPage(self.driver)

@@ -5,6 +5,7 @@
 
 __author__ = 'kejie'
 
+import time
 from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
@@ -32,7 +33,7 @@ class MinePage(BasePage):
     my_reserve_loc = (MobileBy.ACCESSIBILITY_ID, '我的预约')
 
     # 我的卡包
-    my_card_loc = (MobileBy.ACCESSIBILITY_ID, '我的卡包')
+    my_card_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeScrollView" AND rect.width == 291')
 
     # 消息中心
     message_center_loc = (MobileBy.ACCESSIBILITY_ID, '消息中心')
@@ -88,6 +89,9 @@ class MinePage(BasePage):
 
     # 打开我的卡包
     def open_my_card(self):
+        for _ in range(3):
+            self.swipe(direct='left', loc=self.my_card_loc)
+            time.sleep(1)
         self.tap_element(self.my_card_loc)
 
     # 打开消息中心
