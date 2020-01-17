@@ -26,7 +26,7 @@ class TestMessageType(BaseCase):
     def test_01_open_handle_item_detail_page(self):
         """点击办件消息，跳转到对应的办件详情页面"""
         item_name = get_handle_item(self.driver)
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_message_center()
         self.message_center_page.open_first_handle_detail()
         self.assertTrue(self.handle_item_detail_page.is_displayed())
@@ -36,7 +36,7 @@ class TestMessageType(BaseCase):
     def test_02_open_reserve_detail_page(self):
         """点击预约消息，跳转到对应的预约详情页面"""
         reserve_info = get_reserve_item(self.driver)
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_message_center()
         self.message_center_page.open_first_reserve_detail()
         if self.activate_reserve_page.is_displayed():

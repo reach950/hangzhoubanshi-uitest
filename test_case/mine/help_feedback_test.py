@@ -25,7 +25,7 @@ class TestFrequentlyQuestion(BaseCase):
         """打开折叠问题答案"""
         question_text = '忘记密码怎么办？'
         answer_text = '如密码遗忘，可通过登陆界面的“忘记密码”进行密码重置。'
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_help_feedback()
         self.help_feedback_page.open_problem_to_seek_help()
         # 答案折叠，没有显示
@@ -48,7 +48,7 @@ class TestFeedback(BaseCase):
     def test_01_publish_feedback(self):
         """发布意见反馈"""
         text = '自动化测试意见反馈，请忽略_{}'.format(int(time.time()))
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_help_feedback()
         self.help_feedback_page.open_feedback()
 

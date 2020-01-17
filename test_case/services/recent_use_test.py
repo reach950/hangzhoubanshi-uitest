@@ -23,7 +23,7 @@ class TestRecentUse(BaseCase):
     @login
     def test_01_sort_by_open_app_in_recent_use(self):
         """打开最近使用下的应用，重新排序"""
-        self.index_page.open_all_apps_page()
+        self.main_page.open_all_apps_page()
         last_recent_use_app_name = self.all_apps_page.get_last_recent_use_app_name()
         self.all_apps_page.open_last_recent_use_app()
         self.service_detail_page.back_to_prev_page()
@@ -35,7 +35,7 @@ class TestRecentUse(BaseCase):
     @login
     def test_02_sort_by_open_app_not_in_recent_use(self):
         """打开非最近使用下的应用，重新排序"""
-        self.index_page.open_all_apps_page()
+        self.main_page.open_all_apps_page()
         not_recent_use_app_name = self.all_apps_page.open_not_recent_use_app_and_return_app_name()
         self.service_detail_page.back_to_prev_page()
         # 等待服务页面重新排序

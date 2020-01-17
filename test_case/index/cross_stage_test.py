@@ -31,8 +31,8 @@ class TestHandleItems(BaseCase):
     @login
     def test_01_open_ai_customer_service_page_success(self):
         """点击客服图标，打开智能客服页面成功"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_handle_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_handle_page()
         self.assertTrue(self.handle_page.is_displayed(), '我要办理页面无法打开')
         self.handle_page.open_customer_service_page()
         self.assertTrue(self.ai_customer_service_page.is_displayed())
@@ -40,8 +40,8 @@ class TestHandleItems(BaseCase):
     @login
     def test_02_search_handle_items(self):
         """我要办理页面只能搜索出办理的事项"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_handle_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_handle_page()
         self.handle_page.search(search_text)
         self.assertTrue(self.handle_page.check_element_by_name(handle_search_result), '搜索结果错误')
         self.assertFalse(self.handle_page.check_element_by_name(query_search_result, 3), '搜索结果错误')
@@ -60,8 +60,8 @@ class TestPayItems(BaseCase):
     @login
     def test_01_open_ai_customer_service_page_success(self):
         """点击客服图标，打开智能客服页面成功"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_pay_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_pay_page()
         self.assertTrue(self.pay_page.is_displayed(), '我要缴费页面无法打开')
         self.pay_page.open_customer_service_page()
         self.assertTrue(self.ai_customer_service_page.is_displayed())
@@ -69,8 +69,8 @@ class TestPayItems(BaseCase):
     @login
     def test_02_search_pay_items(self):
         """我要缴费页面只能搜索出缴费的事项"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_pay_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_pay_page()
         self.pay_page.search(search_text)
         self.assertTrue(self.pay_page.check_element_by_name(pay_search_result), '搜索结果错误')
         self.assertFalse(self.pay_page.check_element_by_name(handle_search_result, 3), '搜索结果错误')
@@ -89,8 +89,8 @@ class TestQueryItems(BaseCase):
     @login
     def test_01_open_ai_customer_service_page_success(self):
         """点击客服图标，打开智能客服页面成功"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_query_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_query_page()
         self.assertTrue(self.query_page.is_displayed(), '我要查询页面无法打开')
         self.query_page.open_customer_service_page()
         self.assertTrue(self.ai_customer_service_page.is_displayed())
@@ -98,8 +98,8 @@ class TestQueryItems(BaseCase):
     @login
     def test_02_search_query_items(self):
         """我要查询页面只能搜索出查询的事项"""
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_query_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_query_page()
         self.query_page.search(search_text)
         self.assertTrue(self.query_page.check_element_by_name(query_search_result), '搜索结果错误')
         self.assertFalse(self.query_page.check_element_by_name(handle_search_result, 3), '搜索结果错误')
@@ -119,8 +119,8 @@ class TestReserveItems(BaseCase):
     def test_01_reserve_success_to_open_activate_page(self):
         """预约成功，跳转到激活预约页面"""
         reserve_info = reserve.get_reserve_item(self.driver)
-        self.index_page.scroll_to_cross_stage()
-        self.index_page.open_reserve_page()
+        self.main_page.scroll_to_cross_stage()
+        self.main_page.open_reserve_page()
         self.reserve_page.open_query_reserve_info_page()
         # 检查预约记录里的第一条预约状态
         self.assertEqual(self.reserve_record_page.get_first_reserve_record_state(), '预约成功')

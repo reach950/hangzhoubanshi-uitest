@@ -9,7 +9,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
-class MedicalInsuranceIndexPage(BasePage):
+class MedicalInsuranceMainPage(BasePage):
     # 参保查询
     query_insurance_loc = (MobileBy.ACCESSIBILITY_ID, '参保查询')
 

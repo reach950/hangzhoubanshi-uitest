@@ -9,7 +9,7 @@ import functools
 import logging
 from enum import Enum, unique
 from lib import AppiumDriver
-from page_object.index.index_page import IndexPage
+from page_object.main.main_page import MainPage
 from page_object.mine.mine_page import MinePage
 from config.login_users import login_users
 from page_object.mine.login_page import LoginPage
@@ -36,11 +36,11 @@ def init_login_state():
     logging.info('初始化登录状态')
     global current_login_state
     driver = AppiumDriver().get_driver()
-    index_page = IndexPage(driver)
+    main_page = MainPage(driver)
     mine_page = MinePage(driver)
 
-    index_page.wait_to_display()
-    index_page.switch_to_mine_page()
+    main_page.wait_to_display()
+    main_page.switch_to_mine_page()
     state = mine_page.get_user_state()
     if state == '未登录用户':
         current_login_state = LoginState.Logout
@@ -66,19 +66,19 @@ def login(param):
                 if param == 'real_name':
                     if current_login_state == LoginState.Logout:
                         user_login(self.driver)
-                        self.mine_page.switch_to_index_page()
+                        self.mine_page.switch_to_main_page()
                     elif current_login_state == LoginState.UnrealNameLogin:
                         user_logout(self.driver)
                         user_login(self.driver)
-                        self.mine_page.switch_to_index_page()
+                        self.mine_page.switch_to_main_page()
                 elif param == 'unreal_name':
                     if current_login_state == LoginState.Logout:
                         user_login(self.driver, unreal_name_user['phone_number'], unreal_name_user['password'])
-                        self.mine_page.switch_to_index_page()
+                        self.mine_page.switch_to_main_page()
                     elif current_login_state == LoginState.RealNameLogin:
                         user_logout(self.driver)
                         user_login(self.driver, unreal_name_user['phone_number'], unreal_name_user['password'])
-                        self.mine_page.switch_to_index_page()
+                        self.mine_page.switch_to_main_page()
                 return func(self, *args, **kwargs)
 
             return wrapper
@@ -100,11 +100,11 @@ def logout(func):
 
 # 调用前请确保用户为未登录状态
 def user_login(driver, username=real_name_user['phone_number'], password=real_name_user['password']):
-    index_page = IndexPage(driver)
+    main_page = MainPage(driver)
     mine_page = MinePage(driver)
     login_page = LoginPage(driver)
 
-    index_page.switch_to_mine_page()
+    main_page.switch_to_mine_page()
     mine_page.click_user_area()
     login_page.login(username, password)
     global current_login_state
@@ -119,11 +119,11 @@ def user_login(driver, username=real_name_user['phone_number'], password=real_na
 
 # 调用前请确保用户为登录状态
 def user_logout(driver):
-    index_page = IndexPage(driver)
+    main_page = MainPage(driver)
     mine_page = MinePage(driver)
     settings_page = SettingsPage(driver)
 
-    index_page.switch_to_mine_page()
+    main_page.switch_to_mine_page()
     mine_page.open_settings_page()
     settings_page.logout()
     global current_login_state

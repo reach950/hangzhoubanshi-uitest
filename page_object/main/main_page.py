@@ -10,7 +10,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
-class IndexPage(BasePage):
+class MainPage(BasePage):
     # 首页table
     table_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
 
@@ -25,20 +25,8 @@ class IndexPage(BasePage):
     # 搜索
     search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 300')
 
-    # 全部应用
+    # 更多应用
     more_app_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name == "更多"')
-
-    # 十字展台-我要办理
-    wo_yao_ban_li_loc = (MobileBy.ACCESSIBILITY_ID, '我要办理')
-
-    # 十字展台-我要缴费
-    wo_yao_jiao_fei_loc = (MobileBy.ACCESSIBILITY_ID, '我要缴费')
-
-    # 十字展台-我要查询
-    wo_yao_cha_xun_loc = (MobileBy.ACCESSIBILITY_ID, '我要查询')
-
-    # 十字展台-我要预约
-    wo_yao_yu_yue_loc = (MobileBy.ACCESSIBILITY_ID, '我要预约')
 
     # 杭州资讯更多按钮
     hz_news_more_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "更多"')
@@ -89,22 +77,6 @@ class IndexPage(BasePage):
     # 打开全部应用
     def open_all_apps_page(self):
         self.tap_element(self.more_app_loc)
-
-    # 打开我要办理页面
-    def open_handle_page(self):
-        self.tap_element(self.wo_yao_ban_li_loc)
-
-    # 打开我要缴费页面
-    def open_pay_page(self):
-        self.tap_element(self.wo_yao_jiao_fei_loc)
-
-    # 打开我要查询页面
-    def open_query_page(self):
-        self.tap_element(self.wo_yao_cha_xun_loc)
-
-    # 打开我要预约页面
-    def open_reserve_page(self):
-        self.tap_element(self.wo_yao_yu_yue_loc)
 
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
@@ -158,10 +130,6 @@ class IndexPage(BasePage):
             if count == 0:
                 break
             count -= 1
-
-    # 滑动首页到十字展台
-    def scroll_to_cross_stage(self):
-        self.scroll(loc=self.table_loc, name='线上预约线下办理')
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):

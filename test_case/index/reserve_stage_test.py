@@ -24,16 +24,16 @@ class TestReserveStage(BaseCase):
     def test_01_check_reserve_info_in_index(self):
         """预约成功，首页显示预约信息"""
         reserve_info = get_reserve_item(self.driver)
-        self.assertTrue(self.index_page.check_element_by_name(reserve_info['预约事项']))
-        self.assertTrue(self.index_page.check_element_by_name('{}月'.format(reserve_info['办事时间'][5:7])))
-        self.assertTrue(self.index_page.check_element_by_name(reserve_info['办事时间'][8:10]))
-        # self.assertTrue(self.index_page.check_element_by_name(reserve_info['办事时间'][11:]))
+        self.assertTrue(self.main_page.check_element_by_name(reserve_info['预约事项']))
+        self.assertTrue(self.main_page.check_element_by_name('{}月'.format(reserve_info['办事时间'][5:7])))
+        self.assertTrue(self.main_page.check_element_by_name(reserve_info['办事时间'][8:10]))
+        # self.assertTrue(self.main_page.check_element_by_name(reserve_info['办事时间'][11:]))
 
     @login
     def test_02_click_reserve_stage_to_open_message_center(self):
         """点击预约展台，跳转到消息中心"""
         reserve_info = get_reserve_item(self.driver)
-        self.index_page.click_element_by_name(reserve_info['预约事项'])
+        self.main_page.click_element_by_name(reserve_info['预约事项'])
         self.assertTrue(self.message_center_page.is_displayed())
         message_info = self.message_center_page.get_first_message_info()
         self.assertIn(reserve_info['办事时间'], message_info)

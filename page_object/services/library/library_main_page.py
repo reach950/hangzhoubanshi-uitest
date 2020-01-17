@@ -9,7 +9,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
-class LibraryIndexPage(BasePage):
+class LibraryMainPage(BasePage):
     # 关闭页面按钮
     close_button_loc = (MobileBy.ACCESSIBILITY_ID, 'icon wrong')
 

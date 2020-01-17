@@ -22,7 +22,7 @@ class TestPrivacyStatement(BaseCase):
     @login
     def test_01_privacy_statement(self):
         """隐私声明"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_about_us()
         self.about_us_page.open_term_of_service()
         self.assertTrue(self.term_of_service_page.is_displayed())
@@ -40,7 +40,7 @@ class TestAboutUs(BaseCase):
     @login
     def test_01_page_info(self):
         """显示app版本号，技术服务热线，微信公众号"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_about_us()
         self.assertTrue(self.about_us_page.is_current_version_display())
         self.assertTrue(self.about_us_page.is_hotline_display())

@@ -25,7 +25,7 @@ class TestSearchByText(BaseCase):
     @login
     def test_search_by_text_success(self):
         """输入关键字搜索结果成功"""
-        self.index_page.switch_to_services_page()
+        self.main_page.switch_to_services_page()
         self.services_page.open_search_page()
         self.search_page.search(self.search_text)
         self.assertTrue(self.search_page.check_element_by_name(self.first_affair_name),

@@ -9,7 +9,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
-class DistrictServicesIndexPage(BasePage):
+class DistrictServicesMainPage(BasePage):
     # 地区选择按钮
     district_select_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 275')
 

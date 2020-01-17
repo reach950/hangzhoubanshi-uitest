@@ -68,7 +68,7 @@ class MinePage(BasePage):
         self.tap_element(self.user_area_loc)
 
     # 切换到主页
-    def switch_to_index_page(self):
+    def switch_to_main_page(self):
         self.tap_element(self.tabbar_index_loc)
 
     # 页面是否显示

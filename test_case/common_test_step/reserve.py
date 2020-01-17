@@ -6,19 +6,19 @@
 __author__ = 'kejie'
 
 import logging
-from page_object.index.cross_stage_subpages.reserve_page import ReservePage
-from page_object.index.cross_stage_subpages.reserve_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
-from page_object.index.cross_stage_subpages.reserve_subpages.housing_provident_funds_page import \
+from page_object.main.reserve_subpages.reserve_page import ReservePage
+from page_object.main.reserve_subpages.reserve_process_subpages.hangzhou_civic_center_page import HangzhouCivicCenterPage
+from page_object.main.reserve_subpages.reserve_process_subpages.housing_provident_funds_page import \
     HousingProvidentFundsPage
-from page_object.index.cross_stage_subpages.reserve_subpages.reserve_info_confirm_page import ReserveInfoConfirmPage
-from page_object.index.cross_stage_subpages.reserve_subpages.reserve_time_page import ReserveTimePage
-from page_object.index.index_page import IndexPage
-from page_object.index.cross_stage_subpages.reserve_subpages.reserve_success_page import ReserveSuccessPage
-from page_object.index.cross_stage_subpages.reserve_info_query_subpages.activate_reserve_page import ActivateReservePage
-from page_object.index.cross_stage_subpages.reserve_info_query_subpages.reserve_record_page import ReserveRecordPage
+from page_object.main.reserve_subpages.reserve_process_subpages.reserve_info_confirm_page import ReserveInfoConfirmPage
+from page_object.main.reserve_subpages.reserve_process_subpages.reserve_time_page import ReserveTimePage
+from page_object.main.main_page import MainPage
+from page_object.main.reserve_subpages.reserve_process_subpages.reserve_success_page import ReserveSuccessPage
+from page_object.main.reserve_subpages.reserve_info_query_subpages.activate_reserve_page import ActivateReservePage
+from page_object.main.reserve_subpages.reserve_info_query_subpages.reserve_record_page import ReserveRecordPage
 
 reserve_info = {}
-index_page = None
+main_page = None
 reserve_page = None
 hangzhou_civic_center_page = None
 housing_provident_funds_page = None
@@ -36,8 +36,8 @@ def get_reserve_item(driver):
     global reserve_info
     if not reserve_info:
         logging.info('没有预约事项，重新预约')
-        index_page.scroll_to_cross_stage()
-        index_page.open_reserve_page()
+        main_page.scroll_to_cross_stage()
+        main_page.open_reserve_page()
         reserve_page.open_hangzhou_civic_center_page()
         hangzhou_civic_center_page.open_housing_provident_funds_page()
         housing_provident_funds_page.click_personal_housing_provident_funds_free()
@@ -53,8 +53,8 @@ def get_reserve_item(driver):
 def cancel_reserve(driver):
     logging.info('开始取消预约事项')
     _init_page(driver)
-    index_page.scroll_to_cross_stage()
-    index_page.open_reserve_page()
+    main_page.scroll_to_cross_stage()
+    main_page.open_reserve_page()
     reserve_page.open_query_reserve_info_page()
     reserve_record_page.open_first_reserve_detail_page()
     activate_reserve_page.cancel_reserve()
@@ -64,9 +64,9 @@ def cancel_reserve(driver):
 
 # 初始化页面对象
 def _init_page(driver):
-    global index_page, reserve_page, hangzhou_civic_center_page, housing_provident_funds_page, reserve_time_page, \
+    global main_page, reserve_page, hangzhou_civic_center_page, housing_provident_funds_page, reserve_time_page, \
         reserve_info_confirm_page, reserve_success_page, reserve_record_page, activate_reserve_page
-    index_page = IndexPage(driver)
+    main_page = MainPage(driver)
     reserve_page = ReservePage(driver)
     hangzhou_civic_center_page = HangzhouCivicCenterPage(driver)
     housing_provident_funds_page = HousingProvidentFundsPage(driver)

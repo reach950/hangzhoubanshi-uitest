@@ -23,7 +23,7 @@ class TestMyHandleItemList(BaseCase):
     @login
     def test_01_sort_by_date(self):
         """办件记录按时间倒序排序"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_my_handle_item()
         handle_item_dates = self.my_handle_item_page.get_all_handle_item_date()
         for i in range(0, len(handle_item_dates) - 1):
@@ -34,7 +34,7 @@ class TestMyHandleItemList(BaseCase):
     def test_02_click_today_item_to_rate(self):
         """点击当天已办结状态的办件，唤起评价功能"""
         get_handle_item(self.driver)
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_my_handle_item()
         self.my_handle_item_page.click_first_handle_item()
         self.assertTrue(self.my_handle_item_page.check_element_by_name('评价'))
@@ -42,7 +42,7 @@ class TestMyHandleItemList(BaseCase):
     @login
     def test_03_click_item_to_open_detail(self):
         """点击办件记录，跳转到办件详情"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_my_handle_item()
         self.my_handle_item_page.click_not_today_handle_item()
         self.assertTrue(self.handle_item_detail_page.is_displayed())

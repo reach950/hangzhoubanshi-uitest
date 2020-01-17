@@ -23,7 +23,7 @@ class TestClearCache(BaseCase):
     @login
     def test_01_clear_cache(self):
         """清理缓存，空间显示为0"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_settings_page()
         self.settings_page.clear_cache()
         time.sleep(3)

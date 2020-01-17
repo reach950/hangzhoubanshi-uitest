@@ -9,7 +9,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from page_object.base_page import BasePage
 
 
-class CarQuotaIndexPage(BasePage):
+class CarQuotaMainPage(BasePage):
     # 页面标题
     page_title_loc = (MobileBy.ACCESSIBILITY_ID, '小客车指标')
 

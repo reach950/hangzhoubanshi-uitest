@@ -22,7 +22,7 @@ class TestMyCardList(BaseCase):
     @login
     def test_01_open_identity_card_page_by_real_name(self):
         """已实名，点击进入居民身份证页面"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_my_card()
         self.my_card_page.click_identity_card()
         self.assertTrue(self.face_verification_page.is_displayed())
@@ -31,7 +31,7 @@ class TestMyCardList(BaseCase):
     def test_02_open_real_name_authentication_page_by_unreal_name(self):
         """未实名，点击进入实名认证页面"""
         alert_message = '该服务需要实名，请您先完成实名认证！'
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.open_my_card()
         self.mine_page.check_element_by_name(alert_message)
         self.mine_page.click_alert_button(button_lable='确定')

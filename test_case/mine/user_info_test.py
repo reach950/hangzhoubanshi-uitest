@@ -31,7 +31,7 @@ class TestBaseInfo(BaseCase):
     @login('unreal_name')
     def test_01_unreal_user_info(self):
         """未实名用户，姓名，性别，身份证号显示为空"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         test_name = self.user_info_page.get_name()
         test_gender = self.user_info_page.get_gender()
@@ -45,7 +45,7 @@ class TestBaseInfo(BaseCase):
     @login
     def test_02_real_user_info(self):
         """非银行卡认证用户，显示姓名，性别，身份证号"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         test_name = self.user_info_page.get_name()
         test_gender = self.user_info_page.get_gender()
@@ -60,7 +60,7 @@ class TestBaseInfo(BaseCase):
     @login
     def test_03_real_user_authentication_method(self):
         """已实名用户可查看实名认证的方式"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.click_real_name_authentication()
         self.assertTrue(self.authentication_method_page.is_displayed())
@@ -79,7 +79,7 @@ class TestPasswordManage(BaseCase):
     @login
     def test_01_modify_password_to_old_password(self):
         """修改成原始密码失败"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self._modify_password(password, password)
         self.assertFalse(self.login_page.is_displayed())
 
@@ -88,7 +88,7 @@ class TestPasswordManage(BaseCase):
         """修改成全英文或全数字失败"""
         full_letters = 'hangzhou'
         full_digits = '12345678'
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self._modify_password(password, full_letters)
         self.assertFalse(self.login_page.is_displayed())
         self.password_manage_page.modify_password(password, full_digits)
@@ -97,7 +97,7 @@ class TestPasswordManage(BaseCase):
     @login
     def test_03_modify_password_to_empty_password(self):
         """修改成全空密码失败"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self._modify_password(password, '')
         self.assertFalse(self.login_page.is_displayed())
 
@@ -105,7 +105,7 @@ class TestPasswordManage(BaseCase):
     def test_04_modify_password_success(self):
         """修改登录密码成功"""
         new_password = 'test1234'
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self._modify_password(password, new_password)
         self.login_page.login(phone_number, new_password)
         self.assertTrue(self.mine_page.is_login())
@@ -137,7 +137,7 @@ class TestAddressManage(BaseCase):
         create_username = 'name_{}'.format(create_time_now)
         create_phone_number = '133{}'.format(create_time_now[-8:])
 
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.open_address_manage_page()
         self.address_manage_page.click_create_address_button()
@@ -157,7 +157,7 @@ class TestAddressManage(BaseCase):
         modify_username = 'name_{}'.format(modify_time_now)
         modify_phone_number = '133{}'.format(modify_time_now[-8:])
 
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.open_address_manage_page()
         self.address_manage_page.click_last_address_edit_button()
@@ -172,7 +172,7 @@ class TestAddressManage(BaseCase):
     @login
     def test_03_delete_address(self):
         """删除地址"""
-        self.index_page.switch_to_mine_page()
+        self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.open_address_manage_page()
         last_address_username = self.address_manage_page.get_last_address_username()
