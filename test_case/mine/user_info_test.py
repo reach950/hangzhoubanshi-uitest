@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 from test_case.base_case import BaseCase
 from config.login_users import login_users
-from test_case.common_test_step.login import login
+from common_test_step import login
 
 real_name_user = login_users['real_name_user']
 phone_number = real_name_user['phone_number']

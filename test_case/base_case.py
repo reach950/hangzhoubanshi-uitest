@@ -73,6 +73,8 @@ from page_object.mine.complaint_suggestion.complaint_suggestion_page import Comp
 from page_object.mine.about_us_page import AboutUsPage
 from page_object.mine.term_of_service_page import TermOfServicePage
 from page_object.mine.face_verification_page import FaceVerificationPage
+from page_object.services.social_insurance.provide_social_insurance_certificate_page import \
+    ProvideSocialInsuranceCertificatePage
 
 
 class BaseCase(unittest.TestCase):
@@ -158,3 +160,4 @@ class BaseCase(unittest.TestCase):
         self.about_us_page = AboutUsPage(self.driver)
         self.term_of_service_page = TermOfServicePage(self.driver)
         self.face_verification_page = FaceVerificationPage(self.driver)
+        self.provide_social_insurance_certificate_page = ProvideSocialInsuranceCertificatePage(self.driver)

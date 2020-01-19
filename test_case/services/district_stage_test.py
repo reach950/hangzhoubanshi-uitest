@@ -9,7 +9,7 @@ import random
 import time
 import unittest
 from test_case.base_case import BaseCase
-from test_case.common_test_step.login import login
+from common_test_step import login
 
 
 class TestDistrictServices(BaseCase):

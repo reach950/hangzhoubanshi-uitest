@@ -7,8 +7,8 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from test_case.common_test_step.login import login
-from test_case.common_test_step import reserve
+from common_test_step import login
+from common_test_step import reserve
 
 search_text = '联通'
 # 我要办理搜索联通包含的事项

@@ -8,8 +8,8 @@ __author__ = 'kejie'
 import unittest
 from datetime import datetime
 from test_case.base_case import BaseCase
-from test_case.common_test_step.login import login
-from test_case.common_test_step.handle_item import get_handle_item, handle_bug
+from common_test_step import login
+from common_test_step import get_handle_item, handle_bug
 
 
 class TestHandleItemStage(BaseCase):

@@ -7,9 +7,9 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from test_case.common_test_step.login import login
-from test_case.common_test_step.handle_item import get_handle_item, handle_bug
-from test_case.common_test_step.reserve import get_reserve_item
+from common_test_step import login
+from common_test_step import get_handle_item, handle_bug
+from common_test_step.reserve import get_reserve_item
 
 
 class TestMessageType(BaseCase):

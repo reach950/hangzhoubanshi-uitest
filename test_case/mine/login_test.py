@@ -8,7 +8,7 @@ __author__ = 'kejie'
 import unittest
 from test_case.base_case import BaseCase
 from config.login_users import login_users
-from test_case.common_test_step.login import logout, user_login
+from common_test_step import logout, user_login
 
 real_name_user = login_users['real_name_user']
 test_phone_number = real_name_user['phone_number']

@@ -6,9 +6,8 @@
 __author__ = 'kejie'
 
 import unittest
-import time
 from test_case.base_case import BaseCase
-from test_case.common_test_step.login import login
+from common_test_step import login
 
 
 class TestThemeApps(BaseCase):
