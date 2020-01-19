@@ -51,7 +51,7 @@ class TestSearchByText(BaseCase):
         guide_name = '人力社保工作监督检查'
         # 搜索结果中的资讯
         news_name = '资讯'
-        self.main_page.open_search_page()
+        self.main_page.click_search_field()
         self.search_page.search(search_text)
         time.sleep(1)
         self.assertTrue(self.search_page.check_element_by_name(item_name),
@@ -71,7 +71,7 @@ class TestSearchByText(BaseCase):
         search_text = 'no_result_text'
         no_result_hot_items = ['驾驶证遗失补证', '驾驶证超龄换证', '驾驶证期满换证',
                                '驾驶证损毁换证', '客运出租汽车驾驶员从业资格认定', '驾照扣分查询']
-        self.main_page.open_search_page()
+        self.main_page.click_search_field()
         self.search_page.search(search_text)
         self.assertTrue(self.search_page.is_no_result_page_display())
         test_no_result_hot_items = self.search_page.get_no_result_hot_items()
