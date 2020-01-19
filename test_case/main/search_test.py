@@ -8,7 +8,6 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from common_test_step import login
 
 
 class TestSearchByText(BaseCase):
@@ -20,22 +19,21 @@ class TestSearchByText(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
-    def test_01_open_ai_customer_service_page_success(self):
-        """点击客服按钮打开智能客服成功"""
-        self.main_page.open_search_page()
-        self.search_page.click_customer_service_button()
+    def test_01_open_ai_service_page_success(self):
+        """点击智能客服按钮打开智能客服成功"""
+        self.main_page.click_search_field()
+        self.search_page.click_ai_service_button()
         self.assertTrue(self.ai_customer_service_page.is_displayed())
 
     def test_02_cancle_search_return_main_page(self):
         """取消搜索，返回主页"""
-        self.main_page.open_search_page()
+        self.main_page.click_search_field()
         self.search_page.cancel_search()
         self.assertTrue(self.main_page.is_displayed())
 
     def test_03_hot_search_words(self):
         """测试热门搜索词"""
-        self.main_page.open_search_page()
+        self.main_page.click_search_field()
         hot_search_words = ['公积金', '社保', '资格证书', '护照', '交通违法', '驾驶员记分', '摇号']
         test_hot_search_words = self.search_page.get_all_hot_search_words()
         self.assertEqual(set(hot_search_words), set(test_hot_search_words))

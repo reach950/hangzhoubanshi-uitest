@@ -17,14 +17,21 @@ class SearchPage(BasePage):
     # 搜索按钮
     search_button_loc = (MobileBy.ACCESSIBILITY_ID, 'Search')
 
-    # 客服按钮
-    customer_service_button_loc = (MobileBy.ACCESSIBILITY_ID, 'kefu')
+    # 智能客服按钮
+    ai_service_button_loc = (MobileBy.ACCESSIBILITY_ID, 'kefu')
 
     # 取消搜索
     cancel_search_loc = (MobileBy.ACCESSIBILITY_ID, '取消')
 
     # 热门搜索
     hot_search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND (rect.y == 132 OR rect.y == 175)')
+
+    # 历史搜索
+    search_history_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND '
+                                                  '(rect.y == 263 OR rect.y == 307)')
+
+    # 历史搜索删除按钮
+    search_history_delete_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.heigth == 51')
 
     # 最后一条搜索结果
     last_search_result_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]')
@@ -44,8 +51,8 @@ class SearchPage(BasePage):
         self.tap_element(self.search_button_loc)
 
     # 点击客服按钮
-    def click_customer_service_button(self):
-        self.tap_element(self.customer_service_button_loc)
+    def click_ai_service_button(self):
+        self.tap_element(self.ai_service_button_loc)
 
     # 取消搜索
     def cancel_search(self):
