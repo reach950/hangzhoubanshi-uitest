@@ -117,7 +117,7 @@ class MainPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        return self.check_element_by_name('我要咨询')
+        return self.check_element_by_name('主页')
 
     # 等到页面显示
     def wait_to_display(self, count=5):
@@ -125,6 +125,7 @@ class MainPage(BasePage):
             if count == 0:
                 break
             count -= 1
+            time.sleep(0.5)
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):

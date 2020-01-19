@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """测试搜索"""
-import time
 
 __author__ = 'kejie'
 
+import time
 import unittest
 from test_case.base_case import BaseCase
 
