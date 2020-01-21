@@ -29,11 +29,10 @@ class BasePage:
         try:
             # WDA bug导致部分元素的display一直为False，查找元素时不能使用display
             if display:
-                element = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc)
-                                                                 .is_displayed())
+                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc).is_displayed())
             else:
-                element = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
-            return element
+                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
+            return self.driver.find_element(*loc)
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
