@@ -5,7 +5,6 @@
 
 __author__ = 'kejie'
 
-import time
 import unittest
 from test_case.base_case import BaseCase
 
@@ -28,7 +27,7 @@ class TestSearchByText(BaseCase):
     def test_02_cancle_search_return_main_page(self):
         """取消搜索，返回主页"""
         self.main_page.click_search_field()
-        self.search_page.cancel_search()
+        self.search_page.click_cancel_button()
         self.assertTrue(self.main_page.is_displayed())
 
     def test_03_hot_search_words(self):
@@ -53,7 +52,6 @@ class TestSearchByText(BaseCase):
         news_name = '资讯'
         self.main_page.click_search_field()
         self.search_page.search(search_text)
-        time.sleep(1)
         self.assertTrue(self.search_page.check_element_by_name(item_name),
                         '没有显示搜索{}的办事事项结果'.format(search_text))
         self.assertTrue(self.search_page.check_element_by_name(service_name),

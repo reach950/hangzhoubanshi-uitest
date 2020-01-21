@@ -80,7 +80,7 @@ class MainPage(BasePage):
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
         count = 0
-        while not self.find_element(self.hz_news_second_news_date_loc).is_displayed():
+        while not self.find_element(self.hz_news_second_news_date_loc, display=False).is_displayed():
             if count >= 5:
                 break
             self.swipe('up')
@@ -117,7 +117,7 @@ class MainPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        return self.check_element_by_name('主页')
+        return self.check_element_by_name('我要咨询', display=False)
 
     # 等到页面显示
     def wait_to_display(self, count=5):
@@ -125,7 +125,6 @@ class MainPage(BasePage):
             if count == 0:
                 break
             count -= 1
-            time.sleep(0.5)
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):

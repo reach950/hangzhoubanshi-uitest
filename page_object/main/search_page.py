@@ -20,15 +20,14 @@ class SearchPage(BasePage):
     # 智能客服按钮
     ai_service_button_loc = (MobileBy.ACCESSIBILITY_ID, 'kefu')
 
-    # 取消搜索
-    cancel_search_loc = (MobileBy.ACCESSIBILITY_ID, '取消')
+    # 取消按钮
+    cancel_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 29')
 
     # 热门搜索
-    hot_search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND (rect.y == 132 OR rect.y == 175)')
+    hot_search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.y IN {132, 175}')
 
     # 历史搜索
-    search_history_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND '
-                                                  '(rect.y == 263 OR rect.y == 307)')
+    search_history_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.y IN {263, 307}')
 
     # 历史搜索删除按钮
     search_history_delete_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.heigth == 51')
@@ -54,9 +53,9 @@ class SearchPage(BasePage):
     def click_ai_service_button(self):
         self.tap_element(self.ai_service_button_loc)
 
-    # 取消搜索
-    def cancel_search(self):
-        self.tap_element(self.cancel_search_loc)
+    # 点击取消按钮
+    def click_cancel_button(self):
+        self.tap_element(self.cancel_button_loc)
 
     # 获取热门搜索的所有关键词
     def get_all_hot_search_words(self):
@@ -69,7 +68,7 @@ class SearchPage(BasePage):
     # 滑动到最后一条搜索结果
     def scroll_to_last_search_result(self):
         count = 0
-        while not self.find_element(self.last_search_result_loc).is_displayed():
+        while not self.find_element(self.last_search_result_loc, display=False).is_displayed():
             if count >= 5:
                 break
             self.swipe('up')
