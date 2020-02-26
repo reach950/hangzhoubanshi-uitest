@@ -57,7 +57,7 @@ class MainPage(BasePage):
     district_service_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-2]')
 
     # 点击办事指南
-    def click_guide_page(self):
+    def click_guide(self):
         self.tap_element(self.guide_loc)
 
     # 点击智能客服

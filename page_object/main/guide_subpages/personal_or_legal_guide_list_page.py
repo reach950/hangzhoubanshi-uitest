@@ -11,11 +11,11 @@ from page_object.base_page import BasePage
 
 class PersonalOrLegalGuideListPage(BasePage):
     # 第一个事项指南
-    first_item_guide_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]')
+    first_guide_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]')
 
     # 第一个事项指南的名称
-    first_item_guide_name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]'
-                                                           '/XCUIElementTypeStaticText[1]')
+    first_guide_name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]'
+                                                      '/XCUIElementTypeStaticText[1]')
 
     # 搜索输入框
     search_field_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeSearchField')
@@ -32,13 +32,13 @@ class PersonalOrLegalGuideListPage(BasePage):
     # 儿童青少年
     children_and_adolescents_loc = (MobileBy.ACCESSIBILITY_ID, '儿童青少年')
 
-    # 打开第一个事项指南
-    def open_first_item_guide(self):
-        self.tap_element(self.first_item_guide_loc)
+    # 点击第一个事项指南
+    def click_first_guide(self):
+        self.tap_element(self.first_guide_loc)
 
     # 获取第一个事项指南的名称
-    def get_first_item_guide_name(self):
-        return self.find_element(self.first_item_guide_name_loc).get_attribute('value')
+    def get_first_guide_name(self):
+        return self.find_element(self.first_guide_name_loc).get_attribute('value')
 
     # 输入关键字搜索
     def search(self, text):

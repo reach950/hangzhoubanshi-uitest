@@ -17,9 +17,9 @@ class GuideSelectPage(BasePage):
     legal_loc = (MobileBy.ACCESSIBILITY_ID, 'img legal')
 
     # 进入个人办事页面
-    def open_personal_guide_list_page(self):
+    def click_personal_guide(self):
         self.tap_element(self.personal_loc)
 
     # 进入法人办事页面
-    def open_legal_guide_list_page(self):
+    def click_legal_guide(self):
         self.tap_element(self.legal_loc)

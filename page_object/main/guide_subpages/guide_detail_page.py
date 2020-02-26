@@ -13,12 +13,7 @@ class GuideDetailPage(BasePage):
     # 页面标题
     page_title_loc = (MobileBy.ACCESSIBILITY_ID, '指南详情')
 
-    # 根据事项名称检查事项的指南详情是否打开
-    def check_guide_detail_display_by_name(self, name):
-        item_name_loc = (MobileBy.ACCESSIBILITY_ID, name)
+    # 页面是否显示
+    def is_displayed(self):
         page_title = self.find_element(self.page_title_loc)
-        item_name = self.find_element(item_name_loc)
-        if page_title and item_name:
-            return page_title.is_displayed() and item_name.is_displayed()
-        else:
-            return False
+        return True if page_title else False
