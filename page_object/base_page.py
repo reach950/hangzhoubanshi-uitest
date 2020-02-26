@@ -43,6 +43,14 @@ class BasePage:
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
+    # 重新封装从父元素定位一组元素方法
+    def find_elements_from_parent_element(self, parent, child_loc):
+        try:
+            elements = parent.find_elements(*child_loc)
+            return elements
+        except WebDriverException:
+            logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, child_loc))
+
     # 重新封装元素点击操作
     def tap_element(self, loc, display=True):
         element = self.find_element(loc, display=display)

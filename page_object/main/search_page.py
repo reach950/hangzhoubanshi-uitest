@@ -24,10 +24,13 @@ class SearchPage(BasePage):
     cancel_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 29')
 
     # 热门搜索
-    hot_search_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.y IN {132, 175}')
+    hot_search_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]')
 
     # 历史搜索
-    search_history_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.y IN {263, 307}')
+    search_history_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[2]')
+
+    # 搜索词子定位器
+    search_words_child_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeButton')
 
     # 历史搜索删除按钮
     search_history_delete_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.heigth == 51')
@@ -60,9 +63,10 @@ class SearchPage(BasePage):
     # 获取热门搜索的所有关键词
     def get_all_hot_search_words(self):
         search_words = []
-        eles = self.find_elements(self.hot_search_loc)
-        for ele in eles:
-            search_words.append(ele.get_attribute('name'))
+        hot_search = self.find_element(self.hot_search_loc)
+        hot_search_words = self.find_elements_from_parent_element(hot_search, self.search_words_child_loc)
+        for word in hot_search_words:
+            search_words.append(word.get_attribute('name'))
         return search_words
 
     # 滑动到最后一条搜索结果
