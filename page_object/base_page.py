@@ -27,12 +27,11 @@ class BasePage:
     # 重新封装单个元素定位方法
     def find_element(self, loc, wait=15, display=True) -> webdriver.WebElement:
         try:
+            element = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
             # WDA bug导致部分元素的display一直为False，查找元素时不能使用display
             if display:
-                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc).is_displayed())
-            else:
-                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
-            return self.driver.find_element(*loc)
+                WebDriverWait(self.driver, timeout=5).until(lambda driver: element.is_displayed())
+            return element
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 

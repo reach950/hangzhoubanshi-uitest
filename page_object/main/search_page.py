@@ -77,7 +77,7 @@ class SearchPage(BasePage):
 
     # 是否显示无结果页
     def is_no_result_page_display(self):
-        if self.find_element(self.no_result_image_loc) and self.find_element(self.no_result_text_loc):
+        if self.find_element(self.no_result_image_loc, display=False) and self.find_element(self.no_result_text_loc):
             return True
         else:
             return False

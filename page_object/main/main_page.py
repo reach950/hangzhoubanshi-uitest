@@ -65,7 +65,7 @@ class MainPage(BasePage):
         self.tap_element(self.ai_service_loc)
 
     # 点击智能客服小图标
-    def click_ai_service_by_small_icon(self):
+    def click_ai_service_small_icon(self):
         self.swipe('up')
         self.tap_element(self.ai_service_small_icon_loc)
 
