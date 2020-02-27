@@ -11,7 +11,7 @@ from page_object.base_page import BasePage
 
 class NewsDetailPage(BasePage):
     # 新闻标题
-    news_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND value == 2')
+    news_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.height == 44')
 
     # 获取新闻标题
     def get_news_title(self):
