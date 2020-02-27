@@ -29,8 +29,5 @@ class LibraryCardPasswordChangePage(BasePage):
         self.tap_element(self.submit_button_loc)
 
     # 等到页面显示
-    def wait_to_display(self, count=10):
-        while not self.find_element(self.reader_id).is_displayed():
-            if count == 0:
-                break
-            count -= 1
+    def wait_to_display(self):
+        self.find_element(self.reader_id)

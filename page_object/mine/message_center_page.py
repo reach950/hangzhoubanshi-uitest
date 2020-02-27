@@ -29,10 +29,7 @@ class MessageCenterPage(BasePage):
     # 页面是否显示
     def is_displayed(self):
         page_title = self.find_element(self.page_title_loc)
-        if page_title:
-            return page_title.is_displayed()
-        else:
-            return False
+        return True if page_title else False
 
     # 获取第一条消息
     def get_first_message_info(self):

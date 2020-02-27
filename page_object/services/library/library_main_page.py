@@ -19,8 +19,8 @@ class LibraryMainPage(BasePage):
     # 密码修改
     password_change_loc = (MobileBy.ACCESSIBILITY_ID, '密码修改')
 
-    # 打开密码修改页面
-    def open_password_change_page(self):
+    # 点击密码修改
+    def click_password_change(self):
         self.tap_element(self.password_change_loc)
 
     # 关闭页面
@@ -28,8 +28,5 @@ class LibraryMainPage(BasePage):
         self.tap_element(self.close_button_loc)
 
     # 等到页面显示
-    def wait_to_display(self, count=10):
-        while not self.find_element(self.page_title_loc).is_displayed():
-            if count == 0:
-                break
-            count -= 1
+    def wait_to_display(self):
+        self.find_element(self.page_title_loc)

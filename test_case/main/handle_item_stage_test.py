@@ -6,10 +6,8 @@
 __author__ = 'kejie'
 
 import unittest
-from datetime import datetime
 from test_case.base_case import BaseCase
-from common_test_step import login
-from common_test_step import get_handle_item, handle_bug
+from common_test_step.handle_item import HandleItem
 
 
 class TestHandleItemStage(BaseCase):
@@ -21,22 +19,15 @@ class TestHandleItemStage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
-    @login
-    def test_01_check_handle_item_in_index(self):
+    def test_01_check_handle_item_in_main_page(self):
         """办件成功，首页显示办件信息"""
-        item_name = get_handle_item(self.driver)
-        self.main_page.scroll_to_handle_item_stage(item_name)
+        item_name = HandleItem.get_handle_item(self.driver)
         # 办件名称
-        self.assertTrue(self.main_page.check_element_by_name(item_name))
-        # 办件日期
-        self.assertTrue(self.main_page.check_element_by_name(datetime.now().strftime('%m-%d')))
+        self.assertTrue(self.main_page.check_element_by_name(item_name, display=False))
 
-    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
-    @login
     def test_02_click_handle_item_stage_to_open_message_center(self):
         """点击办件展台，跳转到消息中心"""
-        item_name = get_handle_item(self.driver)
+        item_name = HandleItem.get_handle_item(self.driver)
         self.main_page.scroll_to_handle_item_stage(item_name)
         self.main_page.click_element_by_name(item_name)
         self.assertTrue(self.message_center_page.is_displayed())
