@@ -74,7 +74,7 @@ class TestItemsGuide(BaseCase):
         self.main_page.click_guide()
         self.guide_select_page.click_personal_guide()
         self.personal_or_legal_guide_list_page.search(search_text)
-        first_item_guide_name = self.personal_or_legal_guide_list_page.get_first_item_guide_name()
+        first_item_guide_name = self.personal_or_legal_guide_list_page.get_first_guide_name()
         self.assertIn(search_text, first_item_guide_name)
 
     def test_04_filter_guide_success(self):

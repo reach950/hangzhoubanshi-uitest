@@ -56,6 +56,10 @@ class MainPage(BasePage):
     # 区县服务
     district_service_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-2]')
 
+    # 消息按钮
+    message_button_loc = (MobileBy.IOS_PREDICATE,
+                          'type == "XCUIElementTypeButton" AND name IN {"home msg unread s", "home msg read s"}')
+
     # 点击办事指南
     def click_guide(self):
         self.tap_element(self.guide_loc)
@@ -120,11 +124,8 @@ class MainPage(BasePage):
         return self.check_element_by_name('我要咨询', display=False)
 
     # 等到页面显示
-    def wait_to_display(self, count=5):
-        while not self.is_displayed():
-            if count == 0:
-                break
-            count -= 1
+    def wait_to_display(self):
+        self.find_element(self.message_button_loc)
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):
