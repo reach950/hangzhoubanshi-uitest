@@ -10,7 +10,6 @@ from page_object.base_page import BasePage
 
 
 class NewsPage(BasePage):
-
     # 页面标题
     page_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND name == "资讯"')
 
@@ -50,7 +49,4 @@ class NewsPage(BasePage):
     # 页面是否显示
     def is_displayed(self):
         page_title = self.find_element(self.page_title_loc)
-        if page_title:
-            return page_title.is_displayed()
-        else:
-            return False
+        return True if page_title else False
