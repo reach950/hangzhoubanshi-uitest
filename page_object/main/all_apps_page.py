@@ -37,10 +37,7 @@ class AllAppsPage(BasePage):
     # 页面是否显示
     def is_displayed(self):
         page_title = self.find_element(self.page_title_loc)
-        if page_title:
-            return page_title.is_displayed()
-        else:
-            return False
+        return True if page_title else False
 
     # 输入关键字搜索
     def search(self, text):
