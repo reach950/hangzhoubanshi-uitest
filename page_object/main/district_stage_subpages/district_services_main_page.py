@@ -31,8 +31,7 @@ class DistrictServicesMainPage(BasePage):
 
     # 热门应用是否显示
     def is_hot_app_display(self):
-        hot_app = self.find_element(self.hot_app_loc)
-        return True if hot_app else False
+        return self.is_element_exist_by_loc(self.hot_app_loc)
 
     # 获取所有热门部门
     def get_all_hot_departments(self):
