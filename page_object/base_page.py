@@ -140,7 +140,7 @@ class BasePage:
     # 根据loc检查元素是否存在
     def is_element_exist_by_loc(self, loc, wait=15, display=True, wait_display_time=5):
         element = self.find_element(loc, wait)
-        self.is_element_exist(element, display, wait_display_time)
+        return self.is_element_exist(element, display, wait_display_time)
 
     # 检查元素是否存在
     @staticmethod
