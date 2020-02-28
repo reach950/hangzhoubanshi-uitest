@@ -18,9 +18,5 @@ class CarQuotaMainPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        incremental_quota = self.find_element(self.incremental_quota_loc)
-        page_title = self.find_element(self.page_title_loc)
-        if incremental_quota and page_title:
-            return True
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.page_title_loc) and \
+               self.is_element_exist_by_loc(self.incremental_quota_loc)

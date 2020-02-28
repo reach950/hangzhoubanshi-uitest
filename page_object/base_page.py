@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 import logging
 import json
+import time
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
@@ -25,12 +26,9 @@ class BasePage:
         self.driver = appium_driver  # type:webdriver.Remote
 
     # 重新封装单个元素定位方法
-    def find_element(self, loc, wait=15, display=True) -> webdriver.WebElement:
+    def find_element(self, loc, wait=15) -> webdriver.WebElement:
         try:
             element = WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
-            # WDA bug导致部分元素的display一直为False，查找元素时不能使用display
-            if display:
-                WebDriverWait(self.driver, timeout=5).until(lambda driver: element.is_displayed())
             return element
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
@@ -52,8 +50,8 @@ class BasePage:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, child_loc))
 
     # 重新封装元素点击操作
-    def tap_element(self, loc, display=True):
-        element = self.find_element(loc, display=display)
+    def tap_element(self, loc):
+        element = self.find_element(loc)
         self.tap_on_element(element)
 
     # 重新封装元素点击操作
@@ -71,32 +69,32 @@ class BasePage:
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': element})
 
     # 重新封装输入操作
-    def send_keys(self, loc, value, display=True, clear_first=False):
-        element = self.find_element(loc, display=display)
+    def send_keys(self, loc, value, clear_first=False):
+        element = self.find_element(loc)
         self.send_keys_on_element(element, value, clear_first)
 
-    def send_keys_on_element(self, element, value, clear_first=False):
+    @staticmethod
+    def send_keys_on_element(element, value, clear_first=False):
         if clear_first:
             element.clear()
         element.send_keys(value)
 
     # 重新封装滑动操作
-    def swipe(self, direct, loc=None, display=True):
+    def swipe(self, direct, loc=None):
         """
         滑动
         :param direct: 滑动方向，只支持up, down, left ,right四个值
         :param loc: 元素定位，空值为滑动屏幕，有值会滑动对应的元素
-        :param display: 元素定位
         :return:
         """
         if loc:
-            element = self.find_element(loc, display=display)
+            element = self.find_element(loc)
             self.driver.execute_script('mobile: swipe', {'direction': direct, 'element': element})
         else:
             self.driver.execute_script('mobile: swipe', {'direction': direct})
 
     # 重新封装滑动翻页操作
-    def scroll(self, loc=None, display=True, **scroll_type):
+    def scroll(self, loc=None, **scroll_type):
         """
         滑动翻页
         :param scroll_type: 滑动方式，有“name”，“direction”，“predicateString”或“toVisible”四种方式，只能选择一种
@@ -105,11 +103,10 @@ class BasePage:
             predicateString: 需要被执行滚动操作的子控件的NSPredicate定位器
             toVisible: 布尔类型的参数。如果设置为true，则表示要求滚动到父控件中的第一个可见到的子控件
         :param loc: 元素定位，空值为滑动屏幕，有值会滑动对应的元素
-        :param display: 元素定位
         :return:
         """
         if loc:
-            element = self.find_element(loc, display=display)
+            element = self.find_element(loc)
             if 'name' in scroll_type:
                 self.driver.execute_script('mobile: scroll', {'element': element,
                                                               'name': scroll_type['name']})
@@ -136,13 +133,32 @@ class BasePage:
         self.driver.execute_script('mobile: alert', {'action': action, 'buttonLabel': button_lable})
 
     # 根据name属性检查元素是否存在
-    def check_element_by_name(self, name, wait=15, display=True):
+    def check_element_by_name(self, name, wait=15, display=True, wait_display_time=5):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
-        element = self.find_element(loc, wait, display)
-        return True if element else False
+        return self.is_element_exist_by_loc(loc, wait, display, wait_display_time)
+
+    # 根据loc检查元素是否存在
+    def is_element_exist_by_loc(self, loc, wait=15, display=True, wait_display_time=5):
+        element = self.find_element(loc, wait)
+        self.is_element_exist(element, display, wait_display_time)
+
+    # 检查元素是否存在
+    @staticmethod
+    def is_element_exist(element, display=True, wait_display_time=5):
+        if element and display:
+            end_time = time.time() + wait_display_time
+            while True:
+                if element.is_displayed():
+                    return True
+                time.sleep(0.5)
+                if time.time() > end_time:
+                    break
+        elif element:
+            return True
+        return False
 
     # 根据name属性点击元素
-    def click_element_by_name(self, name, display=True):
+    def click_element_by_name(self, name):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
-        element = self.find_element(loc, display=display)
+        element = self.find_element(loc)
         self.tap_on_element(element)

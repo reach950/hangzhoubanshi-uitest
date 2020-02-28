@@ -25,26 +25,23 @@ class DistrictServicesMainPage(BasePage):
     # 市交通运输局
     transportation_bureau_loc = (MobileBy.ACCESSIBILITY_ID, '市交通运输局')
 
-    # 打开地区选择页面
-    def open_district_select_page(self):
+    # 点击地区选择按钮
+    def click_district_select_button(self):
         self.tap_element(self.district_select_button_loc)
 
     # 热门应用是否显示
     def is_hot_app_display(self):
         hot_app = self.find_element(self.hot_app_loc)
-        if hot_app:
-            return hot_app.is_displayed()
-        else:
-            return False
+        return True if hot_app else False
 
     # 获取所有热门部门
     def get_all_hot_departments(self):
         return self.find_elements(self.hot_departments_loc)
 
-    # 打开全部部门页面
-    def open_all_departments_page(self):
+    # 点击热门部门更多按钮
+    def click_hot_departments_more_button(self):
         self.tap_element(self.hot_departments_more_button_loc)
 
-    # 打开市交通运输局页面
-    def open_transportation_bureau_page(self):
+    # 点击市交通运输局部门
+    def click_transportation_bureau(self):
         self.tap_element(self.transportation_bureau_loc)

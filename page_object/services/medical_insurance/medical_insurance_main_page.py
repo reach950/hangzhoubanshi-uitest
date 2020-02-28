@@ -15,5 +15,4 @@ class MedicalInsuranceMainPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        query_insurance = self.find_element(self.query_insurance_loc)
-        return True if query_insurance else False
+        return self.is_element_exist_by_loc(self.query_insurance_loc)

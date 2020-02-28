@@ -84,7 +84,7 @@ class MainPage(BasePage):
     # 滑动首页到底部资讯展台
     def scroll_to_news(self):
         count = 0
-        while not self.find_element(self.hz_news_second_news_date_loc, display=False).is_displayed():
+        while not self.is_element_exist_by_loc(self.hz_news_second_news_date_loc, display=True, wait_display_time=1):
             if count >= 5:
                 break
             self.swipe('up')
@@ -125,7 +125,7 @@ class MainPage(BasePage):
 
     # 等到页面显示
     def wait_to_display(self):
-        self.find_element(self.message_button_loc)
+        self.is_element_exist_by_loc(self.message_button_loc)
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):

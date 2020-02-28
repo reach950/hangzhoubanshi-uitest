@@ -75,7 +75,7 @@ class SearchPage(BasePage):
     # 滑动到最后一条搜索结果
     def scroll_to_last_search_result(self):
         count = 0
-        while not self.find_element(self.last_search_result_loc, display=False).is_displayed():
+        while not self.is_element_exist_by_loc(self.last_search_result_loc, display=True, wait_display_time=1):
             if count >= 5:
                 break
             self.swipe('up')
@@ -84,10 +84,8 @@ class SearchPage(BasePage):
 
     # 是否显示无结果页
     def is_no_result_page_display(self):
-        if self.find_element(self.no_result_image_loc, display=False) and self.find_element(self.no_result_text_loc):
-            return True
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.no_result_image_loc, display=False) and \
+               self.is_element_exist_by_loc(self.no_result_text_loc)
 
     # 获取无结果页的热门事项
     def get_no_result_hot_items(self):

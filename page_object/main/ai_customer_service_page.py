@@ -26,10 +26,8 @@ class AICustomerServicePage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        page_title = self.find_element(self.page_title_loc)
-        return True if page_title else False
+        return self.is_element_exist_by_loc(self.page_title_loc)
 
     # 点击默认问题
     def click_default_question(self, question):
-        default_question_loc = (MobileBy.ACCESSIBILITY_ID, question)
-        self.tap_element(default_question_loc)
+        self.check_element_by_name(question)

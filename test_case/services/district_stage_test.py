@@ -9,7 +9,6 @@ import random
 import time
 import unittest
 from test_case.base_case import BaseCase
-from common_test_step import login
 
 
 class TestDistrictServices(BaseCase):
@@ -21,19 +20,18 @@ class TestDistrictServices(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_01_hot_app_only_in_xiacheng_district(self):
         """热门应用只有下城区有，其他区没有"""
         districts = ['市本级', '上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区', '余杭区', '萧山区', '临安区',
                      '富阳区', '建德市', '桐庐县', '淳安县', '经济技术开发区', '西湖风景名胜区', '大江东产业集聚区']
         self.main_page.scroll_to_news()
-        self.main_page.scroll_to_district_stage()
-        self.main_page.open_district_stage()
-        self.district_services_main_page.open_district_select_page()
+        self.main_page.scroll_to_district_service()
+        self.main_page.click_district_service()
+        self.district_services_main_page.click_district_select_button()
         self.district_select_page.select_district_by_name(districts[2])
         # 下城区显示热门应用
         self.assertTrue(self.district_services_main_page.is_hot_app_display())
-        self.district_services_main_page.open_district_select_page()
+        self.district_services_main_page.click_district_select_button()
         while True:
             random_district = random.choice(districts)
             if random_district != districts[2]:
@@ -43,7 +41,6 @@ class TestDistrictServices(BaseCase):
         time.sleep(3)
         self.assertFalse(self.district_services_main_page.is_hot_app_display())
 
-    @login
     def test_02_hot_departments(self):
         """热门部门默认显示十条，点击更多按钮查看更多部门"""
         self.main_page.scroll_to_news()
@@ -57,7 +54,6 @@ class TestDistrictServices(BaseCase):
         # 点击更多按钮显示全部部门页面
         self.assertTrue(self.all_departments_page.is_displayed())
 
-    @login
     def test_03_open_department_item_success(self):
         """打开部门事项成功"""
         self.main_page.scroll_to_news()
