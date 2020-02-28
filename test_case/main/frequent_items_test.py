@@ -32,11 +32,11 @@ class TestAICustomerService(BaseCase):
 
     def test_03_get_reply_from_default_question(self):
         """点击默认问题，获取正确回复"""
-        default_question = '如何查找办理业务所需要的材料'
-        default_question_reply = '可以在主页搜索，或者点击办事指南查找办事材料。'
+        default_question = '年长的父母不愿意戴口罩怎么办'
+        default_question_reply = '从官方公布的疫情看'
         self.main_page.click_ai_service()
         self.ai_customer_service_page.click_default_question(default_question)
-        self.assertTrue(self.ai_customer_service_page.check_element_by_name(default_question_reply))
+        self.assertTrue(self.ai_customer_service_page.is_reply_display(default_question_reply, full=False))
 
     def test_04_get_reply_from_search_by_text(self):
         """通过文本搜索，获取正确回复"""

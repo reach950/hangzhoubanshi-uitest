@@ -29,5 +29,19 @@ class AICustomerServicePage(BasePage):
         return self.is_element_exist_by_loc(self.page_title_loc)
 
     # 点击默认问题
-    def click_default_question(self, question):
-        self.check_element_by_name(question)
+    def click_default_question(self, question, full=True):
+        if full:
+            self.click_element_by_name(question)
+        else:
+            loc = (MobileBy.IOS_PREDICATE,
+                   'type == "XCUIElementTypeStaticText" AND name BEGINSWITH "{}"'.format(question))
+            self.tap_element(loc)
+
+    # 回复是否显示
+    def is_reply_display(self, reply, full=True):
+        if full:
+            return self.check_element_by_name(reply)
+        else:
+            loc = (MobileBy.IOS_PREDICATE,
+                   'type == "XCUIElementTypeStaticText" AND name BEGINSWITH "{}"'.format(reply))
+            return self.is_element_exist_by_loc(loc)
