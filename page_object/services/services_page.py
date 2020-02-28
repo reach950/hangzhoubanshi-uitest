@@ -23,14 +23,17 @@ class ServicesPage(BasePage):
     education_category_loc = (MobileBy.ACCESSIBILITY_ID, '教育')
 
     # 小客车指标
-    car_quota_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]')
+    car_quota_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView'
+                                               '/XCUIElementTypeCell[6]/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 流动人口登记
-    mobile_population_reside_registration_loc = \
-        (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]')
+    mobile_population_reside_registration_loc = (MobileBy.IOS_CLASS_CHAIN,
+                                                 '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]'
+                                                 '/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 教育缴费
-    education_pay_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[4]')
+    education_pay_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView'
+                                                   '/XCUIElementTypeCell[4]/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 点击搜索框
     def click_search_field(self):
