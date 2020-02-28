@@ -47,6 +47,9 @@ class SearchPage(BasePage):
     # 无结果热门事项
     no_result_hot_items_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 345')
 
+    # 搜索结果中服务下的养老保险
+    endowment_insurance_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 75')
+
     # 输入关键字搜索
     def search(self, text):
         self.send_keys(self.search_field_loc, text)
@@ -93,3 +96,7 @@ class SearchPage(BasePage):
         for ele in eles:
             hot_items.append(ele.get_attribute('name'))
         return hot_items
+
+    # 点击养老保险
+    def click_endowment_insurance(self):
+        self.tap_element(self.endowment_insurance_loc)

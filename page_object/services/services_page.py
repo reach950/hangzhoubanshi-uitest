@@ -22,19 +22,18 @@ class ServicesPage(BasePage):
     # 教育类目
     education_category_loc = (MobileBy.ACCESSIBILITY_ID, '教育')
 
-    # 小客车指标图标
-    car_quota_image_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeImage" AND rect.x == 126 AND rect.y == 603')
+    # 小客车指标
+    car_quota_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]')
 
-    # 流动人口登记图标
-    mobile_population_reside_registration_image_loc = \
-        (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeImage" AND rect.x == 126 AND rect.y == 603')
+    # 流动人口登记
+    mobile_population_reside_registration_loc = \
+        (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]')
 
-    # 教育缴费图标
-    education_pay_image_loc = (MobileBy.IOS_PREDICATE,
-                               'type == "XCUIElementTypeImage" AND rect.x == 300 AND rect.y == 347')
+    # 教育缴费
+    education_pay_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[4]')
 
-    # 打开搜索页面
-    def open_search_page(self):
+    # 点击搜索框
+    def click_search_field(self):
         self.tap_element(self.search_field_loc)
 
     # 选择交通出行类目
@@ -50,13 +49,13 @@ class ServicesPage(BasePage):
         self.tap_element(self.education_category_loc)
 
     # 点击小客车指标
-    def click_car_quota_image(self):
-        self.tap_element(self.car_quota_image_loc)
+    def click_car_quota(self):
+        self.tap_element(self.car_quota_loc)
 
     # 点击流动人口登记
-    def click_mobile_population_reside_registration_image(self):
-        self.tap_element(self.mobile_population_reside_registration_image_loc)
+    def click_mobile_population_reside_registration(self):
+        self.tap_element(self.mobile_population_reside_registration_loc)
 
     # 点击教育缴费
-    def click_education_pay_image(self):
-        self.tap_element(self.education_pay_image_loc)
+    def click_education_pay(self):
+        self.tap_element(self.education_pay_loc)

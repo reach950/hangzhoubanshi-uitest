@@ -7,7 +7,6 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from common_test_step import login
 
 
 class TestSearchByText(BaseCase):
@@ -22,11 +21,10 @@ class TestSearchByText(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_search_by_text_success(self):
         """输入关键字搜索结果成功"""
         self.main_page.switch_to_services_page()
-        self.services_page.open_search_page()
+        self.services_page.click_search_field()
         self.search_page.search(self.search_text)
         self.assertTrue(self.search_page.check_element_by_name(self.first_affair_name),
                         '没有显示搜索{}的结果'.format(self.search_text))

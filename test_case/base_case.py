@@ -75,6 +75,7 @@ from page_object.mine.term_of_service_page import TermOfServicePage
 from page_object.mine.face_verification_page import FaceVerificationPage
 from page_object.services.social_insurance.provide_social_insurance_certificate_page import \
     ProvideSocialInsuranceCertificatePage
+from page_object.services.endowment_insurance.endowment_insurance_page import EndowmentInsurancePage
 
 
 class BaseCase(unittest.TestCase):
@@ -161,3 +162,4 @@ class BaseCase(unittest.TestCase):
         self.term_of_service_page = TermOfServicePage(self.driver)
         self.face_verification_page = FaceVerificationPage(self.driver)
         self.provide_social_insurance_certificate_page = ProvideSocialInsuranceCertificatePage(self.driver)
+        self.endowment_insurance_page = EndowmentInsurancePage(self.driver)
