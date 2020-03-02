@@ -55,8 +55,8 @@ class MinePage(BasePage):
     def get_user_state(self):
         return self.find_element(self.user_state_loc).get_attribute('value')
 
-    # 打开设置页面
-    def open_settings_page(self):
+    # 点击设置按钮
+    def click_settings(self):
         self.tap_element(self.settings_loc)
 
     # 用户是否登录
@@ -73,11 +73,11 @@ class MinePage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        my_handle_item = self.find_element(self.my_handle_item_loc)
-        if my_handle_item:
-            return my_handle_item.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.my_handle_item_loc)
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.my_handle_item_loc)
 
     # 打开我的办件列表
     def open_my_handle_item(self):

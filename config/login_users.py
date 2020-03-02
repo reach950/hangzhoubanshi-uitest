@@ -8,6 +8,7 @@ __author__ = 'kejie'
 login_users = {
     # 实名认证用户
     'real_name_user': {
+        'user_name': 'xxx',
         'phone_number': 'xxx',
         'identity_number': 'xxx',
         'password': 'xxx',
