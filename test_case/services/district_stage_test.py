@@ -38,7 +38,7 @@ class TestDistrictServices(BaseCase):
                 break
         # 非下城区不显示热门应用
         self.district_services_main_page.wait_to_display()
-        self.assertTrue(self.district_services_main_page.is_element_disappeared_by_loc())
+        self.assertTrue(self.district_services_main_page.is_hot_app_disapear())
 
     def test_02_hot_departments(self):
         """热门部门默认显示十条，点击更多按钮查看更多部门"""

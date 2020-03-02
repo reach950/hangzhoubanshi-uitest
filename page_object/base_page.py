@@ -161,7 +161,8 @@ class BasePage:
     # 元素是否消失
     def is_element_disappeared_by_loc(self, loc, exist=True, wait=5):
         if exist:
+            element = self.find_element(loc)
             return not WebDriverWait(self.driver, wait) \
-                .until_not(lambda driver: driver.find_element(*loc).is_displayed())
+                .until_not(lambda driver: element.is_displayed())
         else:
             return not WebDriverWait(self.driver, wait).until_not(lambda driver: driver.find_element(*loc))
