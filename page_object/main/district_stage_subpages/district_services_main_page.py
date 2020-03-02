@@ -34,8 +34,8 @@ class DistrictServicesMainPage(BasePage):
         return self.is_element_exist_by_loc(self.hot_app_loc)
 
     # 热门应用是否消失
-    def is_hot_app_disapear(self):
-        return self.is_element_disappeared_by_loc(self.hot_app_loc)
+    def is_hot_app_disappeared(self):
+        return self.is_element_disappeared_by_loc(self.hot_app_loc, exist=False)
 
     # 获取所有热门部门
     def get_all_hot_departments(self):
