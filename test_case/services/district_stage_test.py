@@ -6,7 +6,6 @@
 __author__ = 'kejie'
 
 import random
-import time
 import unittest
 from test_case.base_case import BaseCase
 
@@ -38,29 +37,29 @@ class TestDistrictServices(BaseCase):
                 self.district_select_page.select_district_by_name(random_district)
                 break
         # 非下城区不显示热门应用
-        time.sleep(3)
-        self.assertFalse(self.district_services_main_page.is_hot_app_display())
+        self.district_services_main_page.wait_to_display()
+        self.assertTrue(self.district_services_main_page.is_element_disappeared_by_loc())
 
     def test_02_hot_departments(self):
         """热门部门默认显示十条，点击更多按钮查看更多部门"""
         self.main_page.scroll_to_news()
-        self.main_page.scroll_to_district_stage()
-        self.main_page.open_district_stage()
-        time.sleep(3)
+        self.main_page.scroll_to_district_service()
+        self.main_page.click_district_service()
+        self.district_services_main_page.wait_to_display()
         hot_departments = self.district_services_main_page.get_all_hot_departments()
         # 热门部门默认显示十条
         self.assertEqual(len(hot_departments), 10)
-        self.district_services_main_page.open_all_departments_page()
+        self.district_services_main_page.click_hot_departments_more_button()
         # 点击更多按钮显示全部部门页面
         self.assertTrue(self.all_departments_page.is_displayed())
 
     def test_03_open_department_item_success(self):
         """打开部门事项成功"""
         self.main_page.scroll_to_news()
-        self.main_page.scroll_to_district_stage()
-        self.main_page.open_district_stage()
-        self.district_services_main_page.open_transportation_bureau_page()
-        self.transportation_bureau_page.open_car_incremental_quota_page()
+        self.main_page.scroll_to_district_service()
+        self.main_page.click_district_service()
+        self.district_services_main_page.click_transportation_bureau()
+        self.transportation_bureau_page.click_car_incremental_quota()
         # 打开小客车增量指标事项成功
         self.assertTrue(self.car_incremental_quota_page.is_display())
 

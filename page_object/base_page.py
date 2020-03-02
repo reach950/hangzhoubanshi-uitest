@@ -140,11 +140,6 @@ class BasePage:
     # 根据loc检查元素是否存在
     def is_element_exist_by_loc(self, loc, wait=15, display=True, wait_display_time=3):
         element = self.find_element(loc, wait)
-        return self.is_element_exist(element, display, wait_display_time)
-
-    # 检查元素是否存在
-    @staticmethod
-    def is_element_exist(element, display=True, wait_display_time=3):
         if element and display:
             end_time = time.time() + wait_display_time
             while True:
@@ -164,16 +159,9 @@ class BasePage:
         self.tap_on_element(element)
 
     # 元素是否消失
-    def is_element_disappeared_by_loc(self, loc, exist=True, wait_disappeared_time=5):
-        element = self.find_element(loc)
-        if element and exist:
-            end_time = time.time() + wait_disappeared_time
-            while True:
-                if not element.is_displayed():
-                    return True
-                time.sleep(0.5)
-                if time.time() > end_time:
-                    break
-        elif not element:
-            return True
-        return False
+    def is_element_disappeared_by_loc(self, loc, exist=True, wait=5):
+        if exist:
+            return not WebDriverWait(self.driver, wait) \
+                .until_not(lambda driver: driver.find_element(*loc).is_displayed())
+        else:
+            return not WebDriverWait(self.driver, wait).until_not(lambda driver: driver.find_element(*loc))

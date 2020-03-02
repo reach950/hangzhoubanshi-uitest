@@ -13,6 +13,6 @@ class TransportationBureauPage(BasePage):
     # 小客车增量指标
     car_incremental_quota_loc = (MobileBy.ACCESSIBILITY_ID, '小客车增量指标')
 
-    # 打开小客车增量指标页面
-    def open_car_incremental_quota_page(self):
+    # 点击小客车增量指标
+    def click_car_incremental_quota(self):
         self.tap_element(self.car_incremental_quota_loc)

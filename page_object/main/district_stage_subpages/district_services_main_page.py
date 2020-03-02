@@ -33,6 +33,10 @@ class DistrictServicesMainPage(BasePage):
     def is_hot_app_display(self):
         return self.is_element_exist_by_loc(self.hot_app_loc)
 
+    # 热门应用是否消失
+    def is_hot_app_disapear(self):
+        return self.is_element_disappeared_by_loc(self.hot_app_loc)
+
     # 获取所有热门部门
     def get_all_hot_departments(self):
         return self.find_elements(self.hot_departments_loc)
@@ -44,3 +48,7 @@ class DistrictServicesMainPage(BasePage):
     # 点击市交通运输局部门
     def click_transportation_bureau(self):
         self.tap_element(self.transportation_bureau_loc)
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.check_element_by_name('热门部门')
