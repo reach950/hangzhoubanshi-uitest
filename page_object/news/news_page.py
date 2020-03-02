@@ -43,7 +43,7 @@ class NewsPage(BasePage):
         return self.find_element(self.first_news_title_loc).get_attribute('name')
 
     # 打开第一条新闻
-    def open_first_news(self):
+    def click_first_news(self):
         self.tap_element(self.first_news_loc)
 
     # 页面是否显示
