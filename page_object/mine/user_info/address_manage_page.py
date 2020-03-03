@@ -67,3 +67,13 @@ class AddressManagePage(BasePage):
     # 获取最后一个地址的电话号码
     def get_last_address_phone_number(self):
         return self.find_element(self.last_address_phone_number_loc).get_attribute('value')
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.create_address_button_loc)
+
+    # 地址是否删除
+    def is_address_deleted(self, username, phone_number, detail):
+        return self.is_element_disappeared_by_name(username, exist=False) and \
+               self.is_element_disappeared_by_name(phone_number, exist=False) and \
+               self.is_element_disappeared_by_name(detail, exist=False)

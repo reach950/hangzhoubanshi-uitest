@@ -158,7 +158,12 @@ class BasePage:
         element = self.find_element(loc)
         self.tap_on_element(element)
 
-    # 元素是否消失
+    # 根据name属性检查元素是否消失
+    def is_element_disappeared_by_name(self, name, exist=True, wait=5):
+        loc = (MobileBy.ACCESSIBILITY_ID, name)
+        self.is_element_disappeared_by_loc(loc, exist, wait)
+
+    # 根据loc检查元素是否消失
     def is_element_disappeared_by_loc(self, loc, exist=True, wait=5):
         try:
             if exist:

@@ -11,22 +11,23 @@ from page_object.base_page import BasePage
 
 class UpdateAddressPage(BasePage):
     # 简要地址输入框
-    brief_address_input_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextField" AND rect.y == 88')
+    brief_address_input_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTextField[1]')
 
     # 详细地址输入框
-    detail_address_input_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextField" AND rect.y == 132')
+    detail_address_input_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTextField[2]')
 
     # 姓名输入框
-    username_input_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextField" AND rect.y == 176')
+    username_input_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTextField[3]')
 
     # 手机号码输入框
-    phone_number_input_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextField" AND rect.y == 220')
+    phone_number_input_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTextField[4]')
 
     # 保存按钮
     save_button_loc = (MobileBy.ACCESSIBILITY_ID, '保存')
 
     # 简要地址选项列表第一个选项
-    first_option_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeCell" AND rect.y == 449')
+    first_option_loc = (MobileBy.IOS_CLASS_CHAIN,
+                        '**/XCUIElementTypeScrollView/XCUIElementTypeTable/XCUIElementTypeCell')
 
     # 更新地址
     def update_address(self, detail_address, username, phone_number):

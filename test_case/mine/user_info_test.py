@@ -6,7 +6,6 @@
 __author__ = 'kejie'
 
 import unittest
-import time
 from datetime import datetime
 from test_case.base_case import BaseCase
 from config.login_users import login_users
@@ -142,24 +141,25 @@ class TestAddressManage(BaseCase):
 
     def setUp(self):
         super().setUp()
+        self.current_time = datetime.now().strftime('%Y%m%d%H%M%S')
 
     def tearDown(self):
         super().tearDown()
 
     def test_01_create_address(self):
         """添加地址"""
-        create_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
-        create_detail_address = '详细地址_{}'.format(create_time_now)
-        create_username = 'name_{}'.format(create_time_now)
-        create_phone_number = '133{}'.format(create_time_now[-8:])
+        create_detail_address = '详细地址_{}'.format(self.current_time)
+        create_username = 'name_{}'.format(self.current_time)
+        create_phone_number = '133{}'.format(self.current_time[-8:])
 
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.user_info_page.open_address_manage_page()
+        self.user_info_page.wait_to_display()
+        self.user_info_page.click_address_manage()
         self.address_manage_page.click_create_address_button()
         self.update_address_page.update_address(create_detail_address, create_username,
                                                 create_phone_number)
-        time.sleep(3)
+        self.address_manage_page.wait_to_display()
         self.assertEqual(create_username, self.address_manage_page.get_last_address_username())
         self.assertEqual('{}*****{}'.format(create_phone_number[:3], create_phone_number[-3:]),
                          self.address_manage_page.get_last_address_phone_number())
@@ -167,18 +167,18 @@ class TestAddressManage(BaseCase):
 
     def test_02_modify_address(self):
         """修改地址"""
-        modify_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
-        modify_detail_address = '详细地址_{}'.format(modify_time_now)
-        modify_username = 'name_{}'.format(modify_time_now)
-        modify_phone_number = '133{}'.format(modify_time_now[-8:])
+        modify_detail_address = '详细地址_{}'.format(self.current_time)
+        modify_username = 'name_{}'.format(self.current_time)
+        modify_phone_number = '133{}'.format(self.current_time[-8:])
 
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.user_info_page.open_address_manage_page()
+        self.user_info_page.wait_to_display()
+        self.user_info_page.click_address_manage()
         self.address_manage_page.click_last_address_edit_button()
         self.update_address_page.update_address(modify_detail_address, modify_username,
                                                 modify_phone_number)
-        time.sleep(3)
+        self.address_manage_page.wait_to_display()
         self.assertEqual(modify_username, self.address_manage_page.get_last_address_username())
         self.assertEqual('{}*****{}'.format(modify_phone_number[:3], modify_phone_number[-3:]),
                          self.address_manage_page.get_last_address_phone_number())
@@ -188,15 +188,15 @@ class TestAddressManage(BaseCase):
         """删除地址"""
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
-        self.user_info_page.open_address_manage_page()
+        self.user_info_page.wait_to_display()
+        self.user_info_page.click_address_manage()
+        self.address_manage_page.wait_to_display()
         last_address_username = self.address_manage_page.get_last_address_username()
         last_address_phone_number = self.address_manage_page.get_last_address_phone_number()
         last_address_detail = self.address_manage_page.get_last_address_detail()
         self.address_manage_page.delete_last_address()
-        time.sleep(3)
-        self.assertNotEqual(last_address_username, self.address_manage_page.get_last_address_username())
-        self.assertNotEqual(last_address_phone_number, self.address_manage_page.get_last_address_phone_number())
-        self.assertNotEqual(last_address_detail, self.address_manage_page.get_last_address_detail())
+        self.assertTrue(self.address_manage_page
+                        .is_address_deleted(last_address_username, last_address_phone_number, last_address_detail))
 
 
 if __name__ == '__main__':
