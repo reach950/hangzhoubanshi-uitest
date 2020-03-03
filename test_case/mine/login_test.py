@@ -34,7 +34,7 @@ class TestLoginByPhoneNumber(BaseCase):
         """登录失败，手机号未注册"""
         not_register_phone_number = '15812346789'
         Login.user_login(self.driver, username=not_register_phone_number, password=test_password)
-        self.login_page.check_element_by_name(login_failed_alert_message)
+        self.login_page.is_alert_message_displayed(login_failed_alert_message)
 
     def test_02_login_by_phone_number_success(self):
         """通过手机号登录成功"""
@@ -59,7 +59,7 @@ class TestLoginByIdNumber(BaseCase):
         """登录失败，身份证未注册"""
         not_register_identity_number = '421127198812120007'
         Login.user_login(self.driver, username=not_register_identity_number, password=test_password)
-        self.login_page.check_element_by_name(login_failed_alert_message)
+        self.login_page.is_alert_message_displayed(login_failed_alert_message)
 
     def test_02_login_by_identity_number_success(self):
         """通过身份证号登录成功"""

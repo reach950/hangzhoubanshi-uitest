@@ -133,7 +133,7 @@ class BasePage:
         self.driver.execute_script('mobile: alert', {'action': action, 'buttonLabel': button_lable})
 
     # 根据name属性检查元素是否存在
-    def check_element_by_name(self, name, wait=15, display=True, wait_display_time=3):
+    def is_element_exist_by_name(self, name, wait=15, display=True, wait_display_time=3):
         loc = (MobileBy.ACCESSIBILITY_ID, name)
         return self.is_element_exist_by_loc(loc, wait, display, wait_display_time)
 

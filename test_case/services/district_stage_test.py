@@ -29,7 +29,7 @@ class TestDistrictServices(BaseCase):
         self.district_services_main_page.click_district_select_button()
         self.district_select_page.select_district_by_name(districts[2])
         # 下城区显示热门应用
-        self.assertTrue(self.district_services_main_page.is_hot_app_display())
+        self.assertTrue(self.district_services_main_page.is_hot_app_displayed())
         self.district_services_main_page.click_district_select_button()
         while True:
             random_district = random.choice(districts)
@@ -61,7 +61,7 @@ class TestDistrictServices(BaseCase):
         self.district_services_main_page.click_transportation_bureau()
         self.transportation_bureau_page.click_car_incremental_quota()
         # 打开小客车增量指标事项成功
-        self.assertTrue(self.car_incremental_quota_page.is_display())
+        self.assertTrue(self.car_incremental_quota_page.is_displayed())
 
 
 if __name__ == '__main__':

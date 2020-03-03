@@ -34,9 +34,9 @@ class TestAllApps(BaseCase):
         pay_search_result = '联通移动电话缴费(电话缴费)'
         self.main_page.click_more_apps()
         self.all_apps_page.search(search_text)
-        self.assertTrue(self.all_apps_page.check_element_by_name(handle_search_result))
-        self.assertTrue(self.all_apps_page.check_element_by_name(query_search_result, display=False))
-        self.assertTrue(self.all_apps_page.check_element_by_name(pay_search_result, display=False))
+        self.assertTrue(self.all_apps_page.is_search_result_contain_handle_item(handle_search_result))
+        self.assertTrue(self.all_apps_page.is_search_result_contain_query_item(query_search_result))
+        self.assertTrue(self.all_apps_page.is_search_result_contain_pay_item(pay_search_result))
 
     def test_03_open_ai_service_success(self):
         """智能客服"""

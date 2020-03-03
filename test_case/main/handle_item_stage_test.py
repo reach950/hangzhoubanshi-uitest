@@ -23,7 +23,7 @@ class TestHandleItemStage(BaseCase):
         """办件成功，首页显示办件信息"""
         item_name = HandleItem.get_handle_item(self.driver)
         # 办件名称
-        self.assertTrue(self.main_page.check_element_by_name(item_name, display=False))
+        self.assertTrue(self.main_page.is_contain_handle_item_stage(item_name))
 
     def test_02_click_handle_item_stage_to_open_message_center(self):
         """点击办件展台，跳转到消息中心"""

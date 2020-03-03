@@ -49,7 +49,7 @@ class PersonalOrLegalGuideListPage(BasePage):
     # 页面是否显示
     def is_displayed(self, page_title_name):
         if page_title_name in ['个人办事', '法人办事']:
-            return self.check_element_by_name(page_title_name)
+            return self.is_element_exist_by_name(page_title_name)
         else:
             return False
 

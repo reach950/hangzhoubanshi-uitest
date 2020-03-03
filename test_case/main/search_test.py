@@ -52,16 +52,16 @@ class TestSearchByText(BaseCase):
         news_name = '资讯'
         self.main_page.click_search_field()
         self.search_page.search(search_text)
-        self.assertTrue(self.search_page.check_element_by_name(item_name),
+        self.assertTrue(self.search_page.is_search_result_contain_handle_item(item_name),
                         '没有显示搜索{}的办事事项结果'.format(search_text))
-        self.assertTrue(self.search_page.check_element_by_name(service_name),
+        self.assertTrue(self.search_page.is_search_result_contain_service(service_name),
                         '没有显示搜索{}的服务结果'.format(search_text))
-        self.assertTrue(self.search_page.check_element_by_name(reserve_name),
+        self.assertTrue(self.search_page.is_search_result_contain_reserve(reserve_name),
                         '没有显示搜索{}的预约结果'.format(search_text))
         self.search_page.scroll_to_last_search_result()
-        self.assertTrue(self.search_page.check_element_by_name(guide_name),
+        self.assertTrue(self.search_page.is_search_result_contain_guide(guide_name),
                         '没有显示搜索{}的办事指南结果'.format(search_text))
-        self.assertTrue(self.search_page.check_element_by_name(news_name),
+        self.assertTrue(self.search_page.is_search_result_contain_news(news_name),
                         '没有显示搜索{}的资讯结果'.format(search_text))
 
     def test_05_search_by_text_has_no_result(self):

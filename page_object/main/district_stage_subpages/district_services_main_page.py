@@ -30,7 +30,7 @@ class DistrictServicesMainPage(BasePage):
         self.tap_element(self.district_select_button_loc)
 
     # 热门应用是否显示
-    def is_hot_app_display(self):
+    def is_hot_app_displayed(self):
         return self.is_element_exist_by_loc(self.hot_app_loc)
 
     # 热门应用是否消失
@@ -51,4 +51,4 @@ class DistrictServicesMainPage(BasePage):
 
     # 等到页面显示
     def wait_to_display(self):
-        self.check_element_by_name('热门部门')
+        self.is_element_exist_by_name('热门部门')

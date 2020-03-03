@@ -16,7 +16,7 @@ class TestSearchByText(BaseCase):
         super().setUp()
         self.search_text = '社保'
         # 搜索结果中的第一个办事事项
-        self.first_affair_name = '基本医疗保险关系转移(医保关系转移)'
+        self.first_handle_item_name = '基本医疗保险关系转移(医保关系转移)'
 
     def tearDown(self):
         super().tearDown()
@@ -26,7 +26,7 @@ class TestSearchByText(BaseCase):
         self.main_page.switch_to_services_page()
         self.services_page.click_search_field()
         self.search_page.search(self.search_text)
-        self.assertTrue(self.search_page.check_element_by_name(self.first_affair_name),
+        self.assertTrue(self.search_page.is_search_result_contain_handle_item(self.first_handle_item_name),
                         '没有显示搜索{}的结果'.format(self.search_text))
 
 

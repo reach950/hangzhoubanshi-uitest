@@ -98,3 +98,23 @@ class SearchPage(BasePage):
     # 点击养老保险
     def click_endowment_insurance(self):
         self.tap_element(self.endowment_insurance_loc)
+
+    # 搜索结果是否包含办事事项
+    def is_search_result_contain_handle_item(self, item_name):
+        return self.is_element_exist_by_name(item_name)
+
+    # 搜索结果是否包含服务
+    def is_search_result_contain_service(self, service_name):
+        return self.is_element_exist_by_name(service_name)
+
+    # 搜索结果是否包含预约
+    def is_search_result_contain_reserve(self, reserve_name):
+        return self.is_element_exist_by_name(reserve_name)
+
+    # 搜索结果是否包含办事指南
+    def is_search_result_contain_guide(self, guide_name):
+        return self.is_element_exist_by_name(guide_name)
+
+    # 搜索结果是否包含资讯
+    def is_search_result_contain_news(self, news_name):
+        return self.is_element_exist_by_name(news_name)

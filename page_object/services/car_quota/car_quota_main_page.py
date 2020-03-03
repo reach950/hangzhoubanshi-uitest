@@ -11,12 +11,11 @@ from page_object.base_page import BasePage
 
 class CarQuotaMainPage(BasePage):
     # 页面标题
-    page_title_loc = (MobileBy.ACCESSIBILITY_ID, '小客车指标')
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "小客车指标" AND rect.width == 199')
 
     # 增量指标
     incremental_quota_loc = (MobileBy.ACCESSIBILITY_ID, '增量指标')
 
     # 页面是否显示
     def is_displayed(self):
-        return self.is_element_exist_by_loc(self.page_title_loc) and \
-               self.is_element_exist_by_loc(self.incremental_quota_loc)
+        return self.is_element_exist_by_loc(self.page_title_loc)

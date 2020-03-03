@@ -38,9 +38,9 @@ class AICustomerServicePage(BasePage):
             self.tap_element(loc)
 
     # 回复是否显示
-    def is_reply_display(self, reply, full=True):
+    def is_reply_displayed(self, reply, full=True):
         if full:
-            return self.check_element_by_name(reply)
+            return self.is_element_exist_by_name(reply)
         else:
             loc = (MobileBy.IOS_PREDICATE,
                    'type == "XCUIElementTypeStaticText" AND name BEGINSWITH "{}"'.format(reply))

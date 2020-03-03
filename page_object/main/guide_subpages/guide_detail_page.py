@@ -16,3 +16,7 @@ class GuideDetailPage(BasePage):
     # 页面是否显示
     def is_displayed(self):
         return self.is_element_exist_by_loc(self.page_title_loc)
+
+    # 是否显示事项名称
+    def is_item_name_displayed(self, item_name):
+        return self.is_element_exist_by_loc(item_name)

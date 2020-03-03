@@ -145,16 +145,13 @@ class TestAddressManage(BaseCase):
         self.detail_address = '详细地址_{}'.format(self.current_time)
         self.username = 'name_{}'.format(self.current_time)
         self.phone_number = '133{}'.format(self.current_time[-8:])
+        self._open_address_manage_page_from_main_page()
 
     def tearDown(self):
         super().tearDown()
 
     def test_01_create_address(self):
         """添加地址"""
-        self.main_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        self.user_info_page.wait_to_display()
-        self.user_info_page.click_address_manage()
         self.address_manage_page.click_create_address_button()
         self.update_address_page.update_address(self.detail_address, self.username,
                                                 self.phone_number)
@@ -166,10 +163,6 @@ class TestAddressManage(BaseCase):
 
     def test_02_modify_address(self):
         """修改地址"""
-        self.main_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        self.user_info_page.wait_to_display()
-        self.user_info_page.click_address_manage()
         self.address_manage_page.click_last_address_edit_button()
         self.update_address_page.update_address(self.detail_address, self.username,
                                                 self.phone_number)
@@ -181,17 +174,19 @@ class TestAddressManage(BaseCase):
 
     def test_03_delete_address(self):
         """删除地址"""
-        self.main_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        self.user_info_page.wait_to_display()
-        self.user_info_page.click_address_manage()
-        self.address_manage_page.wait_to_display()
         last_address_username = self.address_manage_page.get_last_address_username()
         last_address_phone_number = self.address_manage_page.get_last_address_phone_number()
         last_address_detail = self.address_manage_page.get_last_address_detail()
         self.address_manage_page.delete_last_address()
         self.assertTrue(self.address_manage_page
                         .is_address_deleted(last_address_username, last_address_phone_number, last_address_detail))
+
+    def _open_address_manage_page_from_main_page(self):
+        self.main_page.switch_to_mine_page()
+        self.mine_page.click_user_area()
+        self.user_info_page.wait_to_display()
+        self.user_info_page.click_address_manage()
+        self.address_manage_page.wait_to_display()
 
 
 if __name__ == '__main__':

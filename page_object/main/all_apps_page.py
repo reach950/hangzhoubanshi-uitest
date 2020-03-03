@@ -62,3 +62,15 @@ class AllAppsPage(BasePage):
     # 切换到查询类tab
     def switch_to_query_tab(self):
         self.tap_element(self.query_tab_loc)
+
+    # 搜索结果是否包含办理类事项
+    def is_search_result_contain_handle_item(self, item_name):
+        return self.is_element_exist_by_name(item_name)
+
+    # 搜索结果是否包含缴费类事项
+    def is_search_result_contain_pay_item(self, item_name):
+        return self.is_element_exist_by_name(item_name, display=False)
+
+    # 搜索结果是否包含查询类事项
+    def is_search_result_contain_query_item(self, item_name):
+        return self.is_element_exist_by_name(item_name, display=False)

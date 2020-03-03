@@ -121,7 +121,7 @@ class MainPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        return self.check_element_by_name('我要咨询', display=False)
+        return self.is_element_exist_by_name('我要咨询', display=False)
 
     # 等到页面显示
     def wait_to_display(self):
@@ -138,3 +138,7 @@ class MainPage(BasePage):
     # 滑动首页到区县服务
     def scroll_to_district_service(self):
         self.scroll(loc=self.table_loc, name='区县服务')
+
+    # 是否包含办件展台
+    def is_contain_handle_item_stage(self, item_name):
+        return self.is_element_exist_by_name(item_name, display=False)

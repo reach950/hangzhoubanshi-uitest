@@ -36,7 +36,7 @@ class TestAICustomerService(BaseCase):
         default_question_reply = '从官方公布的疫情看'
         self.main_page.click_ai_service()
         self.ai_customer_service_page.click_default_question(default_question)
-        self.assertTrue(self.ai_customer_service_page.is_reply_display(default_question_reply, full=False))
+        self.assertTrue(self.ai_customer_service_page.is_reply_displayed(default_question_reply, full=False))
 
     def test_04_get_reply_from_search_by_text(self):
         """通过文本搜索，获取正确回复"""
@@ -44,7 +44,7 @@ class TestAICustomerService(BaseCase):
         search_text_reply = '社保咨询服务热线：12333。'
         self.main_page.click_ai_service()
         self.ai_customer_service_page.search(search_text)
-        self.assertTrue(self.ai_customer_service_page.check_element_by_name(search_text_reply))
+        self.assertTrue(self.ai_customer_service_page.is_reply_displayed(search_text_reply))
 
 
 class TestItemsGuide(BaseCase):
@@ -94,7 +94,7 @@ class TestItemsGuide(BaseCase):
         first_item_name = self.personal_or_legal_guide_list_page.get_first_guide_name()
         self.personal_or_legal_guide_list_page.click_first_guide()
         self.assertTrue(self.guide_detail_page.is_displayed(), '<{}>指南详情打开失败'.format(first_item_name))
-        self.assertTrue(self.guide_detail_page.check_element_by_name(first_item_name),
+        self.assertTrue(self.guide_detail_page.is_item_name_displayed(first_item_name),
                         '<{}>指南详情打开失败'.format(first_item_name))
 
 
