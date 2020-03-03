@@ -10,6 +10,9 @@ from page_object.base_page import BasePage
 
 
 class UserInfoPage(BasePage):
+    # 页面标题
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "个人信息" AND rect.width == 199')
+
     # 姓名
     name_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[2]'
                                           '/XCUIElementTypeStaticText[2]')
@@ -62,3 +65,7 @@ class UserInfoPage(BasePage):
     # 点击实名认证
     def click_real_name_authentication(self):
         self.tap_element(self.real_name_authentication_loc)
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.page_title_loc)

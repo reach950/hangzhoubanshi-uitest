@@ -132,6 +132,7 @@ class TestPasswordManage(BaseCase):
 
     def _modify_password(self, old_password, new_password):
         self.mine_page.click_user_area()
+        self.user_info_page.wait_to_display()
         self.user_info_page.click_password_manage()
         self.password_manage_page.modify_password(old_password, new_password)
 
