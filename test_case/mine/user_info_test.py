@@ -100,7 +100,7 @@ class TestPasswordManage(BaseCase):
         """修改成原始密码失败"""
         self.main_page.switch_to_mine_page()
         self._modify_password(password, password)
-        self.assertFalse(self.login_page.is_displayed())
+        self.assertFalse(self.password_manage_page.is_disappeared())
 
     def test_02_modify_password_to_full_letters_or_digits(self):
         """修改成全英文或全数字失败"""
@@ -108,15 +108,15 @@ class TestPasswordManage(BaseCase):
         full_digits = '12345678'
         self.main_page.switch_to_mine_page()
         self._modify_password(password, full_letters)
-        self.assertFalse(self.login_page.is_displayed())
+        self.assertFalse(self.password_manage_page.is_disappeared())
         self.password_manage_page.modify_password(password, full_digits)
-        self.assertFalse(self.login_page.is_displayed())
+        self.assertFalse(self.password_manage_page.is_disappeared())
 
     def test_03_modify_password_to_empty_password(self):
         """修改成全空密码失败"""
         self.main_page.switch_to_mine_page()
         self._modify_password(password, '')
-        self.assertFalse(self.login_page.is_displayed())
+        self.assertFalse(self.password_manage_page.is_disappeared())
 
     def test_04_modify_password_success(self):
         """修改登录密码成功"""
@@ -132,7 +132,7 @@ class TestPasswordManage(BaseCase):
 
     def _modify_password(self, old_password, new_password):
         self.mine_page.click_user_area()
-        self.user_info_page.open_password_manage_page()
+        self.user_info_page.click_password_manage()
         self.password_manage_page.modify_password(old_password, new_password)
 
 

@@ -37,8 +37,4 @@ class LoginPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        header_image = self.find_element(self.header_image_loc)
-        if header_image:
-            return header_image.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.header_image_loc)

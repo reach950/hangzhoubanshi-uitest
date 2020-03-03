@@ -51,12 +51,12 @@ class UserInfoPage(BasePage):
     def get_identity_number(self):
         return self.find_element(self.identity_number_loc).get_attribute('value')
 
-    # 打开地址管理页面
-    def open_address_manage_page(self):
+    # 点击地址管理
+    def click_address_manage(self):
         self.tap_element(self.address_manage_loc)
 
-    # 打开密码管理页面
-    def open_password_manage_page(self):
+    # 点击密码管理
+    def click_password_manage(self):
         self.tap_element(self.password_manage_loc)
 
     # 点击实名认证
