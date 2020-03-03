@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 from test_case.base_case import BaseCase
 from config.login_users import login_users
-from common_test_step import login
+from common_test_step.login import Login
 
 real_name_user = login_users['real_name_user']
 phone_number = real_name_user['phone_number']
@@ -19,8 +19,8 @@ password = real_name_user['password']
 authentication_method = real_name_user['authentication_method']
 
 
-class TestBaseInfo(BaseCase):
-    """我的-个人信息-基本信息"""
+class TestBaseInfoByRealNameUser(BaseCase):
+    """我的-个人信息-基本信息-实名用户"""
 
     def setUp(self):
         super().setUp()
@@ -28,22 +28,7 @@ class TestBaseInfo(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login('unreal_name')
-    def test_01_unreal_user_info(self):
-        """未实名用户，姓名，性别，身份证号显示为空"""
-        self.main_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        test_name = self.user_info_page.get_name()
-        test_gender = self.user_info_page.get_gender()
-        test_identity_number = self.user_info_page.get_identity_number()
-        self.assertIsNone(test_name)
-        self.assertIsNone(test_gender)
-        self.assertIsNone(test_identity_number)
-        self.user_info_page.click_real_name_authentication()
-        self.assertTrue(self.real_name_authentication_page.is_displayed())
-
-    @login
-    def test_02_real_user_info(self):
+    def test_01_real_user_info(self):
         """非银行卡认证用户，显示姓名，性别，身份证号"""
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
@@ -57,14 +42,49 @@ class TestBaseInfo(BaseCase):
         self.assertEqual('{}*****************{}'.format(identity_number[0], identity_number[-1]),
                          test_identity_number)
 
-    @login
-    def test_03_real_user_authentication_method(self):
+    def test_02_real_user_authentication_method(self):
         """已实名用户可查看实名认证的方式"""
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         self.user_info_page.click_real_name_authentication()
         self.assertTrue(self.authentication_method_page.is_displayed())
         self.assertEqual(self.authentication_method_page.get_authentication_method(), authentication_method)
+
+
+class TestBaseInfoByUnrealNameUser(BaseCase):
+    """我的-个人信息-基本信息-未实名用户"""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        unreal_name_user = login_users['unreal_name_user']
+        unreal_phone_number = unreal_name_user['phone_number']
+        unreal_password = unreal_name_user['password']
+        Login.user_logout_without_driver()
+        Login.user_login_without_driver(unreal_phone_number, unreal_password)
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        Login.user_logout_without_driver()
+        Login.user_login_without_driver(phone_number, password)
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
+    def test_01_unreal_user_info(self):
+        """未实名用户，姓名，性别，身份证号显示为空"""
+        self.main_page.switch_to_mine_page()
+        self.mine_page.click_user_area()
+        test_name = self.user_info_page.get_name()
+        test_gender = self.user_info_page.get_gender()
+        test_identity_number = self.user_info_page.get_identity_number()
+        self.assertIsNone(test_name)
+        self.assertIsNone(test_gender)
+        self.assertIsNone(test_identity_number)
+        self.user_info_page.click_real_name_authentication()
+        self.assertTrue(self.real_name_authentication_page.is_displayed())
 
 
 class TestPasswordManage(BaseCase):
@@ -76,14 +96,12 @@ class TestPasswordManage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_01_modify_password_to_old_password(self):
         """修改成原始密码失败"""
         self.main_page.switch_to_mine_page()
         self._modify_password(password, password)
         self.assertFalse(self.login_page.is_displayed())
 
-    @login
     def test_02_modify_password_to_full_letters_or_digits(self):
         """修改成全英文或全数字失败"""
         full_letters = 'hangzhou'
@@ -94,14 +112,12 @@ class TestPasswordManage(BaseCase):
         self.password_manage_page.modify_password(password, full_digits)
         self.assertFalse(self.login_page.is_displayed())
 
-    @login
     def test_03_modify_password_to_empty_password(self):
         """修改成全空密码失败"""
         self.main_page.switch_to_mine_page()
         self._modify_password(password, '')
         self.assertFalse(self.login_page.is_displayed())
 
-    @login
     def test_04_modify_password_success(self):
         """修改登录密码成功"""
         new_password = 'test1234'
@@ -129,7 +145,6 @@ class TestAddressManage(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_01_create_address(self):
         """添加地址"""
         create_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -149,7 +164,6 @@ class TestAddressManage(BaseCase):
                          self.address_manage_page.get_last_address_phone_number())
         self.assertIn(create_detail_address, self.address_manage_page.get_last_address_detail())
 
-    @login
     def test_02_modify_address(self):
         """修改地址"""
         modify_time_now = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -169,7 +183,6 @@ class TestAddressManage(BaseCase):
                          self.address_manage_page.get_last_address_phone_number())
         self.assertIn(modify_detail_address, self.address_manage_page.get_last_address_detail())
 
-    @login
     def test_03_delete_address(self):
         """删除地址"""
         self.main_page.switch_to_mine_page()

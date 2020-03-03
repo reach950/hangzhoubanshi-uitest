@@ -18,9 +18,4 @@ class RealNameAuthenticationPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        page_title = self.find_element(self.page_title_loc)
-        alipay = self.find_element(self.alipay_loc)
-        if page_title and alipay:
-            return page_title.is_displayed() and alipay.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.page_title_loc) and self.is_element_exist_by_loc(self.alipay_loc)
