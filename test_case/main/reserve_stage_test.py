@@ -10,6 +10,7 @@ from test_case.base_case import BaseCase
 from common_test_step.reserve import get_reserve_item
 
 
+@unittest.skip
 class TestReserveStage(BaseCase):
     """首页-预约展台-预约"""
 

@@ -7,13 +7,16 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from common_test_step import login
-from common_test_step import get_handle_item, handle_bug
+from common_test_step.handle_item import HandleItem
 from common_test_step.reserve import get_reserve_item
 
 
-class TestMessageType(BaseCase):
-    """我的-消息中心-消息类型"""
+class TestHandleMessage(BaseCase):
+    """我的-消息中心-消息类型-办件消息"""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        HandleItem.handle_item_once()
 
     def setUp(self):
         super().setUp()
@@ -21,19 +24,26 @@ class TestMessageType(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @unittest.skipIf(handle_bug, '借阅证密码修改后未生成办件记录，用例不执行')
-    @login
     def test_01_open_handle_item_detail_page(self):
         """点击办件消息，跳转到对应的办件详情页面"""
-        item_name = get_handle_item(self.driver)
         self.main_page.switch_to_mine_page()
-        self.mine_page.open_message_center()
-        self.message_center_page.open_first_handle_detail()
+        self.mine_page.click_message_center()
+        self.message_center_page.click_first_handle_message()
         self.assertTrue(self.handle_item_detail_page.is_displayed())
-        self.assertEqual(item_name, self.handle_item_detail_page.get_item_name())
+        self.assertEqual(HandleItem.item_name, self.handle_item_detail_page.get_item_name())
 
-    @login
-    def test_02_open_reserve_detail_page(self):
+
+class TestReserveMessage(BaseCase):
+    """我的-消息中心-消息类型-预约消息"""
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
+    @unittest.skip
+    def test_01_open_reserve_detail_page(self):
         """点击预约消息，跳转到对应的预约详情页面"""
         reserve_info = get_reserve_item(self.driver)
         self.main_page.switch_to_mine_page()

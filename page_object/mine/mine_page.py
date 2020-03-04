@@ -95,19 +95,19 @@ class MinePage(BasePage):
         self.tap_element(self.my_card_loc)
 
     # 打开消息中心
-    def open_message_center(self):
+    def click_message_center(self):
         self.tap_element(self.message_center_loc)
 
     # 打开求助反馈
-    def open_help_feedback(self):
+    def click_help_feedback(self):
         self.tap_element(self.help_feedback_loc)
 
     # 打开投诉建议
-    def open_complaint_suggestion(self):
+    def click_complaint_suggestion(self):
         self.tap_element(self.complaint_suggestion_loc)
 
     # 打开关于我们
-    def open_about_us(self):
+    def click_about_us(self):
         self.tap_element(self.about_us_loc)
 
     # 页面是否显示警告信息

@@ -11,7 +11,7 @@ from page_object.base_page import BasePage
 
 class MessageCenterPage(BasePage):
     # 页面标题
-    page_title_loc = (MobileBy.ACCESSIBILITY_ID, '消息中心')
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "消息中心" AND rect.width == 199')
 
     # 第一条消息
     first_message_info = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]'
@@ -42,10 +42,10 @@ class MessageCenterPage(BasePage):
     def scroll_to_first_reserve_message(self):
         self.scroll(loc=self.message_list_loc, name='预约消息')
 
-    # 打开第一条办件详情
-    def open_first_handle_detail(self):
+    # 点击第一条办件消息
+    def click_first_handle_message(self):
         self.tap_element(self.first_handle_message_loc)
 
-    # 打开第一条预约详情
-    def open_first_reserve_detail(self):
+    # 点击第一条预约消息
+    def click_first_reserve_message(self):
         self.tap_element(self.first_reserve_message_loc)
