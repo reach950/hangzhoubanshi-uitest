@@ -23,4 +23,4 @@ class AuthenticationMethodPage(BasePage):
 
     # 获取认证方式
     def get_authentication_method(self):
-        return self.find_element(self.authentication_method_loc).get_attribute('value')
+        return self.find_element(self.authentication_method_loc).get_attribute('name')

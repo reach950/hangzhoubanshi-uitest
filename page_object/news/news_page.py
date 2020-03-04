@@ -35,7 +35,7 @@ class NewsPage(BasePage):
         publish_dates = []
         eles = self.find_elements(self.publish_date_loc)
         for ele in eles:
-            publish_dates.append(ele.get_attribute('value'))
+            publish_dates.append(ele.get_attribute('name'))
         return publish_dates
 
     # 获取第一条新闻的标题

@@ -40,11 +40,11 @@ class ActivateReservePage(BasePage):
 
     # 获取预约时间
     def get_reserve_time(self):
-        return self.find_element(self.reserve_time_loc).get_attribute('value')
+        return self.find_element(self.reserve_time_loc).get_attribute('name')
 
     # 获取预约事项名称
     def get_reserve_item_name(self):
-        return self.find_element(self.reserve_item_name_loc).get_attribute('value')
+        return self.find_element(self.reserve_item_name_loc).get_attribute('name')
 
     # 打开如何扫码页面
     def open_how_to_scan_code_page(self):

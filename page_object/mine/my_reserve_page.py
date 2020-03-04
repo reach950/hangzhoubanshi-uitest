@@ -30,12 +30,12 @@ class MyReservePage(BasePage):
 
     # 获取第一条预约记录日期
     def get_first_reserve_date(self):
-        return self.find_element(self.first_reserve_date_loc).get_attribute('value')
+        return self.find_element(self.first_reserve_date_loc).get_attribute('name')
 
     # 获取第一条预约记录地址
     def get_first_reserve_address(self):
-        return self.find_element(self.first_reserve_address_loc).get_attribute('value')
+        return self.find_element(self.first_reserve_address_loc).get_attribute('name')
 
     # 获取第一条预约记录名称
     def get_first_reserve_name(self):
-        return self.find_element(self.first_reserve_name_loc).get_attribute('value')
+        return self.find_element(self.first_reserve_name_loc).get_attribute('name')

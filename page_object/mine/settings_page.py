@@ -35,4 +35,4 @@ class SettingsPage(BasePage):
 
     # 获取缓存空间
     def get_cache_size(self):
-        return self.find_element(self.cache_size_loc).get_attribute('value')
+        return self.find_element(self.cache_size_loc).get_attribute('name')

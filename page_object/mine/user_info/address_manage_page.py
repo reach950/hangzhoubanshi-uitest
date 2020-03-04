@@ -58,15 +58,15 @@ class AddressManagePage(BasePage):
 
     # 获取最后一个地址的具体位置
     def get_last_address_detail(self):
-        return self.find_element(self.last_address_detail_loc).get_attribute('value')
+        return self.find_element(self.last_address_detail_loc).get_attribute('name')
 
     # 获取最后一个地址的用户姓名
     def get_last_address_username(self):
-        return self.find_element(self.last_address_username_loc).get_attribute('value')
+        return self.find_element(self.last_address_username_loc).get_attribute('name')
 
     # 获取最后一个地址的电话号码
     def get_last_address_phone_number(self):
-        return self.find_element(self.last_address_phone_number_loc).get_attribute('value')
+        return self.find_element(self.last_address_phone_number_loc).get_attribute('name')
 
     # 等到页面显示
     def wait_to_display(self):

@@ -11,8 +11,8 @@ from page_object.base_page import BasePage
 
 
 class MainPage(BasePage):
-    # 首页table
-    table_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
+    # 首页展台列表
+    stage_list_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTable')
 
     # 智能客服
     ai_service_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeOther[1]'
@@ -132,7 +132,7 @@ class MainPage(BasePage):
 
     # 滑动首页到办件展台
     def scroll_to_handle_item_stage(self, item_name):
-        self.scroll(loc=self.table_loc, name=item_name)
+        self.scroll(loc=self.stage_list_loc, name=item_name)
 
     # 点击区县服务
     def click_district_service(self):
@@ -140,7 +140,7 @@ class MainPage(BasePage):
 
     # 滑动首页到区县服务
     def scroll_to_district_service(self):
-        self.scroll(loc=self.table_loc, name='区县服务')
+        self.scroll(loc=self.stage_list_loc, name='区县服务')
 
     # 办件展台是否包含办件名称
     def is_handle_item_stage_contain_item_name(self, item_name):

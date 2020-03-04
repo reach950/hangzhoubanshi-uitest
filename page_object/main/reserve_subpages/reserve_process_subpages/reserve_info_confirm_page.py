@@ -40,17 +40,17 @@ class ReserveInfoConfirmPage(BasePage):
     # 获取预约信息
     def get_reserve_info(self):
         reserve_info_dict = {
-            '姓名': self.find_element(self.name_loc).get_attribute('value'),
-            '身份证号': self.find_element(self.identity_card_loc).get_attribute('value'),
-            '手机号': self.find_element(self.phone_number_loc).get_attribute('value'),
-            '办事大厅': self.find_element(self.reserve_address_loc).get_attribute('value'),
-            '预约事项': self.find_element(self.reserve_affair_name_loc).get_attribute('value'),
+            '姓名': self.find_element(self.name_loc).get_attribute('name'),
+            '身份证号': self.find_element(self.identity_card_loc).get_attribute('name'),
+            '手机号': self.find_element(self.phone_number_loc).get_attribute('name'),
+            '办事大厅': self.find_element(self.reserve_address_loc).get_attribute('name'),
+            '预约事项': self.find_element(self.reserve_affair_name_loc).get_attribute('name'),
             '办事时间': self._format_reserve_time()
         }
         return reserve_info_dict
 
     # 处理办事时间的年月日显示方式，由**月**日改为****-**-**
     def _format_reserve_time(self):
-        reserve_time = self.find_element(self.reserve_time_loc).get_attribute('value')
+        reserve_time = self.find_element(self.reserve_time_loc).get_attribute('name')
         print(datetime.now().year)
         return '{}-{}-{} {}'.format(datetime.now().year, reserve_time[0:2], reserve_time[3:5], reserve_time[7:])

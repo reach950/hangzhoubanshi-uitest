@@ -32,7 +32,7 @@ class MessageCenterPage(BasePage):
 
     # 获取第一条消息
     def get_first_message_info(self):
-        return self.find_element(self.first_message_info).get_attribute('value')
+        return self.find_element(self.first_message_info).get_attribute('name')
 
     # 滑动到第一条办件消息
     def scroll_to_first_handle_message(self):

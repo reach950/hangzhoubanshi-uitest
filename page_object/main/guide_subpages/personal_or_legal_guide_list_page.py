@@ -38,7 +38,7 @@ class PersonalOrLegalGuideListPage(BasePage):
 
     # 获取第一个事项指南的名称
     def get_first_guide_name(self):
-        return self.find_element(self.first_guide_name_loc).get_attribute('value')
+        return self.find_element(self.first_guide_name_loc).get_attribute('name')
 
     # 输入关键字搜索
     def search(self, text):

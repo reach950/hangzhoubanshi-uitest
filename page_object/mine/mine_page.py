@@ -49,11 +49,11 @@ class MinePage(BasePage):
 
     # 获取用户姓名
     def get_username(self):
-        return self.find_element(self.username_loc).get_attribute('value')
+        return self.find_element(self.username_loc).get_attribute('name')
 
     # 获取用户状态
     def get_user_state(self):
-        return self.find_element(self.user_state_loc).get_attribute('value')
+        return self.find_element(self.user_state_loc).get_attribute('name')
 
     # 点击设置按钮
     def click_settings(self):
@@ -79,8 +79,8 @@ class MinePage(BasePage):
     def wait_to_display(self):
         self.is_element_exist_by_loc(self.my_handle_item_loc)
 
-    # 打开我的办件列表
-    def open_my_handle_item(self):
+    # 点击我的办件
+    def click_my_handle_item(self):
         self.tap_element(self.my_handle_item_loc)
 
     # 打开我的预约

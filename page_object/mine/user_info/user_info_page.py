@@ -40,19 +40,19 @@ class UserInfoPage(BasePage):
 
     # 获取姓名
     def get_name(self):
-        return self.find_element(self.name_loc).get_attribute('value')
+        return self.find_element(self.name_loc).get_attribute('name')
 
     # 获取性别
     def get_gender(self):
-        return self.find_element(self.gender_loc).get_attribute('value')
+        return self.find_element(self.gender_loc).get_attribute('name')
 
     # 获取手机号码
     def get_phone_number(self):
-        return self.find_element(self.phone_number_loc).get_attribute('value')
+        return self.find_element(self.phone_number_loc).get_attribute('name')
 
     # 获取身份证号码
     def get_identity_number(self):
-        return self.find_element(self.identity_number_loc).get_attribute('value')
+        return self.find_element(self.identity_number_loc).get_attribute('name')
 
     # 点击地址管理
     def click_address_manage(self):
