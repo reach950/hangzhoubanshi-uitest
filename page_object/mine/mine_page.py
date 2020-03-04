@@ -84,7 +84,7 @@ class MinePage(BasePage):
         self.tap_element(self.my_handle_item_loc)
 
     # 打开我的预约
-    def open_my_reserve(self):
+    def click_my_reserve(self):
         self.tap_element(self.my_reserve_loc)
 
     # 打开我的卡包

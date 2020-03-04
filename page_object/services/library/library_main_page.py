@@ -29,4 +29,4 @@ class LibraryMainPage(BasePage):
 
     # 等到页面显示
     def wait_to_display(self):
-        self.is_element_exist_by_loc(self.page_title_loc)
+        self.is_element_exist_by_loc(self.page_title_loc, display=False)
