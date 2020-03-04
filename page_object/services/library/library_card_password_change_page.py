@@ -30,4 +30,4 @@ class LibraryCardPasswordChangePage(BasePage):
 
     # 等到页面显示
     def wait_to_display(self):
-        self.is_element_exist_by_loc(self.reader_id_loc)
+        self.is_element_exist_by_loc(self.submit_button_loc, wait_display_time=10)

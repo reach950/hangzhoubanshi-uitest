@@ -49,7 +49,7 @@ class TestAllApps(BaseCase):
         item_name = '出具社会保险信息证明'
         self.main_page.click_more_apps()
         self.all_apps_page.switch_to_handle_tab()
-        self.all_apps_page.click_element_by_name(item_name)
+        self.all_apps_page.click_item_name(item_name)
         self.assertTrue(self.provide_social_insurance_certificate_page.is_displayed())
 
 

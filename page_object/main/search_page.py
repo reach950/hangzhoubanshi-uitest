@@ -118,3 +118,7 @@ class SearchPage(BasePage):
     # 搜索结果是否包含资讯
     def is_search_result_contain_news(self, news_name):
         return self.is_element_exist_by_name(news_name)
+
+    # 点击搜索结果中的事项名称
+    def click_item_name_in_search_result(self, item_name):
+        self.click_element_by_name(item_name)

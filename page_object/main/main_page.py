@@ -60,6 +60,9 @@ class MainPage(BasePage):
     message_button_loc = (MobileBy.IOS_PREDICATE,
                           'type == "XCUIElementTypeButton" AND name IN {"home msg unread s", "home msg read s"}')
 
+    # 办件展台里的办件时间
+    handle_time_loc = (MobileBy.IOS_PREDICATE, 'name == "刚刚" OR name ENDSWITH "分钟前"')
+
     # 点击办事指南
     def click_guide(self):
         self.tap_element(self.guide_loc)
@@ -139,6 +142,14 @@ class MainPage(BasePage):
     def scroll_to_district_service(self):
         self.scroll(loc=self.table_loc, name='区县服务')
 
-    # 是否包含办件展台
-    def is_contain_handle_item_stage(self, item_name):
+    # 办件展台是否包含办件名称
+    def is_handle_item_stage_contain_item_name(self, item_name):
         return self.is_element_exist_by_name(item_name, display=False)
+
+    # 办件展台是否包含办件时间
+    def is_handle_item_stage_contain_handle_time(self):
+        return self.is_element_exist_by_loc(self.handle_time_loc, display=False)
+
+    # 点击办件展台里的办件名称
+    def click_item_name_in_handle_item_stage(self, item_name):
+        self.click_element_by_name(item_name)

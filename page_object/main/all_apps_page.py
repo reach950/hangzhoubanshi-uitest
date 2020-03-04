@@ -74,3 +74,7 @@ class AllAppsPage(BasePage):
     # 搜索结果是否包含查询类事项
     def is_search_result_contain_query_item(self, item_name):
         return self.is_element_exist_by_name(item_name, display=False)
+
+    # 点击事项名称
+    def click_item_name(self, item_name):
+        self.click_element_by_name(item_name)
