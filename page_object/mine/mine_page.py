@@ -87,8 +87,8 @@ class MinePage(BasePage):
     def click_my_reserve(self):
         self.tap_element(self.my_reserve_loc)
 
-    # 打开我的卡包
-    def open_my_card(self):
+    # 点击我的卡包
+    def click_my_card(self):
         for _ in range(3):
             self.swipe(direct='left', loc=self.my_card_loc)
             time.sleep(1)
@@ -109,3 +109,7 @@ class MinePage(BasePage):
     # 打开关于我们
     def open_about_us(self):
         self.tap_element(self.about_us_loc)
+
+    # 页面是否显示警告信息
+    def is_alert_message_displayed(self, message_name):
+        return self.is_element_exist_by_name(message_name)

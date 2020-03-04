@@ -15,8 +15,4 @@ class FaceVerificationPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        start_verify_face = self.find_element(self.start_verify_face_loc)
-        if start_verify_face:
-            return start_verify_face.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.start_verify_face_loc)

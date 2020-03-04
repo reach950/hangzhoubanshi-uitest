@@ -39,5 +39,6 @@ class LoginPage(BasePage):
     def is_displayed(self):
         return self.is_element_exist_by_loc(self.header_image_loc)
 
+    # 页面是否显示警告信息
     def is_alert_message_displayed(self, message_name):
         return self.is_element_exist_by_name(message_name)
