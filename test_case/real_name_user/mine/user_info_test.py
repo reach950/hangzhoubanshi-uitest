@@ -9,7 +9,6 @@ import unittest
 from datetime import datetime
 from test_case.base_case import BaseCase
 from config.login_users import login_users
-from common_test_step.login import Login
 
 real_name_user = login_users['real_name_user']
 phone_number = real_name_user['phone_number']
@@ -48,42 +47,6 @@ class TestBaseInfoByRealNameUser(BaseCase):
         self.user_info_page.click_real_name_authentication()
         self.assertTrue(self.authentication_method_page.is_displayed())
         self.assertEqual(self.authentication_method_page.get_authentication_method(), authentication_method)
-
-
-class TestBaseInfoByUnrealNameUser(BaseCase):
-    """我的-个人信息-基本信息-未实名用户"""
-
-    @classmethod
-    def setUpClass(cls) -> None:
-        unreal_name_user = login_users['unreal_name_user']
-        unreal_phone_number = unreal_name_user['phone_number']
-        unreal_password = unreal_name_user['password']
-        Login.user_logout_without_driver()
-        Login.user_login_without_driver(unreal_phone_number, unreal_password)
-
-    @classmethod
-    def tearDownClass(cls) -> None:
-        Login.user_logout_without_driver()
-        Login.user_login_without_driver(phone_number, password)
-
-    def setUp(self):
-        super().setUp()
-
-    def tearDown(self):
-        super().tearDown()
-
-    def test_01_unreal_user_info(self):
-        """未实名用户，姓名，性别，身份证号显示为空"""
-        self.main_page.switch_to_mine_page()
-        self.mine_page.click_user_area()
-        test_name = self.user_info_page.get_name()
-        test_gender = self.user_info_page.get_gender()
-        test_identity_number = self.user_info_page.get_identity_number()
-        self.assertIsNone(test_name)
-        self.assertIsNone(test_gender)
-        self.assertIsNone(test_identity_number)
-        self.user_info_page.click_real_name_authentication()
-        self.assertTrue(self.real_name_authentication_page.is_displayed())
 
 
 class TestPasswordManage(BaseCase):
