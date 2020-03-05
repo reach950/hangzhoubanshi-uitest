@@ -11,8 +11,8 @@ from page_object.base_page import BasePage
 
 class MySuggestionPage(BasePage):
     # 第一条建议的查看详情
-    first_view_detail_loc = (MobileBy.ACCESSIBILITY_ID, '查看详情')
+    first_suggestion_view_detail_loc = (MobileBy.ACCESSIBILITY_ID, '查看详情')
 
-    # 打开第一条建议详情
-    def open_first_suggestion_detail(self):
-        self.tap_element(self.first_view_detail_loc)
+    # 点击第一条建议的查看详情
+    def click_first_suggestion_view_detail(self):
+        self.tap_element(self.first_suggestion_view_detail_loc)

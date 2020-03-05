@@ -19,14 +19,14 @@ class HelpFeedbackPage(BasePage):
     # 我的建议
     my_suggestion_loc = (MobileBy.ACCESSIBILITY_ID, '我的建议')
 
-    # 打开问题求助
-    def open_problem_to_seek_help(self):
+    # 点击问题求助
+    def click_problem_to_seek_help(self):
         self.tap_element(self.problem_to_seek_help_loc)
 
-    # 打开意见反馈
-    def open_feedback(self):
+    # 点击意见反馈
+    def click_feedback(self):
         self.tap_element(self.feedback_loc)
 
-    # 打开我的建议
-    def open_my_suggestion(self):
+    # 点击我的建议
+    def click_my_suggestion(self):
         self.tap_element(self.my_suggestion_loc)

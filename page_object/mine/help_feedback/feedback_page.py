@@ -33,7 +33,7 @@ class FeedbackPage(BasePage):
     submit_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "提交"')
 
     # 随机选择一个问题类型
-    def select_random_problem_type(self):
+    def select_random_feedback_type(self):
         num = random.randint(1, 5)
         if num == 1:
             loc = self.dysfunction_loc
@@ -56,10 +56,7 @@ class FeedbackPage(BasePage):
     # 提交按钮是否可以点击
     def is_submit_button_enabled(self):
         is_enabled = self.find_element(self.submit_button_loc).get_attribute('enabled')
-        if is_enabled == 'true':
-            return True
-        else:
-            return False
+        return True if is_enabled == 'true' else False
 
     # 滑动到页面底部
     def scroll_to_footer(self):
