@@ -6,9 +6,7 @@
 __author__ = 'kejie'
 
 import unittest
-import time
 from test_case.base_case import BaseCase
-from common_test_step import login
 
 
 class TestClearCache(BaseCase):
@@ -20,14 +18,14 @@ class TestClearCache(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_01_clear_cache(self):
         """清理缓存，空间显示为0"""
         self.main_page.switch_to_mine_page()
-        self.mine_page.open_settings_page()
+        self.mine_page.click_settings()
+
+        cache_size = self.settings_page.get_cache_size()
         self.settings_page.clear_cache()
-        time.sleep(3)
-        self.assertEqual(self.settings_page.get_cache_size(), '0.00M')
+        self.assertTrue(self.settings_page.is_cache_cleared(cache_size))
 
 
 if __name__ == '__main__':

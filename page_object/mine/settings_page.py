@@ -10,6 +10,9 @@ from page_object.base_page import BasePage
 
 
 class SettingsPage(BasePage):
+    # 页面标题
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "设置" AND rect.width == 199')
+
     # 安全退出按钮
     quit_button_loc = (MobileBy.ACCESSIBILITY_ID, '安全退出')
 
@@ -20,8 +23,7 @@ class SettingsPage(BasePage):
     clear_cache_loc = (MobileBy.ACCESSIBILITY_ID, '清空缓存')
 
     # 缓存大小
-    cache_size_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]'
-                                                '/XCUIElementTypeStaticText[2]')
+    cache_size_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name ENDSWITH "M"')
 
     # 清空缓存
     def clear_cache(self):
@@ -36,3 +38,12 @@ class SettingsPage(BasePage):
     # 获取缓存空间
     def get_cache_size(self):
         return self.find_element(self.cache_size_loc).get_attribute('name')
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.page_title_loc)
+
+    # 缓存是否清除
+    def is_cache_cleared(self, old_cache_size):
+        return self.is_element_disappeared_by_name(old_cache_size, exist=False) and \
+               self.is_element_exist_by_name('0.00M')
