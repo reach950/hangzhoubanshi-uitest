@@ -15,8 +15,4 @@ class TermOfServicePage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        page_title = self.find_element(self.page_title_loc)
-        if page_title:
-            return page_title.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.page_title_loc)
