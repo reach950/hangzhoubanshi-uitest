@@ -18,7 +18,7 @@ class MinePage(BasePage):
     username_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 192')
 
     # 用户状态
-    user_state_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 60')
+    user_status_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 60')
 
     # 设置
     settings_loc = (MobileBy.ACCESSIBILITY_ID, 'M Setting')
@@ -52,8 +52,8 @@ class MinePage(BasePage):
         return self.find_element(self.username_loc).get_attribute('name')
 
     # 获取用户状态
-    def get_user_state(self):
-        return self.find_element(self.user_state_loc).get_attribute('name')
+    def get_user_status(self):
+        return self.find_element(self.user_status_loc).get_attribute('name')
 
     # 点击设置按钮
     def click_settings(self):
@@ -61,7 +61,7 @@ class MinePage(BasePage):
 
     # 用户是否登录
     def is_login(self):
-        return not self.get_username() == '您好' and not self.get_user_state() == '未登录用户'
+        return not self.get_user_status() == '未登录用户'
 
     # 点击用户区域
     def click_user_area(self):

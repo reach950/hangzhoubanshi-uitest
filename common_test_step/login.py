@@ -16,15 +16,36 @@ from page_object.mine.settings_page import SettingsPage
 
 class Login:
     real_name_user = login_users['real_name_user']
+    unreal_name_user = login_users['unreal_name_user']
     main_page = None
     mine_page = None
     settings_page = None
     login_page = None
 
-    # 初始化登录
+    # 初始化未实名用户登录
     @classmethod
-    def init_login(cls):
-        logging.info('初始化登录')
+    def init_unreal_name_user_login(cls):
+        logging.info('初始化未实名用户登录')
+        driver = AppiumDriver().get_driver()
+        cls._init_page(driver)
+
+        cls.main_page.wait_to_display()
+        cls.main_page.switch_to_mine_page()
+        user_status = cls.mine_page.get_user_status()
+        if user_status != '未实名用户':
+            if cls.mine_page.is_login():
+                cls.mine_page.click_settings()
+                cls.settings_page.logout()
+                cls.main_page.switch_to_mine_page()
+            cls.mine_page.click_user_area()
+            cls.login_page.login(cls.unreal_name_user['phone_number'], cls.unreal_name_user['password'])
+            cls.mine_page.wait_to_display()
+        driver.quit()
+
+    # 初始化实名用户登录
+    @classmethod
+    def init_real_name_user_login(cls):
+        logging.info('初始化实名用户登录')
         driver = AppiumDriver().get_driver()
         cls._init_page(driver)
 

@@ -26,17 +26,30 @@ client_log = os.path.join(result_path, 'client.log')
 
 def run_all_case():
     logging.info('开始执行用例')
-    all_case = unittest.defaultTestLoader.discover(case_path, pattern='*_test.py')
     with open(report_file, 'wb') as report:
         runner = HTMLTestRunner(stream=report, title=report_title, description=desc)
-        runner.run(all_case)
+        run_real_name_user_case(runner)
+        run_unreal_name_user_case(runner)
+    logging.info('用例执行结束')
+
+
+def run_real_name_user_case(runner: 'HTMLTestRunner'):
+    Login.init_real_name_user_login()
+    test_suite_path = os.path.join(case_path, 'real_name_user')
+    test_suite = unittest.defaultTestLoader.discover(test_suite_path, pattern='*_test.py')
+    runner.run(test_suite)
+
+
+def run_unreal_name_user_case(runner: 'HTMLTestRunner'):
+    Login.init_unreal_name_user_login()
+    test_suite_path = os.path.join(case_path, 'unreal_name_user')
+    test_suite = unittest.defaultTestLoader.discover(test_suite_path, pattern='*_test.py')
+    runner.run(test_suite)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename=client_log, filemode='w',
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    # 初始化登录状态为实名用户登录
-    Login.init_login()
     # 执行用例
     run_all_case()
     # 发送测试报告
