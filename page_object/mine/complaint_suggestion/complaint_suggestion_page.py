@@ -14,20 +14,20 @@ class ComplaintSuggestionPage(BasePage):
     add_complaint_suggestion_button_loc = (MobileBy.ACCESSIBILITY_ID, '+ 添加投诉建议')
 
     # 部门建议投诉选择项
-    complaint_choice_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "部门建议投诉"')
+    department_complaint_choice_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND name == "部门建议投诉"')
 
     # 页面标题
-    page_title_loc = (MobileBy.ACCESSIBILITY_ID, '投诉建议')
+    page_title_loc = (MobileBy.IOS_PREDICATE, 'name == "投诉建议" AND rect.width == 199')
 
-    # 打开添加投诉建议页面
-    def open_add_complaint_suggestion_page(self):
+    # 点击添加部门投诉建议
+    def click_add_department_complaint_suggestion(self):
         self.tap_element(self.add_complaint_suggestion_button_loc)
-        self.tap_element(self.complaint_choice_loc)
+        self.tap_element(self.department_complaint_choice_loc)
 
     # 页面是否显示
     def is_displayed(self):
-        page_title = self.find_element(self.page_title_loc)
-        if page_title:
-            return page_title.is_displayed()
-        else:
-            return False
+        return self.is_element_exist_by_loc(self.page_title_loc)
+
+    # 通过投诉类型点击第一条投诉建议
+    def click_first_complaint_by_complaint_type(self, type_name):
+        self.click_element_by_name(type_name)
