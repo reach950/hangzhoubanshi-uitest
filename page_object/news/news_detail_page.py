@@ -16,3 +16,7 @@ class NewsDetailPage(BasePage):
     # 获取新闻标题
     def get_news_title(self):
         return self.find_element(self.news_title_loc).get_attribute('name')
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.news_title_loc)

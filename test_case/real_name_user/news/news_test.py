@@ -31,6 +31,7 @@ class TestNews(BaseCase):
         self.news_page.switch_to_hzfb_tab()
         first_news_title = self.news_page.get_first_news_title()
         self.news_page.click_first_news()
+        self.news_detail_page.wait_to_display()
         self.assertEqual(first_news_title, self.news_detail_page.get_news_title(), '资讯详情打开失败')
 
 
