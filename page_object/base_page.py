@@ -15,6 +15,7 @@ from appium.webdriver.common.mobileby import MobileBy
 
 
 class BasePage:
+    window_size = {}
 
     # 实现页面对象单例模式
     def __new__(cls, *args, **kw):
@@ -57,13 +58,13 @@ class BasePage:
     # 重新封装元素点击操作
     def tap_on_element(self, element):
         rect = json.loads(element.get_attribute('rect'))
-        window_size = self.driver.get_window_size()
+        self.window_size = self.window_size or self.driver.get_window_size()
         ele_x = rect['x']
         ele_y = rect['y']
         ele_width = rect['width']
         ele_height = rect['height']
-        window_width = window_size['width']
-        window_height = window_size['height']
+        window_width = self.window_size['width']
+        window_height = self.window_size['height']
         x = ele_width / 2 if (ele_x + ele_width) <= window_width else (window_width - ele_x) / 2
         y = ele_height / 2 if (ele_y + ele_height) <= window_height else (window_height - ele_y) / 2
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': element})
