@@ -50,6 +50,9 @@ class SearchPage(BasePage):
     # 搜索结果中服务下的养老保险
     endowment_insurance_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 75')
 
+    # 关闭搜索图片
+    close_search_image_loc = (MobileBy.ACCESSIBILITY_ID, 'closeSearch')
+
     # 输入关键字搜索
     def search(self, text):
         self.send_keys(self.search_field_loc, text)
@@ -69,6 +72,15 @@ class SearchPage(BasePage):
         hot_search = self.find_element(self.hot_search_loc)
         hot_search_words = self.find_elements_from_parent_element(hot_search, self.search_words_child_loc)
         for word in hot_search_words:
+            search_words.append(word.get_attribute('name'))
+        return search_words
+
+    # 获取搜索历史的所有关键词
+    def get_all_search_history_words(self):
+        search_words = []
+        search_history = self.find_element(self.search_history_loc)
+        search_history_words = self.find_elements_from_parent_element(search_history, self.search_words_child_loc)
+        for word in search_history_words:
             search_words.append(word.get_attribute('name'))
         return search_words
 
@@ -122,3 +134,20 @@ class SearchPage(BasePage):
     # 点击搜索结果中的事项名称
     def click_item_name_in_search_result(self, item_name):
         self.click_element_by_name(item_name)
+
+    # 等到页面显示
+    def wait_to_display(self):
+        self.is_element_exist_by_loc(self.ai_service_button_loc)
+
+    # 点击关闭搜索图片
+    def click_close_search_image(self):
+        self.tap_element(self.close_search_image_loc)
+
+    # 点击搜索历史删除按钮
+    def delete_search_history(self):
+        self.tap_element(self.search_history_delete_button_loc)
+        self.click_alert_button(button_lable='确定')
+
+    # 搜索历史是否消失
+    def is_search_history_disappeared(self):
+        return self.is_element_disappeared_by_name('历史搜索', exist=False)

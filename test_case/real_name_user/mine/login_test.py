@@ -22,7 +22,7 @@ class TestLoginByPhoneNumber(BaseCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        Login.user_logout_without_driver()
+        Login.user_logout()
 
     def setUp(self):
         super().setUp()
@@ -33,12 +33,12 @@ class TestLoginByPhoneNumber(BaseCase):
     def test_01_login_failed_by_phone_number_not_register(self):
         """登录失败，手机号未注册"""
         not_register_phone_number = '15812346789'
-        Login.user_login(self.driver, username=not_register_phone_number, password=test_password)
+        Login.login(self.driver, username=not_register_phone_number, password=test_password)
         self.login_page.is_alert_message_displayed(login_failed_alert_message)
 
     def test_02_login_by_phone_number_success(self):
         """通过手机号登录成功"""
-        Login.user_login(self.driver, username=test_phone_number, password=test_password)
+        Login.login(self.driver, username=test_phone_number, password=test_password)
         self.assertTrue(self.mine_page.is_login())
 
 
@@ -47,7 +47,7 @@ class TestLoginByIdNumber(BaseCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        Login.user_logout_without_driver()
+        Login.user_logout()
 
     def setUp(self):
         super().setUp()
@@ -58,12 +58,12 @@ class TestLoginByIdNumber(BaseCase):
     def test_01_login_failed_by_identity_number_not_register(self):
         """登录失败，身份证未注册"""
         not_register_identity_number = '421127198812120007'
-        Login.user_login(self.driver, username=not_register_identity_number, password=test_password)
+        Login.login(self.driver, username=not_register_identity_number, password=test_password)
         self.login_page.is_alert_message_displayed(login_failed_alert_message)
 
     def test_02_login_by_identity_number_success(self):
         """通过身份证号登录成功"""
-        Login.user_login(self.driver, username=test_identity_number, password=test_password)
+        Login.login(self.driver, username=test_identity_number, password=test_password)
         self.assertTrue(self.mine_page.is_login())
 
 

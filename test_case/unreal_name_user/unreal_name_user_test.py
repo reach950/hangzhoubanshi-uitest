@@ -15,11 +15,11 @@ class TestUnrealNameUser(BaseCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        Login.init_unreal_name_user_login()
+        Login.unreal_name_user_login()
 
     @classmethod
     def tearDownClass(cls) -> None:
-        Login.init_real_name_user_login()
+        Login.real_name_user_login()
 
     def setUp(self):
         super().setUp()

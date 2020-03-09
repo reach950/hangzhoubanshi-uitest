@@ -32,8 +32,9 @@ class TestSearchByText(BaseCase):
 
     def test_03_hot_search_words(self):
         """测试热门搜索词"""
-        self.main_page.click_search_field()
         hot_search_words = ['公积金', '社保', '资格证书', '护照', '交通违法', '驾驶员记分', '摇号']
+        self.main_page.click_search_field()
+        self.search_page.wait_to_display()
         test_hot_search_words = self.search_page.get_all_hot_search_words()
         self.assertEqual(set(hot_search_words), set(test_hot_search_words))
 
@@ -74,6 +75,23 @@ class TestSearchByText(BaseCase):
         self.assertTrue(self.search_page.is_no_result_page_display())
         test_no_result_hot_items = self.search_page.get_no_result_hot_items()
         self.assertEqual(set(no_result_hot_items), set(test_no_result_hot_items))
+
+    def test_06_search_history_has_six_recent_search_words_at_most(self):
+        """登录用户显示最多6条最新记录"""
+        search_text = '公积金'
+        self.main_page.click_search_field()
+        self.search_page.search(search_text)
+        self.search_page.click_close_search_image()
+        search_history_words = self.search_page.get_all_search_history_words()
+        self.assertTrue(len(search_history_words) <= 6)
+        self.assertEqual(search_text, search_history_words[0])
+
+    def test_07_delete_search_history_success(self):
+        """删除搜索历史成功"""
+        self.main_page.click_search_field()
+        self.search_page.delete_search_history()
+        self.search_page.wait_to_display()
+        self.assertTrue(self.search_page.is_search_history_disappeared())
 
 
 if __name__ == '__main__':

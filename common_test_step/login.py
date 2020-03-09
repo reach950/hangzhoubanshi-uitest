@@ -17,6 +17,7 @@ from page_object.mine.settings_page import SettingsPage
 class Login:
     real_name_user = login_users['real_name_user']
     unreal_name_user = login_users['unreal_name_user']
+    login_status = None
     main_page = None
     mine_page = None
     settings_page = None
@@ -24,16 +25,16 @@ class Login:
 
     # 初始化未实名用户登录
     @classmethod
-    def init_unreal_name_user_login(cls):
-        logging.info('初始化未实名用户登录')
+    def unreal_name_user_login(cls):
+        logging.info('未实名用户登录')
         driver = AppiumDriver().get_driver()
         cls._init_page(driver)
-
         cls.main_page.wait_to_display()
+
         cls.main_page.switch_to_mine_page()
         user_status = cls.mine_page.get_user_status()
         if user_status != '未实名用户':
-            if cls.mine_page.is_login():
+            if user_status == '已实名用户':
                 cls.mine_page.click_settings()
                 cls.settings_page.logout()
                 cls.main_page.switch_to_mine_page()
@@ -44,16 +45,16 @@ class Login:
 
     # 初始化实名用户登录
     @classmethod
-    def init_real_name_user_login(cls):
-        logging.info('初始化实名用户登录')
+    def real_name_user_login(cls):
+        logging.info('实名用户登录')
         driver = AppiumDriver().get_driver()
         cls._init_page(driver)
-
         cls.main_page.wait_to_display()
+
         cls.main_page.switch_to_mine_page()
-        user_name = cls.mine_page.get_username()
-        if user_name != cls.real_name_user['user_name']:
-            if cls.mine_page.is_login():
+        user_status = cls.mine_page.get_user_status()
+        if user_status != '已实名用户':
+            if user_status == '未实名用户':
                 cls.mine_page.click_settings()
                 cls.settings_page.logout()
                 cls.main_page.switch_to_mine_page()
@@ -62,9 +63,24 @@ class Login:
             cls.mine_page.wait_to_display()
         driver.quit()
 
+    @classmethod
+    def user_logout(cls):
+        logging.info('用户登出')
+        driver = AppiumDriver().get_driver()
+        cls._init_page(driver)
+        cls.main_page.wait_to_display()
+
+        cls.main_page.switch_to_mine_page()
+        user_status = cls.mine_page.get_user_status()
+        if user_status != '未登录用户':
+            cls.mine_page.click_settings()
+            cls.settings_page.logout()
+            cls.main_page.wait_to_display()
+        driver.quit()
+
     # 调用前请确保用户为未登录状态
     @classmethod
-    def user_login(cls, driver, username=real_name_user['phone_number'], password=real_name_user['password']):
+    def login(cls, driver, username=real_name_user['phone_number'], password=real_name_user['password']):
         cls._init_page(driver)
 
         cls.main_page.switch_to_mine_page()
@@ -73,7 +89,7 @@ class Login:
 
     # 调用前请确保用户为登录状态
     @classmethod
-    def user_logout(cls, driver):
+    def logout(cls, driver):
         cls._init_page(driver)
 
         cls.main_page.switch_to_mine_page()
@@ -87,17 +103,3 @@ class Login:
         cls.mine_page = MinePage(driver)
         cls.settings_page = SettingsPage(driver)
         cls.login_page = LoginPage(driver)
-
-    @classmethod
-    def user_login_without_driver(cls, username=real_name_user['phone_number'], password=real_name_user['password']):
-        driver = AppiumDriver().get_driver()
-        cls.user_login(driver, username, password)
-        cls.mine_page.wait_to_display()
-        driver.quit()
-
-    @classmethod
-    def user_logout_without_driver(cls):
-        driver = AppiumDriver().get_driver()
-        cls.user_logout(driver)
-        cls.main_page.wait_to_display()
-        driver.quit()

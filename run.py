@@ -37,7 +37,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename=client_log, filemode='w',
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     # 初始化实名用户登录
-    Login.init_real_name_user_login()
+    Login.real_name_user_login()
     # 执行用例
     run_all_case()
     # 发送测试报告
