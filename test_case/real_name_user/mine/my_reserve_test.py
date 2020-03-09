@@ -25,6 +25,7 @@ class TestMyReserve(BaseCase):
         self.assertTrue(self.my_reserve_page.is_contain_government_reserve())
         self.assertTrue(self.my_reserve_page.is_contain_medical_reserve())
 
+    @unittest.skip
     def test_02_check_reserve_info(self):
         """预约事项名称及时间地点显示正确"""
         reserve_info = get_reserve_item(self.driver)
