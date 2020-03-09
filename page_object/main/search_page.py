@@ -33,7 +33,8 @@ class SearchPage(BasePage):
     search_words_child_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeButton')
 
     # 历史搜索删除按钮
-    search_history_delete_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.heigth == 51')
+    search_history_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN,
+                                        '**/XCUIElementTypeOther[`name == "历史搜索"`]/XCUIElementTypeButton')
 
     # 最后一条搜索结果
     last_search_result_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[-1]')

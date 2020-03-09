@@ -84,7 +84,7 @@ class TestSearchByText(BaseCase):
         self.search_page.click_close_search_image()
         search_history_words = self.search_page.get_all_search_history_words()
         self.assertTrue(len(search_history_words) <= 6)
-        self.assertEqual(search_text, search_history_words[0])
+        self.assertIn(search_text, search_history_words)
 
     def test_07_delete_search_history_success(self):
         """删除搜索历史成功"""
