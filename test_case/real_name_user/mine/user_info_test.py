@@ -17,8 +17,8 @@ password = real_name_user['password']
 authentication_method = real_name_user['authentication_method']
 
 
-class TestBaseInfoByRealNameUser(BaseCase):
-    """我的-个人信息-基本信息-实名用户"""
+class TestBaseInfo(BaseCase):
+    """我的-个人信息-基本信息"""
 
     def setUp(self):
         super().setUp()

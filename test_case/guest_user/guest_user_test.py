@@ -10,16 +10,16 @@ from test_case.base_case import BaseCase
 from common_test_step.login import Login
 
 
-class TestGuestUser(BaseCase):
-    """未登录用户"""
+def setUpModule():
+    Login.user_logout()
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        Login.user_logout()
 
-    @classmethod
-    def tearDownClass(cls) -> None:
-        Login.real_name_user_login()
+def tearDownModule():
+    Login.real_name_user_login()
+
+
+class TestSearchByText(BaseCase):
+    """首页-搜索-文字搜索"""
 
     def setUp(self):
         super().setUp()
@@ -28,7 +28,7 @@ class TestGuestUser(BaseCase):
         super().tearDown()
 
     def test_01_guest_user_has_no_search_history(self):
-        """首页-搜索-文字搜索-未登录用户没有历史搜索"""
+        """未登录用户没有历史搜索"""
         search_text = '公积金'
         self.main_page.click_search_field()
         self.search_page.search(search_text)

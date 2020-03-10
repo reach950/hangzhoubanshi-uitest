@@ -10,16 +10,16 @@ from test_case.base_case import BaseCase
 from common_test_step.login import Login
 
 
-class TestUnrealNameUser(BaseCase):
-    """未实名用户"""
+def setUpModule():
+    Login.unreal_name_user_login()
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        Login.unreal_name_user_login()
 
-    @classmethod
-    def tearDownClass(cls) -> None:
-        Login.real_name_user_login()
+def tearDownModule():
+    Login.real_name_user_login()
+
+
+class TestMyCard(BaseCase):
+    """我的-我的证照-证照列表"""
 
     def setUp(self):
         super().setUp()
@@ -27,8 +27,8 @@ class TestUnrealNameUser(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_01_open_real_name_authentication_page_by_unreal_name(self):
-        """我的-我的证照-证照列表-未实名，点击进入实名认证页面"""
+    def test_01_need_real_name_authentication_to_open_my_card_page(self):
+        """未实名，打开我的卡包页面需要实名认证"""
         alert_message = '该服务需要实名，请您先完成实名认证！'
         self.main_page.switch_to_mine_page()
         self.mine_page.click_my_card()
@@ -36,8 +36,18 @@ class TestUnrealNameUser(BaseCase):
         self.mine_page.click_alert_button(button_lable='确定')
         self.assertTrue(self.real_name_authentication_page.is_displayed())
 
-    def test_02_unreal_user_info(self):
-        """我的-个人信息-基本信息-未实名用户，姓名，性别，身份证号显示为空"""
+
+class TestBaseInfo(BaseCase):
+    """我的-个人信息-基本信息"""
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
+    def test_01_unreal_user_info(self):
+        """未实名用户，姓名，性别，身份证号显示为空"""
         self.main_page.switch_to_mine_page()
         self.mine_page.click_user_area()
         test_name = self.user_info_page.get_name()
