@@ -29,6 +29,7 @@ class TestHzNews(BaseCase):
         self.main_page.scroll_to_news()
         first_news_title = self.main_page.get_first_news_title()
         self.main_page.click_first_news_title()
+        self.news_detail_page.wait_to_display()
         self.assertIn(first_news_title, self.news_detail_page.get_news_title())
 
 

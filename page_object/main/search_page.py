@@ -152,3 +152,7 @@ class SearchPage(BasePage):
     # 搜索历史是否消失
     def is_search_history_disappeared(self):
         return self.is_element_disappeared_by_name('历史搜索', exist=False)
+
+    # 搜索结果是否包含热门事项
+    def is_search_result_contain_hot_items(self):
+        return self.is_element_exist_by_name('热门事项')

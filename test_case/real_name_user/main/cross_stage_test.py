@@ -7,7 +7,6 @@ __author__ = 'kejie'
 
 import unittest
 from test_case.base_case import BaseCase
-from common_test_step import login
 from common_test_step import reserve
 
 search_text = '联通'
@@ -29,7 +28,6 @@ class TestReserveItems(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @login
     def test_01_reserve_success_to_open_activate_page(self):
         """预约成功，跳转到激活预约页面"""
         reserve_info = reserve.get_reserve_item(self.driver)
@@ -47,7 +45,6 @@ class TestReserveItems(BaseCase):
         self.activate_reserve_page.open_how_to_scan_code_page()
         self.assertTrue(self.how_to_scan_code_page.is_displayed(), '如何扫码页面打开失败')
 
-    @login
     def test_02_cancel_reserve(self):
         """取消预约"""
         reserve.get_reserve_item(self.driver)

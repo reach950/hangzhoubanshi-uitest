@@ -24,11 +24,11 @@ class ServicesPage(BasePage):
 
     # 小客车指标
     car_quota_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView'
-                                               '/XCUIElementTypeCell[6]/XCUIElementTypeOther/XCUIElementTypeImage')
+                                               '/XCUIElementTypeCell[7]/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 流动人口登记
     mobile_population_reside_registration_loc = (MobileBy.IOS_CLASS_CHAIN,
-                                                 '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[6]'
+                                                 '**/XCUIElementTypeCollectionView/XCUIElementTypeCell[8]'
                                                  '/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 教育缴费

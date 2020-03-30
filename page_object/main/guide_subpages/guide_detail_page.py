@@ -19,4 +19,4 @@ class GuideDetailPage(BasePage):
 
     # 是否显示事项名称
     def is_item_name_displayed(self, item_name):
-        return self.is_element_exist_by_loc(item_name)
+        return self.is_element_exist_by_name(item_name)

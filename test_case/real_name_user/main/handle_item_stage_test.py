@@ -33,7 +33,7 @@ class TestHandleItemStage(BaseCase):
         self.main_page.scroll_to_handle_item_stage(HandleItem.item_name)
         self.main_page.click_item_name_in_handle_item_stage(HandleItem.item_name)
         self.assertTrue(self.message_center_page.is_displayed())
-        self.assertIn(HandleItem.item_name, self.message_center_page.get_first_message_info())
+        # self.assertIn(HandleItem.item_name, self.message_center_page.get_first_message_info())
 
 
 if __name__ == '__main__':

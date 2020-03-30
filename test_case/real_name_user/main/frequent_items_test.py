@@ -32,8 +32,8 @@ class TestAICustomerService(BaseCase):
 
     def test_03_get_reply_from_default_question(self):
         """点击默认问题，获取正确回复"""
-        default_question = '年长的父母不愿意戴口罩怎么办'
-        default_question_reply = '从官方公布的疫情看'
+        default_question = '杭州行政服务中心在哪里的'
+        default_question_reply = '办公地址'
         self.main_page.click_ai_service()
         self.ai_customer_service_page.click_default_question(default_question)
         self.assertTrue(self.ai_customer_service_page.is_reply_displayed(default_question_reply, full=False))
