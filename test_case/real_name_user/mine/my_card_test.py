@@ -9,6 +9,7 @@ import unittest
 from test_case.base_case import BaseCase
 
 
+@unittest.skip
 class TestMyCard(BaseCase):
     """我的-我的证照-证照列表"""
 
@@ -18,7 +19,6 @@ class TestMyCard(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    @unittest.skip
     def test_01_need_face_verification_to_open_identity_card_page(self):
         """已实名，打开居民身份证需要进行人脸识别"""
         self.main_page.switch_to_mine_page()
