@@ -18,10 +18,10 @@ class SearchPage(BasePage):
     search_button_loc = (MobileBy.ACCESSIBILITY_ID, 'Search')
 
     # 智能客服按钮
-    ai_service_button_loc = (MobileBy.ACCESSIBILITY_ID, 'kefu')
+    ai_service_button_loc = (MobileBy.ACCESSIBILITY_ID, '客服icon')
 
     # 取消按钮
-    cancel_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND rect.width == 29')
+    cancel_button_loc = (MobileBy.ACCESSIBILITY_ID, '取消')
 
     # 热门搜索
     hot_search_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTable/XCUIElementTypeCell[1]')

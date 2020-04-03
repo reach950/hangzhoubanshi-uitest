@@ -10,21 +10,21 @@ from page_object.base_page import BasePage
 
 
 class NewsPage(BasePage):
-    # 页面标题
-    page_title_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND name == "资讯"')
+    # 全部资讯
+    all_news_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND name == "全部资讯"')
 
     # 杭州发布tab
-    hzfb_tab_loc = (MobileBy.IOS_PREDICATE, 'name == "杭州发布" AND rect.width == 64')
+    hzfb_tab_loc = (MobileBy.IOS_PREDICATE, 'name == "杭州发布" AND rect.width == 62')
 
     # 发布日期
-    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 85')
+    publish_date_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND rect.width == 100')
 
     # 第一条新闻
-    first_news_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeOther" AND rect.width == 450')
+    first_news_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeCell" AND rect.height == 134')
 
     # 第一条新闻标题
     first_news_title_loc = (MobileBy.IOS_CLASS_CHAIN,
-                            '**/XCUIElementTypeOther[`rect.width == 450`][1]/XCUIElementTypeOther[1]')
+                            '**/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]')
 
     # 切换到杭州发布tab
     def switch_to_hzfb_tab(self):
@@ -48,4 +48,4 @@ class NewsPage(BasePage):
 
     # 页面是否显示
     def is_displayed(self):
-        return self.is_element_exist_by_loc(self.page_title_loc)
+        return self.is_element_exist_by_loc(self.all_news_loc)

@@ -32,6 +32,7 @@ class TestThemeApps(BaseCase):
         self.services_page.click_mobile_population_reside_registration()
         self.assertTrue(self.mobile_population_reside_registration_page.is_displayed())
 
+    @unittest.skip
     def test_03_open_medical_insurance_success(self):
         """打开养老保险应用成功"""
         app_name = '养老保险'

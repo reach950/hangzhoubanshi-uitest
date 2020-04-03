@@ -33,7 +33,7 @@ class ServicesPage(BasePage):
 
     # 教育缴费
     education_pay_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCollectionView'
-                                                   '/XCUIElementTypeCell[4]/XCUIElementTypeOther/XCUIElementTypeImage')
+                                                   '/XCUIElementTypeCell[5]/XCUIElementTypeOther/XCUIElementTypeImage')
 
     # 点击搜索框
     def click_search_field(self):

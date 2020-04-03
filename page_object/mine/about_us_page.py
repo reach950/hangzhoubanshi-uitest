@@ -14,7 +14,7 @@ class AboutUsPage(BasePage):
     current_version_loc = (MobileBy.ACCESSIBILITY_ID, '当前版本：V1.3.8')
 
     # 技术服务热线电话
-    hotline_loc = (MobileBy.ACCESSIBILITY_ID, '0571-87292733')
+    hotline_loc = (MobileBy.ACCESSIBILITY_ID, '技术咨询热线')
 
     # 微信公众号
     wechat_name_loc = (MobileBy.ACCESSIBILITY_ID, '杭州办事服务')

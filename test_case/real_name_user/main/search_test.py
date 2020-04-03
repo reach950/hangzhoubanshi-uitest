@@ -62,8 +62,8 @@ class TestSearchByText(BaseCase):
         self.search_page.scroll_to_last_search_result()
         self.assertTrue(self.search_page.is_search_result_contain_guide(guide_name),
                         '没有显示搜索{}的办事指南结果'.format(search_text))
-        self.assertTrue(self.search_page.is_search_result_contain_news(news_name),
-                        '没有显示搜索{}的资讯结果'.format(search_text))
+        # self.assertTrue(self.search_page.is_search_result_contain_news(news_name),
+        #                 '没有显示搜索{}的资讯结果'.format(search_text))
 
     def test_05_search_by_text_has_no_result(self):
         """搜索没有结果，显示6条热门事项"""

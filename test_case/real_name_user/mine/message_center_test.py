@@ -28,6 +28,7 @@ class TestHandleMessage(BaseCase):
         """点击办件消息，跳转到对应的办件详情页面"""
         self.main_page.switch_to_mine_page()
         self.mine_page.click_message_center()
+        self.assertTrue(self.message_center_page.is_displayed())
         self.message_center_page.scroll_to_first_handle_message()
         self.message_center_page.click_first_handle_message()
         self.assertTrue(self.handle_item_detail_page.is_displayed())
