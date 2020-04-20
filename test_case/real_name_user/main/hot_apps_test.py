@@ -25,13 +25,13 @@ class TestAllApps(BaseCase):
 
     def test_02_search_success(self):
         """搜索"""
-        search_text = '联通'
-        # 我要办理搜索联通包含的事项
-        handle_search_result = '联通移动电话产品变更(电话产品变更)'
-        # 我要查询搜索联通包含的事项
-        query_search_result = '联通移动电话实时话费(实时话费查询)'
-        # 我要缴费搜索联通包含的事项
-        pay_search_result = '联通移动电话缴费(电话缴费)'
+        search_text = '车辆'
+        # 搜索办理类包含的事项
+        handle_search_result = '机动车限制、禁止的区域或者路段通行、停靠审核（通行停靠审核）'
+        # 搜索查询类包含的事项
+        query_search_result = '车辆信息查询'
+        # 搜索缴费类包含的事项
+        pay_search_result = '车辆罚款缴纳'
         self.main_page.click_more_apps()
         self.all_apps_page.search(search_text)
         self.assertTrue(self.all_apps_page.is_search_result_contain_handle_item(handle_search_result))
